@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>افهم عضلاتك | دليل التدريب</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Oswald:wght@400;500;600&display=swap');
+
+:root{
+  --bg:#141310;
+  --bg-alt:#1c1a16;
+  --panel:#211f1a;
+  --iron:#8a8577;
+  --iron-dim:#5c584c;
+  --chalk:#f2ede0;
+  --rust:#c4402b;
+  --rust-dim:#7d2c20;
+  --highlight:#d9c94a;
+  --line: rgba(242,237,224,0.09);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+html,body{
+  background:var(--bg);
+  color:var(--chalk);
+  font-family:'Tajawal', sans-serif;
+  scroll-behavior:smooth;
+}
+
+.tag{
+  font-family:'Oswald', sans-serif;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  min-height:92vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding: 8vh 6vw 6vh;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(ellipse 80% 60% at 75% 20%, rgba(196,64,43,0.14), transparent 60%),
+    var(--bg);
+}
+.hero-eyebrow{
+  font-size:0.78rem;
+  color:var(--rust);
+  margin-bottom:1.4rem;
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+}
+.hero-eyebrow::before{
+  content:"";
+  width:26px; height:2px;
+  background:var(--rust);
+  display:inline-block;
+}
+h1.hero-title{
+  font-weight:900;
+  font-size:clamp(2.6rem, 8vw, 5.6rem);
+  line-height:1.02;
+  max-width:14ch;
+  color:var(--chalk);
+}
+h1.hero-title span{
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--iron);
+}
+.hero-sub{
+  margin-top:1.8rem;
+  max-width:46ch;
+  font-size:1.05rem;
+  line-height:1.9;
+  color:var(--iron);
+}
+.hero-cta{
+  margin-top:2.6rem;
+  display:inline-flex;
+  align-items:center;
+  gap:0.7rem;
+  width:fit-content;
+  padding:0.9rem 1.7rem;
+  background:var(--rust);
+  color:var(--chalk);
+  font-weight:700;
+  font-size:0.95rem;
+  border-radius:2px;
+  cursor:pointer;
+  border:none;
+  transition:transform .25s ease, background .25s ease;
+}
+.hero-cta:hover{ background:#d94b33; transform:translateY(-2px); }
+.hero-cta:focus-visible{ outline:2px solid var(--highlight); outline-offset:3px; }
+
+.plate-stack{
+  position:absolute;
+  left:6vw; bottom:6vh;
+  display:flex;
+  gap:0.5rem;
+  opacity:0.5;
+}
+.plate{
+  width:10px; border-radius:2px;
+  background:var(--iron-dim);
+}
+.plate:nth-child(1){height:70px;}
+.plate:nth-child(2){height:100px; background:var(--rust-dim);}
+.plate:nth-child(3){height:55px;}
+.plate:nth-child(4){height:85px;}
+
+/* ---------- MAIN SECTION ---------- */
+.lab{
+  padding: 6rem 6vw 8rem;
+  display:grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 4rem;
+  align-items:start;
+}
+@media (max-width: 880px){
+  .lab{ grid-template-columns:1fr; padding:4rem 6vw 5rem; gap:3rem; }
+}
+
+.lab-head{
+  grid-column: 1 / -1;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  gap:1rem;
+  margin-bottom: 1rem;
+  border-bottom:1px solid var(--line);
+  padding-bottom:1.6rem;
+}
+.lab-head h2{
+  font-size:clamp(1.6rem,3.4vw,2.3rem);
+  font-weight:900;
+}
+.lab-head p.tag{
+  color:var(--iron-dim);
+  font-size:0.72rem;
+}
+
+/* ---------- BODY MAP ---------- */
+.map-wrap{
+  position:sticky;
+  top: 4vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1.4rem;
+}
+.map-wrap svg{ width:100%; max-width:320px; height:auto; }
+
+.muscle{
+  fill: var(--panel);
+  stroke: var(--iron-dim);
+  stroke-width:1.4;
+  cursor:pointer;
+  transition: fill .3s ease, stroke .3s ease, filter .3s ease;
+}
+.muscle:hover{ fill:#2b2822; stroke:var(--iron); }
+.muscle.active{
+  fill: var(--rust);
+  stroke: var(--highlight);
+  filter: drop-shadow(0 0 10px rgba(217,201,74,0.55));
+}
+.body-static{ fill:none; stroke:var(--iron-dim); stroke-width:1.2; }
+
+.map-hint{
+  font-size:0.82rem;
+  color:var(--iron-dim);
+  text-align:center;
+  max-width:26ch;
+}
+
+/* ---------- PANEL ---------- */
+.panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:4px;
+  min-height:420px;
+  padding:2.4rem;
+  position:relative;
+  overflow:hidden;
+}
+.panel::before{
+  content: attr(data-code);
+  position:absolute;
+  top:1.2rem; left:1.4rem;
+  font-family:'Oswald',sans-serif;
+  font-size:0.7rem;
+  letter-spacing:0.16em;
+  color:var(--iron-dim);
+}
+
+.panel-empty{
+  height:100%;
+  min-height:370px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:1rem;
+  color:var(--iron-dim);
+  text-align:center;
+}
+.panel-empty .big{ font-size:3rem; opacity:0.4; }
+
+.panel-title{
+  font-size:clamp(1.8rem,3.2vw,2.5rem);
+  font-weight:900;
+  color:var(--highlight);
+  margin-bottom:0.6rem;
+}
+.panel-principle{
+  color:var(--iron);
+  line-height:1.9;
+  font-size:0.98rem;
+  max-width:60ch;
+  margin-bottom:2.2rem;
+  padding-bottom:2rem;
+  border-bottom:1px solid var(--line);
+}
+
+.ex-list{ display:flex; flex-direction:column; gap:0; }
+.ex-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:1.1rem 0;
+  border-bottom:1px solid var(--line);
+}
+.ex-row:last-child{ border-bottom:none; }
+.ex-name{
+  font-weight:700;
+  font-size:1.05rem;
+}
+.ex-name small{
+  display:block;
+  font-family:'Oswald',sans-serif;
+  font-weight:400;
+  letter-spacing:0.06em;
+  font-size:0.72rem;
+  color:var(--iron-dim);
+  margin-top:0.2rem;
+  text-transform:uppercase;
+}
+.ex-set{
+  font-family:'Oswald', sans-serif;
+  font-size:0.95rem;
+  color:var(--rust);
+  background:rgba(196,64,43,0.12);
+  padding:0.35rem 0.8rem;
+  border-radius:2px;
+  white-space:nowrap;
+  letter-spacing:0.04em;
+}
+
+footer{
+  padding:2.4rem 6vw;
+  border-top:1px solid var(--line);
+  color:var(--iron-dim);
+  font-size:0.8rem;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:0.6rem;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; scroll-behavior:auto !important; }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-eyebrow tag">دليل تدريب العضلات</div>
+  <h1 class="hero-title">إفهم جسمك، <span>درّب</span> بذكاء</h1>
+  <p class="hero-sub">كل عضلة عندها منطق خاص بيها في التدريب. اضغط على أي عضلة في المخطط وشوف المبدأ وراها والتمارين الأنسب ليها، بالمجموعات والتكرارات.</p>
+  <button class="hero-cta" onclick="document.querySelector('.lab').scrollIntoView()">
+    ابدا الاستكشاف ↓
+  </button>
+  <div class="plate-stack">
+    <div class="plate"></div><div class="plate"></div><div class="plate"></div><div class="plate"></div>
+  </div>
+</section>
+
+<section class="lab">
+  <div class="lab-head">
+    <h2>مخطط العضلات التفاعلي</h2>
+    <p class="tag">10 مجموعات عضلية</p>
+  </div>
+
+  <div class="map-wrap">
+    <svg viewBox="0 0 200 420" xmlns="http://www.w3.org/2000/svg">
+      <!-- head -->
+      <circle class="body-static" cx="100" cy="28" r="18"/>
+      <!-- neck -->
+      <path class="body-static" d="M92,44 L92,54 M108,44 L108,54"/>
+
+      <!-- traps -->
+      <path class="muscle" data-m="traps" d="M88,54 L112,54 L124,68 L76,68 Z"/>
+
+      <!-- shoulders -->
+      <ellipse class="muscle" data-m="shoulders" cx="62" cy="72" rx="17" ry="14"/>
+      <ellipse class="muscle" data-m="shoulders" cx="138" cy="72" rx="17" ry="14"/>
+
+      <!-- chest -->
+      <path class="muscle" data-m="chest" d="M78,62 Q100,52 122,62 L124,102 Q100,112 76,102 Z"/>
+
+      <!-- arms (biceps/triceps) -->
+      <rect class="muscle" data-m="arms" x="42" y="82" width="18" height="70" rx="8"/>
+      <rect class="muscle" data-m="arms" x="140" y="82" width="18" height="70" rx="8"/>
+
+      <!-- forearms -->
+      <rect class="muscle" data-m="forearms" x="44" y="154" width="14" height="55" rx="7"/>
+      <rect class="muscle" data-m="forearms" x="142" y="154" width="14" height="55" rx="7"/>
+
+      <!-- abs -->
+      <rect class="muscle" data-m="abs" x="82" y="108" width="36" height="66" rx="6"/>
+      <line class="body-static" x1="100" y1="108" x2="100" y2="174"/>
+      <line class="body-static" x1="82" y1="130" x2="118" y2="130"/>
+      <line class="body-static" x1="82" y1="152" x2="118" y2="152"/>
+
+      <!-- back hint strips beside torso (counts as back for simplified front view) -->
+      <rect class="muscle" data-m="back" x="66" y="60" width="10" height="118" rx="4"/>
+      <rect class="muscle" data-m="back" x="124" y="60" width="10" height="118" rx="4"/>
+
+      <!-- glutes -->
+      <ellipse class="muscle" data-m="glutes" cx="90" cy="182" rx="14" ry="12"/>
+      <ellipse class="muscle" data-m="glutes" cx="110" cy="182" rx="14" ry="12"/>
+
+      <!-- legs (thighs) -->
+      <rect class="muscle" data-m="legs" x="78" y="190" width="20" height="88" rx="9"/>
+      <rect class="muscle" data-m="legs" x="102" y="190" width="20" height="88" rx="9"/>
+
+      <!-- calves -->
+      <rect class="muscle" data-m="calves" x="78" y="282" width="20" height="38" rx="8"/>
+      <rect class="muscle" data-m="calves" x="102" y="282" width="20" height="38" rx="8"/>
+
+      <!-- feet static -->
+      <ellipse class="body-static" cx="80" cy="330" rx="10" ry="6"/>
+      <ellipse class="body-static" cx="120" cy="330" rx="10" ry="6"/>
+    </svg>
+    <p class="map-hint">اضغط على أي منطقة في المخطط: من الترابيز فوق لحد السمانة تحت، فيهم 10 عضلات قابلة للنقر.</p>
+  </div>
+
+  <div class="panel" id="panel" data-code="MUSCLE / 00">
+    <div class="panel-empty" id="empty-state">
+      <div class="big tag">＋</div>
+      <p>اختار عضلة من المخطط باش تظهر هنا التمارين المناسبة ليها</p>
+    </div>
+
+    <div id="content" style="display:none;">
+      <div class="panel-title" id="c-title"></div>
+      <p class="panel-principle" id="c-principle"></p>
+      <div class="ex-list" id="c-list"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>دليل تدريب — للاستعمال التعليمي، استشر مدرب قبل البداية إذا عندك أي مشكل صحي</span>
+  <span class="tag">TRAIN SMART</span>
+</footer>
+
+<script>
+const DATA = {
+  chest: {
+    code: "CHEST / 01",
+    title: "الصدر",
+    principle: "الصدر يتبنى بالدفع الأفقي والمائل. لازم تنوع بين الزوايا (مسطح، مائل لفوق) باش تخدم كامل العضلة، وتحافظ على نزلة بطيئة ومراقبة.",
+    exercises: [
+      {name:"بنش برس", en:"Bench Press", sets:"4×8-10"},
+      {name:"ضغط مائل بالدمبل", en:"Incline Dumbbell Press", sets:"3×10"},
+      {name:"تفتيح بالكابل", en:"Cable Fly", sets:"3×12"},
+      {name:"ضغط عادي", en:"Push-up", sets:"3×15-20"},
+    ]
+  },
+  back: {
+    code: "BACK / 02",
+    title: "الظهر",
+    principle: "الظهر يتبنى بالسحب: عمودي (نحو تحت) وأفقي (نحوك). التركيز يكون على تقريب لوحي الكتف وشد بطيء، ماشي على وزن كبير بحركة ناقصة.",
+    exercises: [
+      {name:"العقلة", en:"Pull-up", sets:"4×6-8"},
+      {name:"تجديف بالبار", en:"Barbell Row", sets:"4×10"},
+      {name:"سحب أمامي بالكابل", en:"Lat Pulldown", sets:"3×12"},
+      {name:"ديدليفت", en:"Deadlift", sets:"3×6"},
+    ]
+  },
+  shoulders: {
+    code: "SHOULDERS / 03",
+    title: "الأكتاف",
+    principle: "الكتف عضلة بـ3 رؤوس: أمامي، جانبي، خلفي. باش تتبنى بشكل متكامل لازم تخدم الثلاثة، وماتعتمدش برشا على الدفع فوق الراس وحدو.",
+    exercises: [
+      {name:"ضغط عسكري", en:"Overhead Press", sets:"4×8"},
+      {name:"تفتيح جانبي بالدمبل", en:"Lateral Raise", sets:"3×15"},
+      {name:"تفتيح خلفي", en:"Rear Delt Fly", sets:"3×15"},
+      {name:"أرنولد برس", en:"Arnold Press", sets:"3×10"},
+    ]
+  },
+  arms: {
+    code: "ARMS / 04",
+    title: "الدراع (باي/تراي)",
+    principle: "البايسيبس والترايسيبس يتبناو بالعزل: حركة واحدة، مفصل واحد، تركيز كامل على الشد والاسترخاء البطيء، ماشي بالزخم.",
+    exercises: [
+      {name:"كيرل بالبار", en:"Barbell Curl", sets:"3×10"},
+      {name:"كيرل مركز", en:"Concentration Curl", sets:"3×12"},
+      {name:"ضغط فرنسي", en:"Skull Crusher", sets:"3×10"},
+      {name:"Dips", en:"Triceps Dips", sets:"3×12"},
+    ]
+  },
+  abs: {
+    code: "ABS / 05",
+    title: "البطن",
+    principle: "البطن عضلة تتبنى بالتكرار العالي والثبات (Isometric). خليط بين حركات ديناميكية وحركات ثبات يعطي أحسن نتيجة.",
+    exercises: [
+      {name:"كرنش", en:"Crunch", sets:"3×20"},
+      {name:"بلانك", en:"Plank", sets:"3×45 ثانية"},
+      {name:"رفع الرجلين", en:"Leg Raise", sets:"3×15"},
+      {name:"Russian Twist", en:"Russian Twist", sets:"3×20"},
+    ]
+  },
+  legs: {
+    code: "LEGS / 06",
+    title: "الأرجل",
+    principle: "الرجلين فيهم أكبر عضلات في الجسم، لازم حمل أثقل وحركات مركبة (Squat, Press) قبل ما تروح للعزل، باش تحفز أكبر نمو.",
+    exercises: [
+      {name:"سكوات", en:"Squat", sets:"4×8"},
+      {name:"دفع الرجلين بالجهاز", en:"Leg Press", sets:"3×12"},
+      {name:"رومانيان ديدليفت", en:"Romanian Deadlift", sets:"3×10"},
+      {name:"لانج", en:"Lunge", sets:"3×12"},
+    ]
+  },
+  traps: {
+    code: "TRAPS / 07",
+    title: "الترابيز",
+    principle: "الترابيز يتبنى برفع الأكتاف نحو الودنين (Shrug) وبالسحب الثقيل، عضلة تتحمل وزن كبير وتحب الشد الثابت في القمة.",
+    exercises: [
+      {name:"شراغ بالبار", en:"Barbell Shrug", sets:"4×12"},
+      {name:"شراغ بالدمبل", en:"Dumbbell Shrug", sets:"3×15"},
+      {name:"فارمر ووك", en:"Farmer's Walk", sets:"3×30 متر"},
+      {name:"سحب عالي بالكابل", en:"Upright Row", sets:"3×12"},
+    ]
+  },
+  forearms: {
+    code: "FOREARMS / 08",
+    title: "الساعد",
+    principle: "الساعد يتبنى بتكرار عالي وقبضة قوية. الشد المطول (زمن تحت التوتر) أهم من الوزن الثقيل هنا.",
+    exercises: [
+      {name:"كيرل الرسغ", en:"Wrist Curl", sets:"3×15"},
+      {name:"كيرل الرسغ العكسي", en:"Reverse Wrist Curl", sets:"3×15"},
+      {name:"شد القبضة", en:"Grip Squeeze", sets:"3×20"},
+      {name:"تعليق على البار", en:"Dead Hang", sets:"3×30 ثانية"},
+    ]
+  },
+  glutes: {
+    code: "GLUTES / 09",
+    title: "المؤخرة",
+    principle: "المؤخرة تتبنى بحركات الدفع من الورك (Hip Hinge/Thrust)، وتحب الانقباض الكامل في القمة أكثر من الوزن الثقيل وحدو.",
+    exercises: [
+      {name:"هيب ثراست", en:"Hip Thrust", sets:"4×10"},
+      {name:"سكوات بلغاري", en:"Bulgarian Split Squat", sets:"3×10"},
+      {name:"كيك باك بالكابل", en:"Cable Kickback", sets:"3×15"},
+      {name:"جلوت بريدج", en:"Glute Bridge", sets:"3×15"},
+    ]
+  },
+  calves: {
+    code: "CALVES / 10",
+    title: "السمانة",
+    principle: "السمانة عضلة صلبة تتبنى بتكرار عالي جدا وحركة كاملة (من الأسفل للأعلى)، وتحتاج صبر أكثر من العضلات الكبيرة.",
+    exercises: [
+      {name:"رفع سمانة واقف", en:"Standing Calf Raise", sets:"4×15-20"},
+      {name:"رفع سمانة قاعد", en:"Seated Calf Raise", sets:"3×20"},
+      {name:"رفع سمانة بساق وحدة", en:"Single-Leg Calf Raise", sets:"3×12"},
+      {name:"قفز الحبل", en:"Jump Rope", sets:"3×1 دقيقة"},
+    ]
+  }
+};
+
+const muscles = document.querySelectorAll('.muscle');
+const panel = document.getElementById('panel');
+const emptyState = document.getElementById('empty-state');
+const content = document.getElementById('content');
+
+muscles.forEach(el => {
+  el.addEventListener('click', () => {
+    const key = el.getAttribute('data-m');
+    const d = DATA[key];
+    if(!d) return;
+
+    document.querySelectorAll(`[data-m="${key}"]`).forEach(g => {
+      muscles.forEach(m => m.classList.remove('active'));
+    });
+    document.querySelectorAll(`.muscle[data-m="${key}"]`).forEach(m => m.classList.add('active'));
+
+    panel.setAttribute('data-code', d.code);
+    document.getElementById('c-title').textContent = d.title;
+    document.getElementById('c-principle').textContent = d.principle;
+
+    const list = document.getElementById('c-list');
+    list.innerHTML = '';
+    d.exercises.forEach(ex => {
+      const row = document.createElement('div');
+      row.className = 'ex-row';
+      row.innerHTML = `
+        <div class="ex-name">${ex.name}<small>${ex.en}</small></div>
+        <div class="ex-set tag">${ex.sets}</div>
+      `;
+      list.appendChild(row);
+    });
+
+    emptyState.style.display = 'none';
+    content.style.display = 'block';
+  });
+});
+</script>
+
+</body>
+</html>
