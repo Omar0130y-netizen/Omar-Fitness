@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8LP335BVRH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8LP335BVRH');
+  </script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مكتبة التمارين | افهم عضلاتك</title>
+<meta name="description" content="ابحث وصفّي بين عشرات تمارين تدريب العضلات حسب العضلة والمستوى، مع عدد المجموعات والتكرارات لكل تمرين.">
+<link rel="canonical" href="https://omar0130y-netizen.github.io/Omar-Fitness/exercises.html">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Oswald:wght@400;500;600&display=swap');
+
+:root{
+  --bg:#141310;
+  --bg-alt:#1c1a16;
+  --panel:#211f1a;
+  --iron:#8a8577;
+  --iron-dim:#5c584c;
+  --chalk:#f2ede0;
+  --rust:#c4402b;
+  --rust-dim:#7d2c20;
+  --highlight:#d9c94a;
+  --line: rgba(242,237,224,0.09);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+html,body{
+  background:var(--bg);
+  color:var(--chalk);
+  font-family:'Tajawal', sans-serif;
+  scroll-behavior:smooth;
+}
+
+.tag{
+  font-family:'Oswald', sans-serif;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  min-height:92vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding: 8vh 6vw 6vh;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(ellipse 80% 60% at 75% 20%, rgba(196,64,43,0.14), transparent 60%),
+    var(--bg);
+}
+.hero-eyebrow{
+  font-size:0.78rem;
+  color:var(--rust);
+  margin-bottom:1.4rem;
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+}
+.hero-eyebrow::before{
+  content:"";
+  width:26px; height:2px;
+  background:var(--rust);
+  display:inline-block;
+}
+h1.hero-title{
+  font-weight:900;
+  font-size:clamp(2.6rem, 8vw, 5.6rem);
+  line-height:1.02;
+  max-width:14ch;
+  color:var(--chalk);
+}
+h1.hero-title span{
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--iron);
+}
+.hero-sub{
+  margin-top:1.8rem;
+  max-width:46ch;
+  font-size:1.05rem;
+  line-height:1.9;
+  color:var(--iron);
+}
+.hero-cta{
+  margin-top:2.6rem;
+  display:inline-flex;
+  align-items:center;
+  gap:0.7rem;
+  width:fit-content;
+  padding:0.9rem 1.7rem;
+  background:var(--rust);
+  color:var(--chalk);
+  font-weight:700;
+  font-size:0.95rem;
+  border-radius:2px;
+  cursor:pointer;
+  border:none;
+  transition:transform .25s ease, background .25s ease;
+}
+.hero-cta:hover{ background:#d94b33; transform:translateY(-2px); }
+.hero-cta:focus-visible{ outline:2px solid var(--highlight); outline-offset:3px; }
+
+.plate-stack{
+  position:absolute;
+  left:6vw; bottom:6vh;
+  display:flex;
+  gap:0.5rem;
+  opacity:0.5;
+}
+.plate{
+  width:10px; border-radius:2px;
+  background:var(--iron-dim);
+}
+.plate:nth-child(1){height:70px;}
+.plate:nth-child(2){height:100px; background:var(--rust-dim);}
+.plate:nth-child(3){height:55px;}
+.plate:nth-child(4){height:85px;}
+
+/* ---------- MAIN SECTION ---------- */
+.lab{
+  padding: 6rem 6vw 8rem;
+  display:grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 4rem;
+  align-items:start;
+}
+@media (max-width: 880px){
+  .lab{ grid-template-columns:1fr; padding:4rem 6vw 5rem; gap:3rem; }
+}
+
+.lab-head{
+  grid-column: 1 / -1;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  gap:1rem;
+  margin-bottom: 1rem;
+  border-bottom:1px solid var(--line);
+  padding-bottom:1.6rem;
+}
+.lab-head h2{
+  font-size:clamp(1.6rem,3.4vw,2.3rem);
+  font-weight:900;
+}
+.lab-head p.tag{
+  color:var(--iron-dim);
+  font-size:0.72rem;
+}
+
+/* ---------- BODY MAP ---------- */
+.map-wrap{
+  position:sticky;
+  top: 4vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1.4rem;
+}
+.map-wrap svg{ width:100%; max-width:320px; height:auto; }
+
+.muscle{
+  fill: var(--panel);
+  stroke: var(--iron-dim);
+  stroke-width:1.4;
+  cursor:pointer;
+  transition: fill .3s ease, stroke .3s ease, filter .3s ease;
+}
+.muscle:hover{ fill:#2b2822; stroke:var(--iron); }
+.muscle.active{
+  fill: var(--rust);
+  stroke: var(--highlight);
+  filter: drop-shadow(0 0 10px rgba(217,201,74,0.55));
+}
+.body-static{ fill:none; stroke:var(--iron-dim); stroke-width:1.2; }
+
+.map-hint{
+  font-size:0.82rem;
+  color:var(--iron-dim);
+  text-align:center;
+  max-width:26ch;
+}
+
+/* ---------- PANEL ---------- */
+.panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:4px;
+  min-height:420px;
+  padding:2.4rem;
+  position:relative;
+  overflow:hidden;
+}
+.panel::before{
+  content: attr(data-code);
+  position:absolute;
+  top:1.2rem; left:1.4rem;
+  font-family:'Oswald',sans-serif;
+  font-size:0.7rem;
+  letter-spacing:0.16em;
+  color:var(--iron-dim);
+}
+
+.panel-empty{
+  height:100%;
+  min-height:370px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:1rem;
+  color:var(--iron-dim);
+  text-align:center;
+}
+.panel-empty .big{ font-size:3rem; opacity:0.4; }
+
+.panel-title{
+  font-size:clamp(1.8rem,3.2vw,2.5rem);
+  font-weight:900;
+  color:var(--highlight);
+  margin-bottom:0.6rem;
+}
+
+.panel-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+.level-tabs{
+  display:flex;
+  gap:0.4rem;
+  background:var(--bg-alt);
+  padding:0.3rem;
+  border-radius:3px;
+  border:1px solid var(--line);
+}
+.level-btn{
+  font-family:'Tajawal', sans-serif;
+  font-weight:700;
+  font-size:0.82rem;
+  color:var(--iron-dim);
+  background:transparent;
+  border:none;
+  padding:0.5rem 0.9rem;
+  border-radius:2px;
+  cursor:pointer;
+  transition:background .25s ease, color .25s ease;
+}
+.level-btn:hover{ color:var(--chalk); }
+.level-btn.active{
+  background:var(--rust);
+  color:var(--chalk);
+}
+.level-btn:focus-visible{ outline:2px solid var(--highlight); outline-offset:2px; }
+
+.panel-principle{
+  color:var(--iron);
+  line-height:1.9;
+  font-size:0.98rem;
+  max-width:60ch;
+  margin-bottom:2.2rem;
+  padding-bottom:2rem;
+  border-bottom:1px solid var(--line);
+}
+
+.ex-list{ display:flex; flex-direction:column; gap:0; }
+.ex-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:1.1rem 0;
+  border-bottom:1px solid var(--line);
+}
+.ex-row:last-child{ border-bottom:none; }
+.ex-name{
+  font-weight:700;
+  font-size:1.05rem;
+}
+.ex-name small{
+  display:block;
+  font-family:'Oswald',sans-serif;
+  font-weight:400;
+  letter-spacing:0.06em;
+  font-size:0.72rem;
+  color:var(--iron-dim);
+  margin-top:0.2rem;
+  text-transform:uppercase;
+}
+.ex-set{
+  font-family:'Oswald', sans-serif;
+  font-size:0.95rem;
+  color:var(--rust);
+  background:rgba(196,64,43,0.12);
+  padding:0.35rem 0.8rem;
+  border-radius:2px;
+  white-space:nowrap;
+  letter-spacing:0.04em;
+}
+
+footer{
+  padding:2.4rem 6vw;
+  border-top:1px solid var(--line);
+  color:var(--iron-dim);
+  font-size:0.8rem;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:0.6rem;
+}
+
+/* ---------- NAV ---------- */
+.site-nav{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.1rem 6vw;
+  background:rgba(20,19,16,0.88);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-logo{
+  font-weight:900; font-size:1.1rem; color:var(--chalk); text-decoration:none;
+}
+.nav-logo span{ color:var(--rust); }
+.nav-links{ display:flex; gap:1.6rem; flex-wrap:wrap; }
+.nav-links a{
+  color:var(--iron); text-decoration:none; font-size:0.92rem; font-weight:500;
+  transition:color .2s ease;
+}
+.nav-links a:hover, .nav-links a.active{ color:var(--highlight); }
+
+/* ---------- EXPANDED FOOTER ---------- */
+.site-footer{
+  padding:4rem 6vw 2rem;
+  border-top:1px solid var(--line);
+  background:var(--bg-alt);
+}
+.footer-top{
+  display:flex; justify-content:space-between; gap:3rem; flex-wrap:wrap;
+  padding-bottom:2.4rem; margin-bottom:1.6rem; border-bottom:1px solid var(--line);
+}
+.footer-brand{ max-width:34ch; }
+.footer-brand p{ color:var(--iron-dim); font-size:0.85rem; line-height:1.8; margin-top:0.8rem; }
+.footer-links{ display:flex; gap:3.5rem; flex-wrap:wrap; }
+.footer-col{ display:flex; flex-direction:column; gap:0.6rem; }
+.footer-col h4{ color:var(--iron-dim); font-size:0.7rem; margin-bottom:0.4rem; }
+.footer-col a{ color:var(--iron); text-decoration:none; font-size:0.88rem; }
+.footer-col a:hover{ color:var(--highlight); }
+.footer-bottom{
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem;
+  color:var(--iron-dim); font-size:0.78rem;
+}
+
+/* ---------- SIMPLE CONTENT PAGES ---------- */
+.page-hero{ padding:5rem 6vw 3rem; border-bottom:1px solid var(--line); }
+.page-hero .tag{ color:var(--rust); font-size:0.78rem; margin-bottom:1.2rem; display:block; }
+.page-hero h1{ font-weight:900; font-size:clamp(2rem,5vw,3.2rem); max-width:22ch; }
+.page-hero p{ margin-top:1.2rem; color:var(--iron); max-width:60ch; line-height:1.8; }
+
+.page-body{ padding:3.5rem 6vw 6rem; max-width:820px; margin:0 auto; }
+.page-body h2{ font-size:1.4rem; font-weight:900; color:var(--highlight); margin:2.4rem 0 1rem; }
+.page-body h2:first-child{ margin-top:0; }
+.page-body p{ color:var(--iron); line-height:1.9; margin-bottom:1rem; font-size:0.98rem; }
+.page-body ul{ color:var(--iron); line-height:1.9; margin:0 0 1rem; padding-right:1.4rem; font-size:0.98rem; }
+.page-body li{ margin-bottom:0.5rem; }
+.page-body a{ color:var(--highlight); }
+.page-body .updated{ color:var(--iron-dim); font-size:0.8rem; margin-bottom:2rem; }
+
+/* ---------- CONTACT FORM ---------- */
+.contact-form{ display:flex; flex-direction:column; gap:1.1rem; margin-top:1rem; }
+.contact-form label{ font-size:0.85rem; color:var(--iron); margin-bottom:0.4rem; display:block; }
+.contact-form input, .contact-form textarea{
+  width:100%; background:var(--panel); border:1px solid var(--line);
+  color:var(--chalk); padding:0.8rem 1rem; border-radius:3px; font-family:'Tajawal',sans-serif;
+  font-size:0.95rem;
+}
+.contact-form textarea{ min-height:140px; resize:vertical; }
+.contact-form button{
+  width:fit-content; padding:0.85rem 1.8rem; background:var(--rust); color:var(--chalk);
+  border:none; border-radius:2px; font-weight:700; cursor:pointer; font-size:0.92rem;
+  transition:background .25s ease;
+}
+.contact-form button:hover{ background:#d94b33; }
+.contact-info{
+  display:flex; flex-direction:column; gap:0.9rem; margin-top:2rem;
+  padding-top:2rem; border-top:1px solid var(--line);
+}
+.contact-info div{ color:var(--iron); font-size:0.92rem; }
+.contact-info strong{ color:var(--chalk); }
+
+/* ---------- COOKIE BANNER ---------- */
+.cookie-banner{
+  position:fixed; bottom:0; left:0; right:0; z-index:100;
+  background:var(--panel); border-top:1px solid var(--line);
+  padding:1.2rem 6vw; display:flex; align-items:center; justify-content:space-between;
+  gap:1.4rem; flex-wrap:wrap;
+  transform:translateY(120%); transition:transform .4s ease;
+}
+.cookie-banner.show{ transform:translateY(0); }
+.cookie-banner p{ color:var(--iron); font-size:0.86rem; max-width:60ch; margin:0; }
+.cookie-banner a{ color:var(--highlight); }
+.cookie-actions{ display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap; }
+.cookie-accept{
+  padding:0.7rem 1.6rem; background:var(--rust); color:var(--chalk); border:none;
+  border-radius:2px; font-weight:700; cursor:pointer; font-size:0.88rem;
+}
+.cookie-accept:hover{ background:#d94b33; }
+.cookie-more{ color:var(--iron); font-size:0.85rem; text-decoration:underline; }
+
+@media (max-width: 640px){
+  .site-nav{ flex-direction:column; gap:0.9rem; align-items:flex-start; }
+  .footer-links{ gap:2.2rem; }
+}
+
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; scroll-behavior:auto !important; }
+}
+</style>
+
+<style>
+.search-bar{
+  display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:2rem;
+}
+.search-bar input[type="text"]{
+  flex:1; min-width:220px; background:var(--panel); border:1px solid var(--line); color:var(--chalk);
+  padding:0.85rem 1.1rem; border-radius:3px; font-family:'Tajawal',sans-serif; font-size:0.98rem;
+}
+.search-bar select{
+  background:var(--panel); border:1px solid var(--line); color:var(--chalk);
+  padding:0.85rem 1.1rem; border-radius:3px; font-family:'Tajawal',sans-serif; font-size:0.9rem;
+}
+.ex-count{ color:var(--iron-dim); font-size:0.82rem; margin-bottom:1.4rem; }
+.ex-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:1rem; }
+.ex-card{
+  background:var(--panel); border:1px solid var(--line); border-radius:4px; padding:1.3rem;
+}
+.ex-card .ex-card-name{ font-weight:700; font-size:1.02rem; margin-bottom:0.2rem; }
+.ex-card .ex-card-en{ font-family:'Oswald',sans-serif; font-size:0.7rem; letter-spacing:0.06em; color:var(--iron-dim); text-transform:uppercase; margin-bottom:0.9rem; }
+.ex-card-meta{ display:flex; justify-content:space-between; align-items:center; gap:0.6rem; flex-wrap:wrap; }
+.ex-card-muscle{ font-size:0.78rem; color:var(--highlight); background:rgba(217,201,74,0.1); padding:0.25rem 0.6rem; border-radius:2px; }
+.ex-card-level{ font-size:0.78rem; color:var(--iron); }
+.ex-card-sets{ font-family:'Oswald',sans-serif; font-size:0.85rem; color:var(--rust); }
+.no-results{ color:var(--iron-dim); text-align:center; padding:3rem 0; }
+
+.ex-card-desc{ color:var(--iron); font-size:0.86rem; line-height:1.8; margin:0.7rem 0 0.9rem; }
+.ex-more-btn{
+  width:100%; background:transparent; border:1px solid var(--line); color:var(--iron);
+  padding:0.55rem 0.8rem; border-radius:2px; font-family:'Tajawal',sans-serif; font-size:0.82rem;
+  font-weight:700; cursor:pointer; margin-top:0.9rem; transition:background .2s ease, color .2s ease;
+}
+.ex-more-btn:hover{ background:var(--bg-alt); color:var(--highlight); }
+.ex-more-btn:focus-visible{ outline:2px solid var(--highlight); outline-offset:2px; }
+.ex-card-detail{
+  display:none; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line);
+}
+.ex-card-detail.open{ display:block; }
+.ex-card-detail h5{
+  font-family:'Oswald',sans-serif; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--rust); margin-bottom:0.4rem;
+}
+.ex-card-detail ol, .ex-card-detail ul{ color:var(--iron); font-size:0.85rem; line-height:1.8; padding-right:1.2rem; margin-bottom:0.9rem; }
+.ex-card-detail p{ color:var(--iron); font-size:0.85rem; line-height:1.8; margin-bottom:0.9rem; }
+.ex-card-detail .ex-target{ display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:0.9rem; }
+.ex-card-detail .ex-target span{
+  font-size:0.74rem; color:var(--highlight); background:rgba(217,201,74,0.1);
+  padding:0.2rem 0.55rem; border-radius:2px;
+}
+.ex-card-detail .ex-safety{
+  color:var(--iron); font-size:0.82rem; line-height:1.7; background:rgba(196,64,43,0.08);
+  border-right:2px solid var(--rust); padding:0.6rem 0.8rem; margin:0;
+}
+</style>
+<!-- Google AdSense: replace ca-pub-7443649862688896 with your real Publisher ID once approved -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7443649862688896" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">افهم <span>عضلاتك</span></a>
+  <div class="nav-links">
+    <a href="index.html">الرئيسية</a>
+    <a href="exercises.html" class="active">التمارين</a>
+    <a href="workouts.html">البرامج</a>
+    <a href="calculators.html">الحاسبات</a>
+    <a href="nutrition.html">التغذية</a>
+    <a href="blog.html">المدونة</a>
+    <a href="faq.html">الأسئلة الشائعة</a>
+    <a href="about.html">من نحنا</a>
+    <a href="contact.html">اتصل بنا</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <span class="tag">مكتبة التمارين</span>
+  <h1>دور على التمرين لي يلزمك</h1>
+  <p>ابحث بالاسم، أو صفّي حسب العضلة والمستوى، ولقى التمرين المناسب فورا.</p>
+</section>
+
+<section class="page-body">
+  <div class="search-bar">
+    <input type="text" id="ex-search" placeholder="دور على تمرين... (مثلا: سكوات، بنش، كيرل)">
+    <select id="ex-muscle-filter"><option value="">كل العضلات</option></select>
+    <select id="ex-level-filter">
+      <option value="">كل المستويات</option>
+      <option value="beginner">مبتدئ</option>
+      <option value="intermediate">متوسط</option>
+      <option value="advanced">متقدم</option>
+    </select>
+  </div>
+  <div class="ex-count" id="ex-count"></div>
+  <div class="ex-grid" id="ex-grid"></div>
+  <p class="no-results" id="no-results" style="display:none;">ما لقيناش تمارين تطابق البحث متاعك.</p>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">افهم <span>عضلاتك</span></a>
+      <p>دليل تعليمي مجاني لتدريب العضلات — محتوى لأغراض تثقيفية فقط، وما يعوضش استشارة طبيب أو مدرب مختص.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4 class="tag">الموقع</h4>
+        <a href="index.html">الرئيسية</a>
+        <a href="exercises.html">التمارين</a>
+        <a href="workouts.html">البرامج</a>
+        <a href="calculators.html">الحاسبات</a>
+        <a href="nutrition.html">التغذية</a>
+        <a href="blog.html">المدونة</a>
+        <a href="faq.html">الأسئلة الشائعة</a>
+      </div>
+      <div class="footer-col">
+        <h4 class="tag">قانوني</h4>
+        <a href="about.html">من نحنا</a>
+        <a href="contact.html">اتصل بنا</a>
+        <a href="privacy.html">سياسة الخصوصية</a>
+        <a href="terms.html">شروط الاستخدام</a>
+        <a href="cookies.html">سياسة الكوكيز</a>
+        <a href="disclaimer.html">إخلاء المسؤولية</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 افهم عضلاتك. جميع الحقوق محفوظة.</span>
+    <span class="tag">TRAIN SMART</span>
+  </div>
+</footer>
+
+<div class="cookie-banner" id="cookie-banner">
+  <p>نستعملو الكوكيز باش نحسّنو تجربتك في الموقع ونعرضو إعلانات مناسبة. بالمواصلة في التصفح، أنت موافق على <a href="cookies.html">سياسة الكوكيز</a> متاعنا.</p>
+  <div class="cookie-actions">
+    <button class="cookie-accept" id="cookie-accept">موافق</button>
+    <a href="cookies.html" class="cookie-more">أكثر تفاصيل</a>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='cookie_consent_v1';
+  var banner=document.getElementById('cookie-banner');
+  if(!banner) return;
+  try{
+    if(localStorage.getItem(KEY)==='accepted'){ banner.style.display='none'; }
+    else{ banner.classList.add('show'); }
+  }catch(e){ banner.classList.add('show'); }
+  var btn=document.getElementById('cookie-accept');
+  if(btn){
+    btn.addEventListener('click', function(){
+      try{ localStorage.setItem(KEY,'accepted'); }catch(e){}
+      banner.classList.remove('show');
+      banner.style.display='none';
+    });
+  }
+})();
+</script>
+<script>
+const EX_DETAILS = {
+  "Push-up": {
+    "desc": "حركة أساسية بوزن الجسم تخدم الصدر والترايسيبس والأكتاف في نفس الوقت.",
+    "steps": [
+      "حط يديك بعرض الكتفين تقريبا وجسمك في خط مستقيم من الراس للكعبين.",
+      "انزل جسمك لتحت بشكل مراقب حتى يقرب الصدر من الأرض.",
+      "ادفع في الأرض وارجع للأعلى بشد كامل في الصدر والدراع."
+    ],
+    "target": [
+      "الصدر",
+      "الترايسيبس",
+      "الأكتاف الأمامية"
+    ],
+    "safety": "خلي الحوض ثابت وماتخليش الظهر يهبط أو يرتفع زيادة باش تحمي أسفل الظهر."
+  },
+  "Incline Push-up": {
+    "desc": "نسخة أسهل من الضغط العادي، مناسبة للمبتدئين لبناء القوة الأساسية.",
+    "steps": [
+      "حط يديك على سطح مرتفع (مقعد أو درج) بعرض الكتفين.",
+      "خلي جسمك مستقيم من الراس للكعبين.",
+      "انزل صدرك نحو السطح وارجع للأعلى بدفع منتظم."
+    ],
+    "target": [
+      "أسفل الصدر",
+      "الترايسيبس",
+      "الأكتاف"
+    ],
+    "safety": "كلما كان السطح أعلى كانت الحركة أسهل، اختار ارتفاع يخليك تكمل الحركة بتقنية صحيحة."
+  },
+  "Dumbbell Floor Press": {
+    "desc": "بديل آمن لبنش برس يخدم الصدر بمدى حركة محدود يحمي الكتف.",
+    "steps": [
+      "استلقي على الأرض وركبتيك مثنية، دمبل في كل يد فوق الصدر.",
+      "انزل الدمبل لتحت حتى تلمس مرفقيك الأرض بشكل خفيف.",
+      "ادفع الدمبل للأعلى بشد في الصدر بلا ما تمد المرفق بقوة زايدة."
+    ],
+    "target": [
+      "الصدر",
+      "الترايسيبس"
+    ],
+    "safety": "الأرض توقف نزول المرفق فتحمي مفصل الكتف، مناسب لمن عندو حساسية في الكتف."
+  },
+  "Bench Press": {
+    "desc": "من أهم تمارين الصدر المركبة، يخدم بشكل مباشر الصدر والأكتاف الأمامية والترايسيبس.",
+    "steps": [
+      "استلقي على البنش وقدميك ثابتة في الأرض، قبضة أعرض شوي من الكتفين.",
+      "نزل البار بشكل مراقب حتى يلمس منتصف الصدر تقريبا.",
+      "ادفع البار للأعلى بشد في الصدر حتى يمتد الدراع بالكامل."
+    ],
+    "target": [
+      "الصدر",
+      "الترايسيبس",
+      "الأكتاف الأمامية"
+    ],
+    "safety": "استعمل دايما سبوتر أو سيفتي بارز وقت الأوزان الثقيلة، وماتنزلش البار بسرعة زايدة."
+  },
+  "Incline Dumbbell Press": {
+    "desc": "يستهدف الجزء العلوي من الصدر أكثر من البنش العادي بفضل زاوية الميلان.",
+    "steps": [
+      "اضبط البنش على زاوية 30-45 درجة، دمبل في كل يد فوق الكتفين.",
+      "ادفع الدمبل للأعلى حتى يلتقو تقريبا فوق الصدر.",
+      "انزل بشكل مراقب حتى تحس بشد خفيف في أعلى الصدر."
+    ],
+    "target": [
+      "أعلى الصدر",
+      "الأكتاف الأمامية",
+      "الترايسيبس"
+    ],
+    "safety": "ماتخليش الزاوية عالية برشا (أكثر من 45 درجة) باش الحمل يبقى على الصدر ماشي الكتف."
+  },
+  "Cable Fly": {
+    "desc": "حركة عزل تمدد وتقرب عضلة الصدر بمدى حركة واسع وشد مستمر.",
+    "steps": [
+      "وقف في المنتصف بين بكرتين، مقبض في كل يد، ذراع ممدودة قليلا لتحت الانحناء.",
+      "قرب يديك لبعضهم لقدام بحركة نصف دائرية بشد في الصدر.",
+      "ارجع ببطء للخلف حتى تحس بتمدد خفيف في الصدر بلا مبالغة."
+    ],
+    "target": [
+      "الصدر"
+    ],
+    "safety": "خلي انحناء بسيط في المرفق طول الحركة وماتمدهوش بالكامل باش تحمي مفصل الكتف."
+  },
+  "Heavy Bench Press": {
+    "desc": "نفس تقنية بنش برس لكن بحمل ثقيل وعدد تكرارات قليل لبناء القوة القصوى.",
+    "steps": [
+      "نفس إعداد بنش برس العادي، لكن بوزن قريب من أقصى قدرتك.",
+      "نزل البار بتحكم كامل مع البقاء مشدود في الجذع والأرجل.",
+      "ادفع بقوة وبتناسق مع سبوتر لضمان الأمان."
+    ],
+    "target": [
+      "الصدر",
+      "الترايسيبس",
+      "الأكتاف الأمامية"
+    ],
+    "safety": "لا تحاول أوزان ثقيلة جدا بلا سبوتر أو قفص أمان، الإصابة في هالتمرين تكون خطيرة."
+  },
+  "Incline Barbell Press": {
+    "desc": "نسخة بالبار من الضغط المائل، تعطي حمل أثقل على أعلى الصدر.",
+    "steps": [
+      "اضبط البنش المائل، قبضة أعرض شوي من الكتفين على البار.",
+      "نزل البار نحو أعلى الصدر بتحكم.",
+      "ادفع للأعلى بقوة حتى يمتد الدراع بالكامل."
+    ],
+    "target": [
+      "أعلى الصدر",
+      "الأكتاف الأمامية",
+      "الترايسيبس"
+    ],
+    "safety": "احرص على استقرار الكتف على البنش طول الحركة وماتخليش الأسفل يرتفع."
+  },
+  "Weighted Dips": {
+    "desc": "تمرين مركب قوي للصدر السفلي والترايسيبس، بحمل إضافي لزيادة الصعوبة.",
+    "steps": [
+      "علق حزام الوزن وامسك بارات الديبس بقبضة ثابتة.",
+      "انزل جسمك بميلان بسيط لقدام لتشغيل الصدر أكثر.",
+      "ادفع للأعلى حتى يمتد الدراع بالكامل بلا قفل المرفق بقوة."
+    ],
+    "target": [
+      "أسفل الصدر",
+      "الترايسيبس",
+      "الأكتاف الأمامية"
+    ],
+    "safety": "ابدأ بوزن خفيف قبل ما تضيف حمل، وتفادى النزول العميق جدا إذا حسيت بشد في الكتف."
+  },
+  "Cable Fly + Drop Set": {
+    "desc": "تمرين تفتيح بالكابل يتبعه تخفيض فوري للوزن لإطالة زمن الشد على الصدر.",
+    "steps": [
+      "اعمل مجموعة تفتيح بالكابل بوزن عادي حتى الفشل العضلي.",
+      "خفف الوزن مباشرة بلا راحة.",
+      "كمل تكرارات إضافية بنفس التقنية حتى فشل ثاني."
+    ],
+    "target": [
+      "الصدر"
+    ],
+    "safety": "هالتقنية متقدمة ومتعبة، استعملها بحذر وماشي في كل حصة باش تتفادى الإفراط في التدريب."
+  },
+  "Lat Pulldown": {
+    "desc": "تمرين سحب عمودي ممتاز لبناء عرض الظهر ومناسب للمبتدئين قبل إتقان العقلة.",
+    "steps": [
+      "اقعد وامسك البار بقبضة أعرض من الكتفين.",
+      "اسحب البار نحو أعلى الصدر بتقريب لوحي الكتف.",
+      "ارجع البار للأعلى ببطء وتحكم كامل."
+    ],
+    "target": [
+      "الظهر (العريضة)",
+      "البايسيبس"
+    ],
+    "safety": "تفادى سحب البار وراء الرقبة، هالوضعية تزيد خطر إصابة الكتف بلا فايدة إضافية."
+  },
+  "Seated Cable Row": {
+    "desc": "تمرين سحب أفقي يخدم عضلات الظهر الوسطى ويحسن وضعية الجسم.",
+    "steps": [
+      "اقعد وقدميك على الدعامة، امسك المقبض وظهرك مستقيم.",
+      "اسحب المقبض نحو بطنك بتقريب لوحي الكتف.",
+      "ارجع ببطء مع الحفاظ على استقامة الظهر."
+    ],
+    "target": [
+      "الظهر الأوسط",
+      "البايسيبس",
+      "الأكتاف الخلفية"
+    ],
+    "safety": "ماتنحنيش لقدام أو تتراجع بقوة بجسمك باش تسحب وزن أكبر، هذا يحمل الضغط على أسفل الظهر."
+  },
+  "Superman": {
+    "desc": "حركة بوزن الجسم تقوي عضلات أسفل الظهر والمؤخرة بشكل آمن ومناسب للمبتدئين.",
+    "steps": [
+      "استلقي على بطنك وذراعيك ممدودة لقدام.",
+      "ارفع الصدر والأرجل والذراعين معا في نفس الوقت.",
+      "امسك الوضعية لثانية ثم انزل ببطء."
+    ],
+    "target": [
+      "أسفل الظهر",
+      "المؤخرة"
+    ],
+    "safety": "الحركة لازم تكون خفيفة ومراقبة، ماتقفزش بقوة زايدة باش ماتشدش أسفل الظهر."
+  },
+  "Pull-up": {
+    "desc": "من أقوى تمارين الظهر بوزن الجسم، يبني عرض وقوة الظهر والبايسيبس.",
+    "steps": [
+      "امسك البار بقبضة أعرض من الكتفين، جسمك معلق بالكامل.",
+      "اسحب جسمك للأعلى حتى تقرب الذقن من البار.",
+      "انزل ببطء وتحكم حتى يمتد الدراع بالكامل."
+    ],
+    "target": [
+      "الظهر العريض",
+      "البايسيبس",
+      "الأكتاف الخلفية"
+    ],
+    "safety": "إذا ماتقدرش تكمل تكرار كامل، استعمل شريط مقاومة للمساعدة بدل ما تهز جسمك بالزخم."
+  },
+  "Barbell Row": {
+    "desc": "تمرين مركب يبني سمك الظهر بالكامل بحمل ثقيل نسبيا.",
+    "steps": [
+      "انحني لقدام والركبتين مثنية شوي، امسك البار بقبضة متوسطة.",
+      "اسحب البار نحو أسفل البطن بتقريب لوحي الكتف.",
+      "انزل البار ببطء بلا ما تفقد استقامة الظهر."
+    ],
+    "target": [
+      "الظهر الأوسط والعريض",
+      "البايسيبس"
+    ],
+    "safety": "خلي الظهر مستقيم طول الحركة وتفادى الانحناء المفرط باش تحمي العمود الفقري."
+  },
+  "Light Deadlift": {
+    "desc": "نسخة تمهيدية من الديدليفت بوزن خفيف لإتقان التقنية قبل زيادة الحمل.",
+    "steps": [
+      "وقف والبار قريب من الساق، امسكو بقبضة بعرض الكتفين.",
+      "انزل بثني الورك والركبة والظهر مستقيم.",
+      "ادفع من الأرض وامتد بالورك حتى تقف بشكل كامل."
+    ],
+    "target": [
+      "أسفل الظهر",
+      "المؤخرة",
+      "الفخذ الخلفي"
+    ],
+    "safety": "التقنية أهم من الوزن في هالتمرين، خلي الظهر مستقيم دايما وماتقوسوش."
+  },
+  "Weighted Pull-up": {
+    "desc": "عقلة بحزام وزن إضافي لزيادة الصعوبة لمن أتقن العقلة العادية بعدد جيد من التكرارات.",
+    "steps": [
+      "علق حزام الوزن وامسك البار بقبضة أعرض من الكتفين.",
+      "اسحب جسمك للأعلى بتحكم حتى تقرب الذقن من البار.",
+      "انزل ببطء بلا تأرجح."
+    ],
+    "target": [
+      "الظهر العريض",
+      "البايسيبس"
+    ],
+    "safety": "لا تضيف وزن إلا بعد ما تقدر تعمل 8-10 تكرارات نظيفة بوزن الجسم وحدو."
+  },
+  "Heavy Barbell Row": {
+    "desc": "تجديف بالبار بحمل ثقيل يبني قوة وسمك الظهر بشكل ملحوظ.",
+    "steps": [
+      "نفس وضعية تجديف البار العادي، لكن بوزن أثقل وتكرارات أقل.",
+      "حافظ على استقامة الظهر وثبات الجذع طول الحركة.",
+      "اسحب بقوة نحو البطن وانزل بتحكم."
+    ],
+    "target": [
+      "الظهر الأوسط والعريض",
+      "البايسيبس"
+    ],
+    "safety": "الأوزان الثقيلة تزيد خطر الانحناء الخاطئ، لا تتردد في تخفيف الوزن لو حسيت الظهر يتقوس."
+  },
+  "Deadlift": {
+    "desc": "أحد أقوى التمارين المركبة في التدريب، يخدم تقريبا كامل الجسم الخلفي.",
+    "steps": [
+      "وقف والبار قريب من الساق، امسكو بقبضة بعرض الكتفين والظهر مستقيم.",
+      "ادفع من الأرض بالورك والرجلين مع الحفاظ على استقامة الظهر.",
+      "امتد بالكامل في القمة ثم انزل البار بتحكم."
+    ],
+    "target": [
+      "أسفل الظهر",
+      "المؤخرة",
+      "الفخذ الخلفي",
+      "الترابيز"
+    ],
+    "safety": "هالتمرين يحمل مخاطر عالية على أسفل الظهر لو التقنية غلط، تعلمه بوزن خفيف قبل الزيادة."
+  },
+  "T-Bar Row": {
+    "desc": "تمرين تجديف يبني سمك الظهر بزاوية قبضة مريحة للمفاصل.",
+    "steps": [
+      "وقف فوق البار وانحني لقدام، امسك المقبض بقبضة ثابتة.",
+      "اسحب الوزن نحو الصدر بتقريب لوحي الكتف.",
+      "انزل ببطء بلا فقدان استقامة الظهر."
+    ],
+    "target": [
+      "الظهر الأوسط",
+      "البايسيبس"
+    ],
+    "safety": "خلي الركبتين مثنية قليلا والوزن على الكعبين باش تحمي أسفل الظهر."
+  },
+  "Seated Dumbbell Press": {
+    "desc": "تمرين دفع أساسي للأكتاف مناسب للمبتدئين بفضل الاستقرار اللي يعطيه المقعد.",
+    "steps": [
+      "اقعد وظهرك مستقيم، دمبل في كل يد بمستوى الكتف.",
+      "ادفع الدمبل للأعلى حتى يمتد الدراع بلا قفل المرفق بقوة.",
+      "انزل ببطء حتى يرجع الدمبل لمستوى الكتف."
+    ],
+    "target": [
+      "الأكتاف الأمامية والجانبية",
+      "الترايسيبس"
+    ],
+    "safety": "تفادى تقويس أسفل الظهر وقت الدفع، خلي البطن مشدودة طول الحركة."
+  },
+  "Light Lateral Raise": {
+    "desc": "تفتيح جانبي بوزن خفيف يبني عرض الكتف بشكل آمن للمبتدئين.",
+    "steps": [
+      "وقف ودمبل خفيف في كل يد جنب الجسم.",
+      "ارفع الذراعين جانبيا حتى مستوى الكتف تقريبا.",
+      "انزل ببطء بتحكم كامل."
+    ],
+    "target": [
+      "الأكتاف الجانبية"
+    ],
+    "safety": "ماترفعش الوزن أعلى من مستوى الكتف باش تتفادى الضغط الزايد على مفصل الكتف."
+  },
+  "Front Raise": {
+    "desc": "حركة عزل تستهدف الأكتاف الأمامية بحركة بسيطة وواضحة.",
+    "steps": [
+      "وقف ودمبل في كل يد قدام الفخذين.",
+      "ارفع ذراع واحد (أو الاثنين معا) لقدام حتى مستوى الكتف.",
+      "انزل ببطء وكرر بالتناوب أو معا."
+    ],
+    "target": [
+      "الأكتاف الأمامية"
+    ],
+    "safety": "تفادى استعمال زخم الجسم للرفع، الحركة لازم تجي من الكتف وحدها."
+  },
+  "Overhead Press": {
+    "desc": "تمرين دفع مركب يبني قوة وحجم الأكتاف بشكل شامل.",
+    "steps": [
+      "وقف أو اقعد، البار عند مستوى الكتف بقبضة بعرض الكتفين.",
+      "ادفع البار للأعلى حتى يمتد الدراع بالكامل فوق الراس.",
+      "انزل بتحكم حتى يرجع البار لمستوى الكتف."
+    ],
+    "target": [
+      "الأكتاف",
+      "الترايسيبس",
+      "أعلى الصدر"
+    ],
+    "safety": "خلي البطن مشدودة وتفادى تقويس أسفل الظهر وقت الدفع فوق الراس."
+  },
+  "Lateral Raise": {
+    "desc": "التمرين الأشهر لبناء عرض الكتف عن طريق استهداف الرأس الجانبي.",
+    "steps": [
+      "وقف ودمبل في كل يد جنب الجسم.",
+      "ارفع الذراعين جانبيا بانحناء بسيط في المرفق حتى مستوى الكتف.",
+      "انزل ببطء وتحكم كامل بلا استعمال الزخم."
+    ],
+    "target": [
+      "الأكتاف الجانبية"
+    ],
+    "safety": "استعمل وزن يخليك تكمل الحركة بتقنية نظيفة، الوزن الثقيل زايد يحول الحركة لدفع بالجسم."
+  },
+  "Rear Delt Fly": {
+    "desc": "حركة عزل مهمة للأكتاف الخلفية، غالبا مهملة رغم أهميتها في التوازن العضلي.",
+    "steps": [
+      "انحني لقدام قليلا ودمبل في كل يد.",
+      "افتح الذراعين جانبيا للخلف بشد في الكتف الخلفي.",
+      "انزل ببطء وكرر."
+    ],
+    "target": [
+      "الأكتاف الخلفية"
+    ],
+    "safety": "خلي الحركة صغيرة ومركزة، الوزن الثقيل زايد يخلي الظهر يشتغل بدل الكتف."
+  },
+  "Arnold Press": {
+    "desc": "نسخة متقدمة من ضغط الأكتاف بدوران يخدم كامل رأس الكتف الثلاثة.",
+    "steps": [
+      "اقعد ودمبل في كل يد قدام الكتف وراحة اليد نحوك.",
+      "ادفع للأعلى مع تدوير الرسغ حتى تصبح الراحة نحو قدام.",
+      "ارجع بنفس مسار الدوران للوضعية الأصلية."
+    ],
+    "target": [
+      "الأكتاف بأجزائها الثلاثة",
+      "الترايسيبس"
+    ],
+    "safety": "التدوير لازم يكون سلس وبطيء، السرعة الزايدة تزيد خطر إصابة الكتف."
+  },
+  "Push Press": {
+    "desc": "دفع فوق الراس بمساعدة دفعة خفيفة من الأرجل، يسمح برفع أوزان أثقل.",
+    "steps": [
+      "وقف والبار عند مستوى الكتف، ركبتيك مثنية شوي.",
+      "ادفع بالأرجل بسرعة ثم كمل الدفع بالذراعين فوق الراس.",
+      "انزل البار بتحكم لمستوى الكتف."
+    ],
+    "target": [
+      "الأكتاف",
+      "الترايسيبس",
+      "الأرجل"
+    ],
+    "safety": "التنسيق بين دفعة الأرجل والذراعين مهم، تدرب على الحركة بوزن خفيف قبل الزيادة."
+  },
+  "Heavy Arnold Press": {
+    "desc": "نفس حركة أرنولد برس بحمل أثقل لبناء قوة وحجم الكتف.",
+    "steps": [
+      "نفس تقنية أرنولد برس، لكن بوزن أثقل وتكرارات أقل.",
+      "حافظ على دوران سلس ومراقب طول الحركة.",
+      "تفادى التسارع في نهاية الحركة."
+    ],
+    "target": [
+      "الأكتاف بأجزائها الثلاثة",
+      "الترايسيبس"
+    ],
+    "safety": "لا تزيد الوزن إلا بعد إتقان الدوران بوزن متوسط بتقنية نظيفة."
+  },
+  "Lateral Raise + Drop Set": {
+    "desc": "تفتيح جانبي متبوع بتخفيض فوري للوزن لإطالة الشد على الكتف الجانبي.",
+    "steps": [
+      "اعمل مجموعة تفتيح جانبي حتى الفشل بوزن عادي.",
+      "خفف الوزن مباشرة بلا راحة.",
+      "كمل تكرارات إضافية حتى فشل ثاني."
+    ],
+    "target": [
+      "الأكتاف الجانبية"
+    ],
+    "safety": "تقنية متقدمة ومتعبة للمفصل، لا تستعملها في كل حصة تفاديا للإفراط في التدريب."
+  },
+  "Cable Rear Delt Fly": {
+    "desc": "تفتيح خلفي بالكابل يعطي شد مستمر على الكتف الخلفي أكثر من الدمبل.",
+    "steps": [
+      "وقف بين بكرتين، امسك كل مقبض باليد المعاكسة.",
+      "افتح الذراعين للخلف بشد في الكتف الخلفي.",
+      "ارجع ببطء وتحكم."
+    ],
+    "target": [
+      "الأكتاف الخلفية"
+    ],
+    "safety": "خلي حركة الجذع ثابتة، ماتستعملش هز الجسم باش تسحب وزن أكبر."
+  },
+  "Dumbbell Curl": {
+    "desc": "التمرين الأساسي لبناء البايسيبس بحركة بسيطة وفعالة.",
+    "steps": [
+      "وقف ودمبل في كل يد جنب الجسم.",
+      "اثني المرفق وارفع الدمبل نحو الكتف بشد في البايسيبس.",
+      "انزل ببطء حتى يمتد الدراع بالكامل."
+    ],
+    "target": [
+      "البايسيبس"
+    ],
+    "safety": "خلي المرفق ثابت جنب الجسم طول الحركة وتفادى هز الظهر لرفع وزن أكبر."
+  },
+  "Bench Dips": {
+    "desc": "تمرين بوزن الجسم يخدم الترايسيبس بشكل مباشر ومناسب للمبتدئين.",
+    "steps": [
+      "حط يديك على حافة مقعد وأرجلك ممدودة لقدام.",
+      "انزل جسمك بثني المرفق حتى زاوية تقريبا 90 درجة.",
+      "ادفع للأعلى بشد في الترايسيبس."
+    ],
+    "target": [
+      "الترايسيبس",
+      "الأكتاف الأمامية"
+    ],
+    "safety": "ماتنزلش عميق برشا إذا حسيت بألم في الكتف، هالتمرين يضغط على مفصل الكتف عند النزول الزايد."
+  },
+  "Hammer Curl": {
+    "desc": "كيرل بقبضة محايدة يخدم البايسيبس والساعد في نفس الوقت.",
+    "steps": [
+      "وقف ودمبل في كل يد بقبضة محايدة (الإبهام للأعلى).",
+      "اثني المرفق وارفع الدمبل نحو الكتف بلا تدوير الرسغ.",
+      "انزل ببطء وتحكم."
+    ],
+    "target": [
+      "البايسيبس",
+      "عضلة الساعد"
+    ],
+    "safety": "حافظ على القبضة المحايدة طول الحركة، هذا يميزها عن الكيرل العادي ويقلل الضغط على الرسغ."
+  },
+  "Barbell Curl": {
+    "desc": "تمرين كيرل بالبار يسمح برفع وزن أثقل من الدمبل لبناء قوة البايسيبس.",
+    "steps": [
+      "وقف والبار بقبضة بعرض الكتفين تقريبا، راحة اليد للأعلى.",
+      "اثني المرفق وارفع البار نحو الصدر.",
+      "انزل ببطء حتى يمتد الدراع بالكامل."
+    ],
+    "target": [
+      "البايسيبس"
+    ],
+    "safety": "تفادى هز الظهر أو تأرجح الجسم لرفع وزن أكبر، هذا يقلل الفايدة ويشد أسفل الظهر."
+  },
+  "Concentration Curl": {
+    "desc": "حركة عزل تركز بشكل كامل على البايسيبس بلا مساعدة من عضلات أخرى.",
+    "steps": [
+      "اقعد ومرفقك مستند على داخل الفخذ، دمبل في اليد.",
+      "اثني المرفق وارفع الدمبل نحو الكتف بشد كامل.",
+      "انزل ببطء مع الحفاظ على استقرار المرفق."
+    ],
+    "target": [
+      "البايسيبس"
+    ],
+    "safety": "ثبات المرفق هو سر هالتمرين، أي حركة زايدة في الكتف تقلل من فعالية العزل."
+  },
+  "Skull Crusher": {
+    "desc": "تمرين عزل قوي للترايسيبس بمدى حركة واسع.",
+    "steps": [
+      "استلقي على بنش والبار فوق الصدر بذراع ممدودة.",
+      "اثني المرفق فقط لتنزيل البار نحو الجبهة بتحكم.",
+      "ادفع البار للأعلى بشد في الترايسيبس."
+    ],
+    "target": [
+      "الترايسيبس"
+    ],
+    "safety": "خلي المرفق ثابت وماتحركوش للخارج أو للداخل، والحركة تكون بطيئة جدا قريب من الراس."
+  },
+  "Triceps Dips": {
+    "desc": "نسخة أعمق من الديبس تركز أكثر على الترايسيبس بوضعية جسم مستقيمة.",
+    "steps": [
+      "امسك بارات الديبس وجسمك عمودي تقريبا.",
+      "انزل بثني المرفق للخلف قريب من الجسم.",
+      "ادفع للأعلى بشد في الترايسيبس."
+    ],
+    "target": [
+      "الترايسيبس",
+      "أسفل الصدر"
+    ],
+    "safety": "خلي الجسم عمودي (ماشي مايل لقدام) باش يبقى التركيز على الترايسيبس ويقل الضغط على الكتف."
+  },
+  "21s Curl": {
+    "desc": "تقنية كيرل متقدمة تقسم الحركة لثلاث مراحل لإطالة زمن التوتر على البايسيبس.",
+    "steps": [
+      "اعمل 7 تكرارات في النصف السفلي من الحركة.",
+      "اعمل 7 تكرارات في النصف العلوي من الحركة.",
+      "اعمل 7 تكرارات بمدى حركة كامل."
+    ],
+    "target": [
+      "البايسيبس"
+    ],
+    "safety": "استعمل وزن أخف من الكيرل العادي، هالتقنية متعبة جدا حتى بوزن خفيف."
+  },
+  "Close-grip Bench Press": {
+    "desc": "بنش برس بقبضة ضيقة يحول التركيز أكثر نحو الترايسيبس.",
+    "steps": [
+      "استلقي على البنش وامسك البار بقبضة أضيق من عرض الكتفين.",
+      "نزل البار نحو أسفل الصدر بمرفقين قريبين من الجسم.",
+      "ادفع للأعلى بشد في الترايسيبس."
+    ],
+    "target": [
+      "الترايسيبس",
+      "الصدر"
+    ],
+    "safety": "لا تضيق القبضة برشا زيادة، هذا يزيد الضغط على الرسغ والمرفق بلا فايدة إضافية."
+  },
+  "Superset Curl + Pushdown": {
+    "desc": "دمج كيرل للبايسيبس مع بوشداون للترايسيبس بلا راحة بينهم لتكثيف الحصة.",
+    "steps": [
+      "اعمل مجموعة كيرل كاملة للبايسيبس.",
+      "انتقل فورا بلا راحة لتمرين بوشداون للترايسيبس.",
+      "خذ راحة بعد المجموعتين معا."
+    ],
+    "target": [
+      "البايسيبس",
+      "الترايسيبس"
+    ],
+    "safety": "التقنية متعبة، خلي الوزن معقول باش تحافظ على تقنية نظيفة في التمرينين."
+  },
+  "Diamond Push-up": {
+    "desc": "نسخة متقدمة من الضغط تركز بشكل كبير على الترايسيبس بقبضة ضيقة.",
+    "steps": [
+      "حط يديك تحت الصدر وكوّن شكل ماس بالإبهام والسبابة.",
+      "انزل جسمك بمرفقين قريبين من الجسم.",
+      "ادفع للأعلى بشد قوي في الترايسيبس."
+    ],
+    "target": [
+      "الترايسيبس",
+      "الصدر"
+    ],
+    "safety": "أصعب من الضغط العادي، لو ماتقدرش تكمل تكرارات نظيفة ابدا على الركبتين."
+  },
+  "Crunch": {
+    "desc": "التمرين الأساسي والأشهر لعضلة البطن العلوية.",
+    "steps": [
+      "استلقي وركبتيك مثنية وقدميك مسطحة على الأرض.",
+      "حط صوابعك خفاف على الصدغين وارفع أعلى الجسم بانقباض البطن.",
+      "انزل ببطء بلا ما تلمس الراس الأرض بالكامل."
+    ],
+    "target": [
+      "البطن العلوية"
+    ],
+    "safety": "الحركة تجي من انقباض البطن، ماشي بسحب الرقبة بيديك."
+  },
+  "Plank": {
+    "desc": "من أفضل حركات الثبات لبناء قوة الجذع بالكامل.",
+    "steps": [
+      "حط مرفقيك على الأرض تحت الكتفين مباشرة.",
+      "ارفع الجسم بحيث يكون خط مستقيم من الراس للكعبين.",
+      "شد البطن وامسك الوضعية للمدة المطلوبة بتنفس طبيعي."
+    ],
+    "target": [
+      "البطن",
+      "أسفل الظهر",
+      "الكتفين"
+    ],
+    "safety": "تفادى هبوط الحوض أو ارتفاعه زيادة، خط الجسم المستقيم هو مفتاح الفايدة من الحركة."
+  },
+  "Bicycle Crunch": {
+    "desc": "حركة ديناميكية تخدم البطن كاملة خاصة العضلات المائلة.",
+    "steps": [
+      "استلقي ويديك خفاف وراء الراس، ارفع الركبتين لزاوية 90 درجة.",
+      "قرب المرفق اليمين من الركبة اليسار مع مد الرجل اليمين.",
+      "بدّل الجانب بحركة دراجة مستمرة ومراقبة."
+    ],
+    "target": [
+      "البطن",
+      "العضلات المائلة"
+    ],
+    "safety": "الحركة تكون بطيئة ومراقبة، السرعة الزايدة تقلل من شد العضلة وتزيد خطر شد الرقبة."
+  },
+  "Leg Raise": {
+    "desc": "تمرين يستهدف أسفل البطن بشكل مباشر عن طريق رفع الرجلين.",
+    "steps": [
+      "استلقي على الأرض ويديك جنب الجسم أو تحت المؤخرة.",
+      "ارفع الرجلين الممدودتين للأعلى حتى زاوية 90 درجة.",
+      "انزل ببطء بلا ما تلمس الرجلين الأرض بالكامل."
+    ],
+    "target": [
+      "أسفل البطن"
+    ],
+    "safety": "خلي أسفل الظهر ملتصق بالأرض طول الحركة، لو ارتفع قلل مدى الحركة."
+  },
+  "Russian Twist": {
+    "desc": "حركة دوران تخدم العضلات المائلة للبطن بشكل فعال.",
+    "steps": [
+      "اقعد وميّل الجسم للخلف قليلا، ارفع القدمين قليلا عن الأرض.",
+      "لف الجذع من جانب لآخر بيدين مقفولتين أو بوزن خفيف.",
+      "حافظ على التوازن وتنفس بشكل منتظم."
+    ],
+    "target": [
+      "العضلات المائلة",
+      "البطن"
+    ],
+    "safety": "لو حسيت بألم في أسفل الظهر خفف سرعة الدوران أو حط القدمين على الأرض."
+  },
+  "Hanging Leg Raise": {
+    "desc": "نسخة متقدمة من رفع الرجلين تخدم أسفل البطن بشكل مكثف.",
+    "steps": [
+      "تعلق على بار بقبضة ثابتة.",
+      "ارفع الرجلين الممدودتين (أو الركبتين للمبتدئين) حتى مستوى الورك.",
+      "انزل ببطء بلا تأرجح."
+    ],
+    "target": [
+      "أسفل البطن",
+      "قابضات الورك"
+    ],
+    "safety": "تفادى التأرجح واستعمال الزخم، لو صعب عليك ابدا برفع الركبتين بدل الرجلين الممدودتين."
+  },
+  "Weighted Plank": {
+    "desc": "بلانك بوزن إضافي على الظهر لزيادة صعوبة حركة الثبات.",
+    "steps": [
+      "اتخذ وضعية البلانك العادية ودّي أحد يحط وزن خفيف على أسفل الظهر.",
+      "شد البطن وحافظ على خط مستقيم للجسم.",
+      "امسك الوضعية للمدة المطلوبة."
+    ],
+    "target": [
+      "البطن",
+      "أسفل الظهر"
+    ],
+    "safety": "لا تضيف وزن إلا بعد ما تقدر تمسك بلانك عادي 60 ثانية بتقنية نظيفة."
+  },
+  "Cable Crunch": {
+    "desc": "كرنش بالكابل يعطي مقاومة متزايدة تسمح بزيادة الحمل تدريجيا على البطن.",
+    "steps": [
+      "اركع قدام بكرة الكابل وامسك المقبض خلف الراس.",
+      "انحني لقدام بانقباض البطن نحو الفخذين.",
+      "ارجع ببطء بلا فقدان الشد."
+    ],
+    "target": [
+      "البطن العلوية"
+    ],
+    "safety": "الحركة تجي من انحناء الجذع، ماشي من سحب الذراعين أو الرقبة."
+  },
+  "Dragon Flag": {
+    "desc": "حركة متقدمة جدا تخدم كامل البطن والجذع بقوة عالية.",
+    "steps": [
+      "استلقي على بنش وامسك حافته وراء راسك.",
+      "ارفع كامل الجسم (الأرجل والحوض) بخط مستقيم فوق الكتفين.",
+      "انزل ببطء شديد مع البقاء مشدود بالكامل."
+    ],
+    "target": [
+      "البطن بالكامل",
+      "أسفل الظهر"
+    ],
+    "safety": "حركة متقدمة جدا، لا تحاولها إلا بعد إتقان البلانك ورفع الرجلين المعلق بشكل كامل."
+  },
+  "Bodyweight Squat": {
+    "desc": "التمرين الأساسي للأرجل بوزن الجسم، مثالي لإتقان التقنية.",
+    "steps": [
+      "وقف والقدمين بعرض الكتفين تقريبا.",
+      "انزل بثني الركبة والورك كأنك تقعد على كرسي.",
+      "ادفع من الكعبين وارجع للوقوف الكامل."
+    ],
+    "target": [
+      "الفخذ الأمامي",
+      "المؤخرة"
+    ],
+    "safety": "خلي الركبة في نفس اتجاه القدم وماتخليهاش تدخل للداخل وقت النزول."
+  },
+  "Light Leg Press": {
+    "desc": "دفع الأرجل بالجهاز بوزن خفيف، مناسب للمبتدئين لبناء قوة أساسية.",
+    "steps": [
+      "اقعد في الجهاز وقدميك على المنصة بعرض الكتفين.",
+      "ادفع المنصة بمد الركبتين بلا قفلهم بقوة.",
+      "ارجع ببطء حتى زاوية مريحة في الركبة."
+    ],
+    "target": [
+      "الفخذ الأمامي",
+      "المؤخرة"
+    ],
+    "safety": "ماتقفلش الركبتين بقوة في نهاية الدفع باش تحمي المفصل."
+  },
+  "Lunge": {
+    "desc": "تمرين وحيد الساق يبني قوة وتوازن الأرجل بشكل فردي.",
+    "steps": [
+      "وقف مستقيم، اخطو خطوة لقدام بساق واحدة.",
+      "انزل حتى تصير الركبة الخلفية قريبة من الأرض.",
+      "ادفع بالساق الأمامية وارجع للوقوف."
+    ],
+    "target": [
+      "الفخذ الأمامي",
+      "المؤخرة"
+    ],
+    "safety": "خلي الركبة الأمامية فوق الكاحل تقريبا وماتخليهاش تتجاوز أصابع القدم بشكل مبالغ."
+  },
+  "Squat": {
+    "desc": "التمرين الملكي لتدريب الأرجل، يخدم تقريبا كامل عضلات الرجل السفلية.",
+    "steps": [
+      "حط البار على أعلى الظهر، القدمين بعرض الكتفين.",
+      "انزل بثني الركبة والورك حتى الفخذ موازي للأرض تقريبا.",
+      "ادفع من الكعبين وارجع للوقوف الكامل."
+    ],
+    "target": [
+      "الفخذ الأمامي",
+      "المؤخرة",
+      "أسفل الظهر"
+    ],
+    "safety": "حافظ على استقامة الظهر طول الحركة وماتخليش الركبتين تدخلو للداخل."
+  },
+  "Leg Press": {
+    "desc": "تمرين دفع بالجهاز يسمح برفع أوزان ثقيلة بأمان أكبر من السكوات.",
+    "steps": [
+      "اقعد في الجهاز وقدميك على المنصة بعرض الكتفين.",
+      "ادفع المنصة بمد الركبتين بلا قفلهم بقوة.",
+      "ارجع ببطء حتى زاوية 90 درجة تقريبا في الركبة."
+    ],
+    "target": [
+      "الفخذ الأمامي",
+      "المؤخرة"
+    ],
+    "safety": "ماتنزلش عميق برشا لدرجة ترفع فيها الحوض عن المقعد، هذا يشد أسفل الظهر."
+  },
+  "Romanian Deadlift": {
+    "desc": "تمرين مفصلي يستهدف الفخذ الخلفي والمؤخرة بحركة ثني الورك.",
+    "steps": [
+      "وقف والبار قدام الفخذين، ركبتيك مثنية شوي وثابتة.",
+      "انزل البار بثني الورك للخلف مع الحفاظ على استقامة الظهر.",
+      "ارجع للوقوف بامتداد الورك وشد المؤخرة."
+    ],
+    "target": [
+      "الفخذ الخلفي",
+      "المؤخرة",
+      "أسفل الظهر"
+    ],
+    "safety": "الحركة تجي من الورك ماشي من الركبة، وخلي البار قريب من الساق طول الحركة."
+  },
+  "Heavy Back Squat": {
+    "desc": "سكوات بحمل ثقيل وتكرارات قليلة لبناء أقصى قوة في الأرجل.",
+    "steps": [
+      "نفس تقنية السكوات العادي لكن بوزن قريب من أقصى قدرتك.",
+      "حافظ على تنفس وشد كامل في الجذع طول الحركة.",
+      "استعمل قفص أمان أو سبوتر للأوزان الثقيلة."
+    ],
+    "target": [
+      "الفخذ الأمامي",
+      "المؤخرة",
+      "أسفل الظهر"
+    ],
+    "safety": "لا تحاول أوزان قصوى بلا معدات أمان أو مراقبة، إصابة الظهر في هالتمرين تكون خطيرة."
+  },
+  "Bulgarian Split Squat": {
+    "desc": "تمرين وحيد الساق متقدم يبني قوة وتوازن الفخذ والمؤخرة بشكل مكثف.",
+    "steps": [
+      "حط ظهر قدم واحدة على مقعد خلفك، الساق الأخرى لقدام.",
+      "انزل بثني الركبة الأمامية حتى الفخذ قريب من موازي للأرض.",
+      "ادفع بالساق الأمامية وارجع للأعلى."
+    ],
+    "target": [
+      "الفخذ الأمامي",
+      "المؤخرة"
+    ],
+    "safety": "التوازن صعب في البداية، استعمل حائط أو كرسي للمساعدة حتى تتقن الحركة."
+  },
+  "Heavy Romanian Deadlift": {
+    "desc": "نسخة أثقل من الرومانيان ديدليفت لبناء قوة الفخذ الخلفي والمؤخرة.",
+    "steps": [
+      "نفس تقنية الرومانيان ديدليفت العادي، لكن بوزن أثقل.",
+      "حافظ على استقامة الظهر بشكل صارم طول الحركة.",
+      "لا تنزل أعمق مما يسمح مدى مرونة الفخذ الخلفي متاعك."
+    ],
+    "target": [
+      "الفخذ الخلفي",
+      "المؤخرة",
+      "أسفل الظهر"
+    ],
+    "safety": "أي تقوس في الظهر مع وزن ثقيل يزيد خطر الإصابة بشكل كبير، وقف الحركة إذا حسيت بيه."
+  },
+  "Weighted Walking Lunge": {
+    "desc": "لانج ماشي بحمل إضافي يبني قوة وتحمل الأرجل بشكل متقدم.",
+    "steps": [
+      "امسك دمبل في كل يد أو حط بار على الظهر.",
+      "اخطو خطوة لقدام وانزل حتى الركبة الخلفية قريبة من الأرض.",
+      "ادفع للأعلى وكمل الخطوة التالية بالساق الأخرى."
+    ],
+    "target": [
+      "الفخذ الأمامي",
+      "المؤخرة"
+    ],
+    "safety": "التوازن مهم مع الحمل الإضافي، ابدأ بوزن خفيف حتى تتقن الحركة وأنت ماشي."
+  },
+  "Light Dumbbell Shrug": {
+    "desc": "رفع الأكتاف بوزن خفيف يبني الترابيز بشكل آمن للمبتدئين.",
+    "steps": [
+      "وقف ودمبل في كل يد جنب الجسم.",
+      "ارفع الكتفين نحو الودنين بلا لف.",
+      "انزل ببطء بتحكم."
+    ],
+    "target": [
+      "الترابيز"
+    ],
+    "safety": "ماتلفش الكتفين وقت الرفع، الحركة تكون عمودية (فوق وتحت) فقط."
+  },
+  "Light Upright Row": {
+    "desc": "سحب عالي بوزن خفيف يخدم الترابيز والأكتاف الجانبية معا.",
+    "steps": [
+      "امسك بار أو دمبل قدام الفخذين.",
+      "اسحب الوزن للأعلى حتى مستوى الصدر تقريبا بمرفقين مرتفعين.",
+      "انزل ببطء."
+    ],
+    "target": [
+      "الترابيز",
+      "الأكتاف الجانبية"
+    ],
+    "safety": "لا ترفع الوزن أعلى من مستوى الصدر باش تتفادى ضغط زايد على مفصل الكتف."
+  },
+  "Barbell Shrug": {
+    "desc": "رفع الأكتاف بالبار يسمح بحمل أثقل لبناء الترابيز بشكل فعال.",
+    "steps": [
+      "وقف والبار قدام الفخذين بقبضة بعرض الكتفين.",
+      "ارفع الكتفين نحو الودنين بأقصى انقباض.",
+      "امسك لحظة في القمة ثم انزل ببطء."
+    ],
+    "target": [
+      "الترابيز"
+    ],
+    "safety": "تفادى استعمال الذراعين للف الوزن للأعلى، القوة لازم تجي من الكتفين وحدها."
+  },
+  "Dumbbell Shrug": {
+    "desc": "رفع الأكتاف بالدمبل يعطي مدى حركة أوسع من البار.",
+    "steps": [
+      "وقف ودمبل في كل يد جنب الجسم.",
+      "ارفع الكتفين للأعلى بأقصى انقباض ممكن.",
+      "انزل ببطء وتحكم."
+    ],
+    "target": [
+      "الترابيز"
+    ],
+    "safety": "خلي الحركة بطيئة، السرعة الزايدة تقلل من شد العضلة وتزيد الاعتماد على الزخم."
+  },
+  "Farmer's Walk": {
+    "desc": "حمل أوزان ثقيلة والمشي بيها، يبني الترابيز وقوة القبضة والجذع معا.",
+    "steps": [
+      "امسك دمبل أو كيتلبيل ثقيل في كل يد.",
+      "امشي بخطوات ثابتة والظهر مستقيم والكتفين للخلف.",
+      "حافظ على شد الجذع طول المسافة المطلوبة."
+    ],
+    "target": [
+      "الترابيز",
+      "الساعد",
+      "البطن"
+    ],
+    "safety": "خلي الكتفين للخلف وللأسفل، وتفادى الانحناء لجانب واحد وقت حمل وزن غير متوازن."
+  },
+  "Upright Row": {
+    "desc": "سحب عالي يستهدف الترابيز والأكتاف الجانبية بحركة سحب عمودية.",
+    "steps": [
+      "امسك البار قدام الفخذين بقبضة ضيقة نسبيا.",
+      "اسحب البار للأعلى حتى مستوى الصدر بمرفقين مرتفعين.",
+      "انزل ببطء وتحكم."
+    ],
+    "target": [
+      "الترابيز",
+      "الأكتاف الجانبية"
+    ],
+    "safety": "لو حسيت بألم في الكتف وقت الرفع العالي، قلل الارتفاع أو بدل لتمرين تفتيح جانبي."
+  },
+  "Heavy Barbell Shrug": {
+    "desc": "شراغ بحمل ثقيل جدا لبناء أقصى قوة في الترابيز.",
+    "steps": [
+      "نفس تقنية الشراغ العادي بالبار، لكن بوزن أثقل.",
+      "استعمل أشرطة قبضة إذا كان الوزن يفلت من يديك.",
+      "امسك لحظة في القمة بأقصى انقباض."
+    ],
+    "target": [
+      "الترابيز"
+    ],
+    "safety": "الأوزان الثقيلة تحتاج قبضة قوية، لا تخلي الوزن يفلت فجأة من يديك."
+  },
+  "Heavy Farmer's Walk": {
+    "desc": "نسخة أثقل من فارمر ووك لبناء قوة قصوى في القبضة والترابيز.",
+    "steps": [
+      "امسك أوزان ثقيلة جدا في كل يد.",
+      "امشي بخطوات قصيرة وثابتة والظهر مستقيم.",
+      "حط الوزن أرضا بتحكم إذا حسيت القبضة تفلت."
+    ],
+    "target": [
+      "الترابيز",
+      "الساعد",
+      "البطن"
+    ],
+    "safety": "لا تخاطر بإسقاط وزن ثقيل على قدمك، حط الوزن بحذر لو حسيت بفقدان التحكم."
+  },
+  "Snatch Grip Shrug": {
+    "desc": "شراغ بقبضة واسعة جدا يزيد من مدى الحركة والتحدي على الترابيز.",
+    "steps": [
+      "امسك البار بقبضة واسعة جدا (أوسع من الشراغ العادي).",
+      "ارفع الكتفين للأعلى بأقصى انقباض ممكن.",
+      "انزل ببطء مستفيد من مدى الحركة الزايد."
+    ],
+    "target": [
+      "الترابيز"
+    ],
+    "safety": "القبضة الواسعة تحتاج مرونة كتف جيدة، ابدأ بوزن خفيف لتتأقلم مع الوضعية."
+  },
+  "Light Wrist Curl": {
+    "desc": "تمرين بسيط يبني قوة عضلات الساعد الأمامية بوزن خفيف.",
+    "steps": [
+      "اقعد وساعدك مستند على الفخذ أو مقعد، راحة اليد للأعلى.",
+      "اثني الرسغ لرفع الدمبل للأعلى.",
+      "انزل ببطء حتى يمتد الرسغ بالكامل."
+    ],
+    "target": [
+      "عضلة الساعد الأمامية"
+    ],
+    "safety": "خلي الحركة من الرسغ فقط، وماتحركش الساعد كله."
+  },
+  "Grip Squeeze": {
+    "desc": "شد قبضة اليد ببساطة لبناء قوة القبضة الأساسية.",
+    "steps": [
+      "امسك أداة شد القبضة (Grip Trainer) في يدك.",
+      "اقفل يدك بقوة كاملة على الأداة.",
+      "افتح ببطء وكرر."
+    ],
+    "target": [
+      "عضلات القبضة والساعد"
+    ],
+    "safety": "لا تفرط في التكرار إذا حسيت بألم في الرسغ أو الأصابع، خذ راحة كافية بين المجموعات."
+  },
+  "Wrist Curl": {
+    "desc": "تمرين كيرل الرسغ يبني عضلات الساعد الأمامية بشكل مباشر.",
+    "steps": [
+      "اقعد وساعدك مستند على مقعد، راحة اليد للأعلى وبار أو دمبل في اليد.",
+      "اثني الرسغ لرفع الوزن للأعلى بأقصى مدى.",
+      "انزل ببطء حتى يمتد الرسغ بالكامل."
+    ],
+    "target": [
+      "عضلة الساعد الأمامية"
+    ],
+    "safety": "استعمل وزن خفيف نسبيا، عضلات ومفصل الرسغ أصغر وأكثر حساسية من عضلات كبيرة."
+  },
+  "Reverse Wrist Curl": {
+    "desc": "نسخة عكسية من كيرل الرسغ تستهدف عضلات الساعد الخلفية.",
+    "steps": [
+      "اقعد وساعدك مستند على مقعد، راحة اليد للأسفل وبار أو دمبل في اليد.",
+      "ارفع الرسغ للأعلى بشد في أعلى الساعد.",
+      "انزل ببطء حتى يمتد الرسغ بالكامل."
+    ],
+    "target": [
+      "عضلة الساعد الخلفية"
+    ],
+    "safety": "استعمل وزن أخف من كيرل الرسغ العادي، هالعضلة أصغر وأسهل للإفراط عليها."
+  },
+  "Dead Hang": {
+    "desc": "التعلق البسيط على البار يبني قوة القبضة ويمدد العمود الفقري.",
+    "steps": [
+      "امسك بار عالي بقبضة بعرض الكتفين.",
+      "علق جسمك بالكامل والأرجل مرفوعة عن الأرض.",
+      "حافظ على الوضعية للمدة المطلوبة بتنفس طبيعي."
+    ],
+    "target": [
+      "القبضة",
+      "الساعد",
+      "الظهر العريض"
+    ],
+    "safety": "لو عندك مشكلة في الكتف، ابدأ بمدة قصيرة وزيد تدريجيا."
+  },
+  "Plate Pinch": {
+    "desc": "شد صفيحتين وزن بين الأصابع لبناء قوة قبضة متقدمة.",
+    "steps": [
+      "امسك صفيحتين وزن ملاصقتين لبعضهم بين أصابعك.",
+      "ارفعهم عن الأرض وامسك الوضعية.",
+      "حط الصفائح أرضا بتحكم عند التعب."
+    ],
+    "target": [
+      "عضلات الأصابع والقبضة"
+    ],
+    "safety": "احرص على حط الصفائح أرضا بحذر لو حسيت بفقدان التحكم، تفادى سقوطهم على القدم."
+  },
+  "Wrist Roller": {
+    "desc": "أداة تلف بحبل ووزن، تبني قوة الساعد بشكل شامل جدا.",
+    "steps": [
+      "امسك الأداة بيدين والذراع ممدودة لقدام.",
+      "لف الأداة بحركة الرسغ لرفع الوزن المعلق بالحبل.",
+      "فك اللف ببطء وتحكم بعد وصول الوزن للأعلى."
+    ],
+    "target": [
+      "عضلات الساعد بالكامل"
+    ],
+    "safety": "استعمل وزن خفيف في البداية، هالتمرين متعب جدا للساعد حتى بأوزان صغيرة."
+  },
+  "Glute Bridge": {
+    "desc": "تمرين بسيط وفعال لتفعيل وبناء عضلة المؤخرة، مناسب للمبتدئين.",
+    "steps": [
+      "استلقي وركبتيك مثنية وقدميك مسطحة قريبة من المؤخرة.",
+      "ارفع الحوض للأعلى بشد في المؤخرة حتى يصير الجسم خط مستقيم.",
+      "انزل ببطء بتحكم."
+    ],
+    "target": [
+      "المؤخرة",
+      "الفخذ الخلفي"
+    ],
+    "safety": "تفادى الدفع بأسفل الظهر، الحركة لازم تجي من شد المؤخرة."
+  },
+  "Bodyweight Hip Thrust": {
+    "desc": "نسخة أكبر مدى من جلوت بريدج، تخدم المؤخرة بشكل أعمق.",
+    "steps": [
+      "اسند أعلى الظهر على مقعد، ركبتيك مثنية وقدميك ثابتة.",
+      "ادفع الحوض للأعلى بشد كامل في المؤخرة.",
+      "انزل ببطء حتى يقرب الحوض من الأرض بلا لمسها."
+    ],
+    "target": [
+      "المؤخرة",
+      "الفخذ الخلفي"
+    ],
+    "safety": "خلي الرقبة في وضعية محايدة وماتنظرش للأعلى بقوة وقت الدفع."
+  },
+  "Hip Thrust": {
+    "desc": "من أفضل التمارين المستهدفة لعضلة المؤخرة بحمل إضافي.",
+    "steps": [
+      "اسند أعلى الظهر على مقعد والبار فوق الحوض.",
+      "ادفع الحوض للأعلى بشد كامل في المؤخرة حتى امتداد كامل.",
+      "انزل ببطء بتحكم."
+    ],
+    "target": [
+      "المؤخرة",
+      "الفخذ الخلفي"
+    ],
+    "safety": "حط حماية (وسادة) على البار فوق الحوض باش تتفادى الألم، وخلي الذقن للأسفل قليلا طول الحركة."
+  },
+  "Cable Kickback": {
+    "desc": "حركة عزل بالكابل تستهدف المؤخرة بحركة رفع الرجل للخلف.",
+    "steps": [
+      "ثبت الكابل في الكاحل ووقف قدام الجهاز منحني قليلا.",
+      "ادفع الرجل للخلف بشد في المؤخرة.",
+      "ارجع ببطء بلا فقدان التوازن."
+    ],
+    "target": [
+      "المؤخرة"
+    ],
+    "safety": "خلي الحركة من الورك فقط وماتلويش الظهر باش ترفع الرجل أعلى."
+  },
+  "Heavy Barbell Hip Thrust": {
+    "desc": "هيب ثراست بحمل ثقيل جدا لبناء أقصى قوة في المؤخرة.",
+    "steps": [
+      "نفس تقنية الهيب ثراست العادي، لكن بوزن قريب من أقصى قدرتك.",
+      "استعمل حماية جيدة على البار فوق الحوض.",
+      "ادفع بقوة كاملة مع شد المؤخرة في القمة."
+    ],
+    "target": [
+      "المؤخرة",
+      "الفخذ الخلفي"
+    ],
+    "safety": "الأوزان الثقيلة تحتاج ثبات كامل في القدمين، تأكد من ثباتهم قبل بداية الحركة."
+  },
+  "Single-Leg RDL": {
+    "desc": "رومانيان ديدليفت بساق وحدة، يبني قوة وتوازن المؤخرة والفخذ الخلفي.",
+    "steps": [
+      "وقف على ساق وحدة والساق الأخرى ممدودة خلفك قليلا.",
+      "انحني لقدام بثني الورك مع مد الساق الخلفية للخلف.",
+      "ارجع للوقوف بامتداد الورك وشد المؤخرة."
+    ],
+    "target": [
+      "المؤخرة",
+      "الفخذ الخلفي",
+      "التوازن"
+    ],
+    "safety": "التوازن صعب في البداية، استعمل يد على حائط أو كرسي حتى تتقن الحركة."
+  },
+  "Cable Kickback + Drop Set": {
+    "desc": "كيك باك بالكابل متبوع بتخفيض فوري للوزن لإطالة الشد على المؤخرة.",
+    "steps": [
+      "اعمل مجموعة كيك باك كاملة حتى الفشل بوزن عادي.",
+      "خفف الوزن مباشرة بلا راحة.",
+      "كمل تكرارات إضافية بنفس التقنية."
+    ],
+    "target": [
+      "المؤخرة"
+    ],
+    "safety": "تقنية متعبة، حافظ على تقنية نظيفة حتى مع التعب لتفادي شد أسفل الظهر."
+  },
+  "Bodyweight Calf Raise": {
+    "desc": "رفع السمانة بوزن الجسم، تمرين بسيط لبناء أساس قوة السمانة.",
+    "steps": [
+      "وقف مستقيم، القدمين بعرض الكتفين.",
+      "ارفع الكعبين للأعلى بأقصى ما تقدر بشد في السمانة.",
+      "انزل ببطء حتى تحس بتمدد خفيف."
+    ],
+    "target": [
+      "عضلة السمانة"
+    ],
+    "safety": "استعمل حائط أو كرسي للتوازن إذا احتجت، وخلي الحركة كاملة من الأسفل للأعلى."
+  },
+  "Standing Calf Raise": {
+    "desc": "رفع السمانة واقف بجهاز أو دمبل لزيادة الحمل على العضلة.",
+    "steps": [
+      "وقف على منصة مرتفعة قليلا بحيث الكعبين معلقين.",
+      "ارفع الكعبين للأعلى بأقصى انقباض.",
+      "انزل تحت مستوى المنصة بمدى حركة كامل."
+    ],
+    "target": [
+      "عضلة السمانة"
+    ],
+    "safety": "المدى الكامل (نزول تحت المستوى) مهم جدا لفايدة أكبر، ماتقصرش الحركة."
+  },
+  "Seated Calf Raise": {
+    "desc": "رفع السمانة قاعد يستهدف الجزء العميق من عضلة السمانة (Soleus).",
+    "steps": [
+      "اقعد ووزن على الركبتين، القدمين مسطحة على منصة.",
+      "ارفع الكعبين للأعلى بشد في السمانة.",
+      "انزل ببطء حتى تمدد كامل."
+    ],
+    "target": [
+      "عضلة السمانة العميقة (Soleus)"
+    ],
+    "safety": "هالوضعية تختلف عن الوقوف من ناحية استهداف العضلة، الاثنين مفيدين ومكملين لبعض."
+  },
+  "Heavy Standing Calf Raise": {
+    "desc": "رفع سمانة واقف بحمل ثقيل جدا لبناء أقصى قوة وحجم.",
+    "steps": [
+      "نفس تقنية رفع السمانة الواقف، لكن بوزن أثقل.",
+      "حافظ على مدى حركة كامل رغم الوزن الثقيل.",
+      "امسك لحظة في أعلى الانقباض."
+    ],
+    "target": [
+      "عضلة السمانة"
+    ],
+    "safety": "لا تقصر مدى الحركة باش ترفع وزن أكبر، هذا يقلل الفايدة الحقيقية للتمرين."
+  },
+  "Single-Leg Calf Raise": {
+    "desc": "رفع السمانة بساق وحدة لزيادة الحمل بلا الحاجة لوزن إضافي كبير.",
+    "steps": [
+      "وقف على ساق وحدة، ثبت توازنك بيد على حائط.",
+      "ارفع الكعب للأعلى بأقصى انقباض.",
+      "انزل ببطء حتى تمدد كامل قبل التبديل للساق الأخرى."
+    ],
+    "target": [
+      "عضلة السمانة"
+    ],
+    "safety": "التوازن يكون صعب أول مرة، خذ وقتك وثبت يدك على سند قبل البدء."
+  },
+  "Jump Rope": {
+    "desc": "القفز بالحبل تمرين كارديو يبني كمان قوة وتحمل السمانة.",
+    "steps": [
+      "امسك مقبض الحبل بكل يد، الحبل خلف الكعبين.",
+      "لف الحبل للأمام واقفز بارتفاع بسيط بوقت مناسب.",
+      "حافظ على إيقاع منتظم وهبوط خفيف على مقدمة القدم."
+    ],
+    "target": [
+      "عضلة السمانة",
+      "القلب والرئتين"
+    ],
+    "safety": "اهبط دايما على مقدمة القدم بلينونة في الركبة باش تقلل الضغط على المفاصل."
+  }
+};
+
+const DATA = {
+  chest: {
+    code: "CHEST / 01",
+    title: "الصدر",
+    principle: "الصدر يتبنى بالدفع الأفقي والمائل. لازم تنوع بين الزوايا (مسطح، مائل لفوق) باش تخدم كامل العضلة، وتحافظ على نزلة بطيئة ومراقبة.",
+    levels: {
+      beginner: [
+        {name:"ضغط عادي", en:"Push-up", sets:"3×10"},
+        {name:"ضغط مائل (يدين فوق)", en:"Incline Push-up", sets:"3×12"},
+        {name:"ضغط بالدمبل أرضي", en:"Dumbbell Floor Press", sets:"3×10"},
+      ],
+      intermediate: [
+        {name:"بنش برس", en:"Bench Press", sets:"4×8-10"},
+        {name:"ضغط مائل بالدمبل", en:"Incline Dumbbell Press", sets:"3×10"},
+        {name:"تفتيح بالكابل", en:"Cable Fly", sets:"3×12"},
+        {name:"ضغط عادي", en:"Push-up", sets:"3×15-20"},
+      ],
+      advanced: [
+        {name:"بنش برس ثقيل", en:"Heavy Bench Press", sets:"5×5"},
+        {name:"ضغط مائل بالبار", en:"Incline Barbell Press", sets:"4×8"},
+        {name:"Dips بوزن إضافي", en:"Weighted Dips", sets:"4×10"},
+        {name:"تفتيح بالكابل + دروب سات", en:"Cable Fly + Drop Set", sets:"3×12 +drop"},
+      ]
+    }
+  },
+  back: {
+    code: "BACK / 02",
+    title: "الظهر",
+    principle: "الظهر يتبنى بالسحب: عمودي (نحو تحت) وأفقي (نحوك). التركيز يكون على تقريب لوحي الكتف وشد بطيء، ماشي على وزن كبير بحركة ناقصة.",
+    levels: {
+      beginner: [
+        {name:"سحب أمامي بالكابل", en:"Lat Pulldown", sets:"3×12"},
+        {name:"تجديف قاعد بالكابل", en:"Seated Cable Row", sets:"3×12"},
+        {name:"سوبرمان", en:"Superman", sets:"3×15"},
+      ],
+      intermediate: [
+        {name:"العقلة", en:"Pull-up", sets:"4×6-8"},
+        {name:"تجديف بالبار", en:"Barbell Row", sets:"4×10"},
+        {name:"سحب أمامي بالكابل", en:"Lat Pulldown", sets:"3×12"},
+        {name:"ديدليفت خفيف", en:"Light Deadlift", sets:"3×8"},
+      ],
+      advanced: [
+        {name:"عقلة بوزن إضافي", en:"Weighted Pull-up", sets:"4×6"},
+        {name:"تجديف بالبار ثقيل", en:"Heavy Barbell Row", sets:"5×6"},
+        {name:"ديدليفت", en:"Deadlift", sets:"4×5"},
+        {name:"تجديف T-Bar", en:"T-Bar Row", sets:"3×10"},
+      ]
+    }
+  },
+  shoulders: {
+    code: "SHOULDERS / 03",
+    title: "الأكتاف",
+    principle: "الكتف عضلة بـ3 رؤوس: أمامي، جانبي، خلفي. باش تتبنى بشكل متكامل لازم تخدم الثلاثة، وماتعتمدش برشا على الدفع فوق الراس وحدو.",
+    levels: {
+      beginner: [
+        {name:"ضغط بالدمبل قاعد", en:"Seated Dumbbell Press", sets:"3×10"},
+        {name:"تفتيح جانبي خفيف", en:"Light Lateral Raise", sets:"3×12"},
+        {name:"تفتيح أمامي", en:"Front Raise", sets:"3×12"},
+      ],
+      intermediate: [
+        {name:"ضغط عسكري", en:"Overhead Press", sets:"4×8"},
+        {name:"تفتيح جانبي بالدمبل", en:"Lateral Raise", sets:"3×15"},
+        {name:"تفتيح خلفي", en:"Rear Delt Fly", sets:"3×15"},
+        {name:"أرنولد برس", en:"Arnold Press", sets:"3×10"},
+      ],
+      advanced: [
+        {name:"بوش برس", en:"Push Press", sets:"4×6"},
+        {name:"أرنولد برس ثقيل", en:"Heavy Arnold Press", sets:"4×8"},
+        {name:"تفتيح جانبي + دروب سات", en:"Lateral Raise + Drop Set", sets:"4×15 +drop"},
+        {name:"تفتيح خلفي بالكابل", en:"Cable Rear Delt Fly", sets:"4×15"},
+      ]
+    }
+  },
+  arms: {
+    code: "ARMS / 04",
+    title: "الدراع (باي/تراي)",
+    principle: "البايسيبس والترايسيبس يتبناو بالعزل: حركة واحدة، مفصل واحد، تركيز كامل على الشد والاسترخاء البطيء، ماشي بالزخم.",
+    levels: {
+      beginner: [
+        {name:"كيرل بالدمبل", en:"Dumbbell Curl", sets:"3×12"},
+        {name:"Dips على مقعد", en:"Bench Dips", sets:"3×10"},
+        {name:"كيرل هامر", en:"Hammer Curl", sets:"3×12"},
+      ],
+      intermediate: [
+        {name:"كيرل بالبار", en:"Barbell Curl", sets:"3×10"},
+        {name:"كيرل مركز", en:"Concentration Curl", sets:"3×12"},
+        {name:"ضغط فرنسي", en:"Skull Crusher", sets:"3×10"},
+        {name:"Dips", en:"Triceps Dips", sets:"3×12"},
+      ],
+      advanced: [
+        {name:"كيرل 21s", en:"21s Curl", sets:"3×21"},
+        {name:"بنش ضيق", en:"Close-grip Bench Press", sets:"4×8"},
+        {name:"سوبرسات كيرل+بوشداون", en:"Superset Curl + Pushdown", sets:"4×12"},
+        {name:"ضغط دايموند", en:"Diamond Push-up", sets:"3×15"},
+      ]
+    }
+  },
+  abs: {
+    code: "ABS / 05",
+    title: "البطن",
+    principle: "البطن عضلة تتبنى بالتكرار العالي والثبات (Isometric). خليط بين حركات ديناميكية وحركات ثبات يعطي أحسن نتيجة.",
+    levels: {
+      beginner: [
+        {name:"كرنش", en:"Crunch", sets:"3×15"},
+        {name:"بلانك", en:"Plank", sets:"3×20 ثانية"},
+        {name:"كرنش دراجة", en:"Bicycle Crunch", sets:"3×15"},
+      ],
+      intermediate: [
+        {name:"كرنش", en:"Crunch", sets:"3×20"},
+        {name:"بلانك", en:"Plank", sets:"3×45 ثانية"},
+        {name:"رفع الرجلين", en:"Leg Raise", sets:"3×15"},
+        {name:"Russian Twist", en:"Russian Twist", sets:"3×20"},
+      ],
+      advanced: [
+        {name:"رفع الرجلين معلق", en:"Hanging Leg Raise", sets:"4×12"},
+        {name:"بلانك بوزن إضافي", en:"Weighted Plank", sets:"3×60 ثانية"},
+        {name:"كرنش بالكابل", en:"Cable Crunch", sets:"4×15"},
+        {name:"دراغون فلاق", en:"Dragon Flag", sets:"3×8"},
+      ]
+    }
+  },
+  legs: {
+    code: "LEGS / 06",
+    title: "الأرجل",
+    principle: "الرجلين فيهم أكبر عضلات في الجسم، لازم حمل أثقل وحركات مركبة (Squat, Press) قبل ما تروح للعزل، باش تحفز أكبر نمو.",
+    levels: {
+      beginner: [
+        {name:"سكوات بوزن الجسم", en:"Bodyweight Squat", sets:"3×15"},
+        {name:"دفع رجلين خفيف", en:"Light Leg Press", sets:"3×12"},
+        {name:"لانج", en:"Lunge", sets:"3×10"},
+      ],
+      intermediate: [
+        {name:"سكوات", en:"Squat", sets:"4×8"},
+        {name:"دفع الرجلين بالجهاز", en:"Leg Press", sets:"3×12"},
+        {name:"رومانيان ديدليفت", en:"Romanian Deadlift", sets:"3×10"},
+        {name:"لانج", en:"Lunge", sets:"3×12"},
+      ],
+      advanced: [
+        {name:"باك سكوات ثقيل", en:"Heavy Back Squat", sets:"5×5"},
+        {name:"سكوات بلغاري", en:"Bulgarian Split Squat", sets:"4×10"},
+        {name:"رومانيان ديدليفت ثقيل", en:"Heavy Romanian Deadlift", sets:"4×8"},
+        {name:"لانج ماشي بوزن", en:"Weighted Walking Lunge", sets:"3×12"},
+      ]
+    }
+  },
+  traps: {
+    code: "TRAPS / 07",
+    title: "الترابيز",
+    principle: "الترابيز يتبنى برفع الأكتاف نحو الودنين (Shrug) وبالسحب الثقيل، عضلة تتحمل وزن كبير وتحب الشد الثابت في القمة.",
+    levels: {
+      beginner: [
+        {name:"شراغ بالدمبل خفيف", en:"Light Dumbbell Shrug", sets:"3×15"},
+        {name:"سحب عالي خفيف", en:"Light Upright Row", sets:"3×12"},
+      ],
+      intermediate: [
+        {name:"شراغ بالبار", en:"Barbell Shrug", sets:"4×12"},
+        {name:"شراغ بالدمبل", en:"Dumbbell Shrug", sets:"3×15"},
+        {name:"فارمر ووك", en:"Farmer's Walk", sets:"3×30 متر"},
+        {name:"سحب عالي بالكابل", en:"Upright Row", sets:"3×12"},
+      ],
+      advanced: [
+        {name:"شراغ بالبار ثقيل", en:"Heavy Barbell Shrug", sets:"5×10"},
+        {name:"فارمر ووك ثقيل", en:"Heavy Farmer's Walk", sets:"4×30 متر"},
+        {name:"شراغ سناتش قبضة", en:"Snatch Grip Shrug", sets:"4×10"},
+      ]
+    }
+  },
+  forearms: {
+    code: "FOREARMS / 08",
+    title: "الساعد",
+    principle: "الساعد يتبنى بتكرار عالي وقبضة قوية. الشد المطول (زمن تحت التوتر) أهم من الوزن الثقيل هنا.",
+    levels: {
+      beginner: [
+        {name:"كيرل الرسغ خفيف", en:"Light Wrist Curl", sets:"3×15"},
+        {name:"شد القبضة", en:"Grip Squeeze", sets:"3×15"},
+      ],
+      intermediate: [
+        {name:"كيرل الرسغ", en:"Wrist Curl", sets:"3×15"},
+        {name:"كيرل الرسغ العكسي", en:"Reverse Wrist Curl", sets:"3×15"},
+        {name:"تعليق على البار", en:"Dead Hang", sets:"3×30 ثانية"},
+      ],
+      advanced: [
+        {name:"شد الصفيحة", en:"Plate Pinch", sets:"3×30 ثانية"},
+        {name:"فارمر ووك ثقيل", en:"Heavy Farmer's Walk", sets:"4×40 متر"},
+        {name:"رولر الرسغ", en:"Wrist Roller", sets:"3×2 لفات"},
+      ]
+    }
+  },
+  glutes: {
+    code: "GLUTES / 09",
+    title: "المؤخرة",
+    principle: "المؤخرة تتبنى بحركات الدفع من الورك (Hip Hinge/Thrust)، وتحب الانقباض الكامل في القمة أكثر من الوزن الثقيل وحدو.",
+    levels: {
+      beginner: [
+        {name:"جلوت بريدج", en:"Glute Bridge", sets:"3×15"},
+        {name:"هيب ثراست بوزن الجسم", en:"Bodyweight Hip Thrust", sets:"3×15"},
+      ],
+      intermediate: [
+        {name:"هيب ثراست", en:"Hip Thrust", sets:"4×10"},
+        {name:"سكوات بلغاري", en:"Bulgarian Split Squat", sets:"3×10"},
+        {name:"كيك باك بالكابل", en:"Cable Kickback", sets:"3×15"},
+        {name:"جلوت بريدج", en:"Glute Bridge", sets:"3×15"},
+      ],
+      advanced: [
+        {name:"هيب ثراست بالبار ثقيل", en:"Heavy Barbell Hip Thrust", sets:"4×8"},
+        {name:"رومانيان ديدليفت ساق وحدة", en:"Single-Leg RDL", sets:"4×10"},
+        {name:"كيك باك + دروب سات", en:"Cable Kickback + Drop Set", sets:"4×15 +drop"},
+      ]
+    }
+  },
+  calves: {
+    code: "CALVES / 10",
+    title: "السمانة",
+    principle: "السمانة عضلة صلبة تتبنى بتكرار عالي جدا وحركة كاملة (من الأسفل للأعلى)، وتحتاج صبر أكثر من العضلات الكبيرة.",
+    levels: {
+      beginner: [
+        {name:"رفع سمانة واقف بوزن الجسم", en:"Bodyweight Calf Raise", sets:"3×15"},
+      ],
+      intermediate: [
+        {name:"رفع سمانة واقف", en:"Standing Calf Raise", sets:"4×15-20"},
+        {name:"رفع سمانة قاعد", en:"Seated Calf Raise", sets:"3×20"},
+      ],
+      advanced: [
+        {name:"رفع سمانة واقف ثقيل", en:"Heavy Standing Calf Raise", sets:"5×20"},
+        {name:"رفع سمانة بساق وحدة", en:"Single-Leg Calf Raise", sets:"4×15"},
+        {name:"قفز الحبل", en:"Jump Rope", sets:"4×1 دقيقة"},
+      ]
+    }
+  }
+};
+
+
+const MUSCLE_LABELS = {'chest': 'الصدر', 'back': 'الظهر', 'shoulders': 'الأكتاف', 'arms': 'الدراع', 'abs': 'البطن', 'legs': 'الأرجل', 'traps': 'الترابيز', 'forearms': 'الساعد', 'glutes': 'المؤخرة', 'calves': 'السمانة'};
+const LEVEL_LABELS = {beginner:"مبتدئ", intermediate:"متوسط", advanced:"متقدم"};
+
+// flatten
+let ALL_EXERCISES = [];
+Object.keys(DATA).forEach(mKey => {
+  const m = DATA[mKey];
+  Object.keys(m.levels).forEach(lvl => {
+    m.levels[lvl].forEach(ex => {
+      ALL_EXERCISES.push({ name:ex.name, en:ex.en, sets:ex.sets, muscle:mKey, muscleLabel:m.title, level:lvl });
+    });
+  });
+});
+
+const muscleSelect = document.getElementById('ex-muscle-filter');
+Object.keys(DATA).forEach(mKey => {
+  const opt = document.createElement('option');
+  opt.value = mKey;
+  opt.textContent = DATA[mKey].title;
+  muscleSelect.appendChild(opt);
+});
+
+function renderExGrid(){
+  const q = document.getElementById('ex-search').value.trim().toLowerCase();
+  const mf = document.getElementById('ex-muscle-filter').value;
+  const lf = document.getElementById('ex-level-filter').value;
+
+  const filtered = ALL_EXERCISES.filter(ex => {
+    const matchesQuery = !q || ex.name.toLowerCase().includes(q) || ex.en.toLowerCase().includes(q);
+    const matchesMuscle = !mf || ex.muscle === mf;
+    const matchesLevel = !lf || ex.level === lf;
+    return matchesQuery && matchesMuscle && matchesLevel;
+  });
+
+  const grid = document.getElementById('ex-grid');
+  grid.innerHTML = '';
+  document.getElementById('ex-count').textContent = filtered.length + ' تمرين';
+  document.getElementById('no-results').style.display = filtered.length ? 'none' : 'block';
+
+  filtered.forEach((ex, i) => {
+    const card = document.createElement('div');
+    card.className = 'ex-card';
+    const d = EX_DETAILS[ex.en];
+    const uid = 'exd-' + i + '-' + ex.muscle + '-' + ex.level;
+    let detailHtml = '';
+    let descHtml = '';
+    let btnHtml = '';
+    if (d) {
+      descHtml = `<p class="ex-card-desc">${d.desc}</p>`;
+      const stepsHtml = d.steps.map(s => `<li>${s}</li>`).join('');
+      const targetHtml = d.target.map(t => `<span>${t}</span>`).join('');
+      detailHtml = `
+        <div class="ex-card-detail" id="${uid}">
+          <h5>طريقة الأداء</h5>
+          <ol>${stepsHtml}</ol>
+          <h5>العضلات المستهدفة</h5>
+          <div class="ex-target">${targetHtml}</div>
+          <h5>نصيحة أمان</h5>
+          <p class="ex-safety">${d.safety}</p>
+        </div>
+      `;
+      btnHtml = `<button type="button" class="ex-more-btn" data-target="${uid}" aria-expanded="false">اعرض طريقة الأداء والأمان</button>`;
+    }
+    card.innerHTML = `
+      <div class="ex-card-name">${ex.name}</div>
+      <div class="ex-card-en">${ex.en}</div>
+      <div class="ex-card-meta">
+        <span class="ex-card-muscle">${ex.muscleLabel}</span>
+        <span class="ex-card-level">${LEVEL_LABELS[ex.level]}</span>
+        <span class="ex-card-sets tag">${ex.sets}</span>
+      </div>
+      ${descHtml}
+      ${btnHtml}
+      ${detailHtml}
+    `;
+    grid.appendChild(card);
+  });
+
+  grid.querySelectorAll('.ex-more-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.getAttribute('data-target'));
+      if (!target) return;
+      const isOpen = target.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      btn.textContent = isOpen ? 'إخفاء التفاصيل' : 'اعرض طريقة الأداء والأمان';
+    });
+  });
+}
+
+document.getElementById('ex-search').addEventListener('input', renderExGrid);
+document.getElementById('ex-muscle-filter').addEventListener('change', renderExGrid);
+document.getElementById('ex-level-filter').addEventListener('change', renderExGrid);
+renderExGrid();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8LP335BVRH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8LP335BVRH');
+  </script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حاسبات اللياقة | افهم عضلاتك</title>
+<meta name="description" content="حاسبات مجانية: مؤشر كتلة الجسم، السعرات الحرارية اليومية، نسبة الدهون، وأقصى وزن لتكرار وحدة (1RM).">
+<link rel="canonical" href="https://omar0130y-netizen.github.io/Omar-Fitness/calculators.html">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Oswald:wght@400;500;600&display=swap');
+
+:root{
+  --bg:#141310;
+  --bg-alt:#1c1a16;
+  --panel:#211f1a;
+  --iron:#8a8577;
+  --iron-dim:#5c584c;
+  --chalk:#f2ede0;
+  --rust:#c4402b;
+  --rust-dim:#7d2c20;
+  --highlight:#d9c94a;
+  --line: rgba(242,237,224,0.09);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+html,body{
+  background:var(--bg);
+  color:var(--chalk);
+  font-family:'Tajawal', sans-serif;
+  scroll-behavior:smooth;
+}
+
+.tag{
+  font-family:'Oswald', sans-serif;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  min-height:92vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding: 8vh 6vw 6vh;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(ellipse 80% 60% at 75% 20%, rgba(196,64,43,0.14), transparent 60%),
+    var(--bg);
+}
+.hero-eyebrow{
+  font-size:0.78rem;
+  color:var(--rust);
+  margin-bottom:1.4rem;
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+}
+.hero-eyebrow::before{
+  content:"";
+  width:26px; height:2px;
+  background:var(--rust);
+  display:inline-block;
+}
+h1.hero-title{
+  font-weight:900;
+  font-size:clamp(2.6rem, 8vw, 5.6rem);
+  line-height:1.02;
+  max-width:14ch;
+  color:var(--chalk);
+}
+h1.hero-title span{
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--iron);
+}
+.hero-sub{
+  margin-top:1.8rem;
+  max-width:46ch;
+  font-size:1.05rem;
+  line-height:1.9;
+  color:var(--iron);
+}
+.hero-cta{
+  margin-top:2.6rem;
+  display:inline-flex;
+  align-items:center;
+  gap:0.7rem;
+  width:fit-content;
+  padding:0.9rem 1.7rem;
+  background:var(--rust);
+  color:var(--chalk);
+  font-weight:700;
+  font-size:0.95rem;
+  border-radius:2px;
+  cursor:pointer;
+  border:none;
+  transition:transform .25s ease, background .25s ease;
+}
+.hero-cta:hover{ background:#d94b33; transform:translateY(-2px); }
+.hero-cta:focus-visible{ outline:2px solid var(--highlight); outline-offset:3px; }
+
+.plate-stack{
+  position:absolute;
+  left:6vw; bottom:6vh;
+  display:flex;
+  gap:0.5rem;
+  opacity:0.5;
+}
+.plate{
+  width:10px; border-radius:2px;
+  background:var(--iron-dim);
+}
+.plate:nth-child(1){height:70px;}
+.plate:nth-child(2){height:100px; background:var(--rust-dim);}
+.plate:nth-child(3){height:55px;}
+.plate:nth-child(4){height:85px;}
+
+/* ---------- MAIN SECTION ---------- */
+.lab{
+  padding: 6rem 6vw 8rem;
+  display:grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 4rem;
+  align-items:start;
+}
+@media (max-width: 880px){
+  .lab{ grid-template-columns:1fr; padding:4rem 6vw 5rem; gap:3rem; }
+}
+
+.lab-head{
+  grid-column: 1 / -1;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  gap:1rem;
+  margin-bottom: 1rem;
+  border-bottom:1px solid var(--line);
+  padding-bottom:1.6rem;
+}
+.lab-head h2{
+  font-size:clamp(1.6rem,3.4vw,2.3rem);
+  font-weight:900;
+}
+.lab-head p.tag{
+  color:var(--iron-dim);
+  font-size:0.72rem;
+}
+
+/* ---------- BODY MAP ---------- */
+.map-wrap{
+  position:sticky;
+  top: 4vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1.4rem;
+}
+.map-wrap svg{ width:100%; max-width:320px; height:auto; }
+
+.muscle{
+  fill: var(--panel);
+  stroke: var(--iron-dim);
+  stroke-width:1.4;
+  cursor:pointer;
+  transition: fill .3s ease, stroke .3s ease, filter .3s ease;
+}
+.muscle:hover{ fill:#2b2822; stroke:var(--iron); }
+.muscle.active{
+  fill: var(--rust);
+  stroke: var(--highlight);
+  filter: drop-shadow(0 0 10px rgba(217,201,74,0.55));
+}
+.body-static{ fill:none; stroke:var(--iron-dim); stroke-width:1.2; }
+
+.map-hint{
+  font-size:0.82rem;
+  color:var(--iron-dim);
+  text-align:center;
+  max-width:26ch;
+}
+
+/* ---------- PANEL ---------- */
+.panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:4px;
+  min-height:420px;
+  padding:2.4rem;
+  position:relative;
+  overflow:hidden;
+}
+.panel::before{
+  content: attr(data-code);
+  position:absolute;
+  top:1.2rem; left:1.4rem;
+  font-family:'Oswald',sans-serif;
+  font-size:0.7rem;
+  letter-spacing:0.16em;
+  color:var(--iron-dim);
+}
+
+.panel-empty{
+  height:100%;
+  min-height:370px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:1rem;
+  color:var(--iron-dim);
+  text-align:center;
+}
+.panel-empty .big{ font-size:3rem; opacity:0.4; }
+
+.panel-title{
+  font-size:clamp(1.8rem,3.2vw,2.5rem);
+  font-weight:900;
+  color:var(--highlight);
+  margin-bottom:0.6rem;
+}
+
+.panel-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+.level-tabs{
+  display:flex;
+  gap:0.4rem;
+  background:var(--bg-alt);
+  padding:0.3rem;
+  border-radius:3px;
+  border:1px solid var(--line);
+}
+.level-btn{
+  font-family:'Tajawal', sans-serif;
+  font-weight:700;
+  font-size:0.82rem;
+  color:var(--iron-dim);
+  background:transparent;
+  border:none;
+  padding:0.5rem 0.9rem;
+  border-radius:2px;
+  cursor:pointer;
+  transition:background .25s ease, color .25s ease;
+}
+.level-btn:hover{ color:var(--chalk); }
+.level-btn.active{
+  background:var(--rust);
+  color:var(--chalk);
+}
+.level-btn:focus-visible{ outline:2px solid var(--highlight); outline-offset:2px; }
+
+.panel-principle{
+  color:var(--iron);
+  line-height:1.9;
+  font-size:0.98rem;
+  max-width:60ch;
+  margin-bottom:2.2rem;
+  padding-bottom:2rem;
+  border-bottom:1px solid var(--line);
+}
+
+.ex-list{ display:flex; flex-direction:column; gap:0; }
+.ex-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:1.1rem 0;
+  border-bottom:1px solid var(--line);
+}
+.ex-row:last-child{ border-bottom:none; }
+.ex-name{
+  font-weight:700;
+  font-size:1.05rem;
+}
+.ex-name small{
+  display:block;
+  font-family:'Oswald',sans-serif;
+  font-weight:400;
+  letter-spacing:0.06em;
+  font-size:0.72rem;
+  color:var(--iron-dim);
+  margin-top:0.2rem;
+  text-transform:uppercase;
+}
+.ex-set{
+  font-family:'Oswald', sans-serif;
+  font-size:0.95rem;
+  color:var(--rust);
+  background:rgba(196,64,43,0.12);
+  padding:0.35rem 0.8rem;
+  border-radius:2px;
+  white-space:nowrap;
+  letter-spacing:0.04em;
+}
+
+footer{
+  padding:2.4rem 6vw;
+  border-top:1px solid var(--line);
+  color:var(--iron-dim);
+  font-size:0.8rem;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:0.6rem;
+}
+
+/* ---------- NAV ---------- */
+.site-nav{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.1rem 6vw;
+  background:rgba(20,19,16,0.88);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-logo{
+  font-weight:900; font-size:1.1rem; color:var(--chalk); text-decoration:none;
+}
+.nav-logo span{ color:var(--rust); }
+.nav-links{ display:flex; gap:1.6rem; flex-wrap:wrap; }
+.nav-links a{
+  color:var(--iron); text-decoration:none; font-size:0.92rem; font-weight:500;
+  transition:color .2s ease;
+}
+.nav-links a:hover, .nav-links a.active{ color:var(--highlight); }
+
+/* ---------- EXPANDED FOOTER ---------- */
+.site-footer{
+  padding:4rem 6vw 2rem;
+  border-top:1px solid var(--line);
+  background:var(--bg-alt);
+}
+.footer-top{
+  display:flex; justify-content:space-between; gap:3rem; flex-wrap:wrap;
+  padding-bottom:2.4rem; margin-bottom:1.6rem; border-bottom:1px solid var(--line);
+}
+.footer-brand{ max-width:34ch; }
+.footer-brand p{ color:var(--iron-dim); font-size:0.85rem; line-height:1.8; margin-top:0.8rem; }
+.footer-links{ display:flex; gap:3.5rem; flex-wrap:wrap; }
+.footer-col{ display:flex; flex-direction:column; gap:0.6rem; }
+.footer-col h4{ color:var(--iron-dim); font-size:0.7rem; margin-bottom:0.4rem; }
+.footer-col a{ color:var(--iron); text-decoration:none; font-size:0.88rem; }
+.footer-col a:hover{ color:var(--highlight); }
+.footer-bottom{
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem;
+  color:var(--iron-dim); font-size:0.78rem;
+}
+
+/* ---------- SIMPLE CONTENT PAGES ---------- */
+.page-hero{ padding:5rem 6vw 3rem; border-bottom:1px solid var(--line); }
+.page-hero .tag{ color:var(--rust); font-size:0.78rem; margin-bottom:1.2rem; display:block; }
+.page-hero h1{ font-weight:900; font-size:clamp(2rem,5vw,3.2rem); max-width:22ch; }
+.page-hero p{ margin-top:1.2rem; color:var(--iron); max-width:60ch; line-height:1.8; }
+
+.page-body{ padding:3.5rem 6vw 6rem; max-width:820px; margin:0 auto; }
+.page-body h2{ font-size:1.4rem; font-weight:900; color:var(--highlight); margin:2.4rem 0 1rem; }
+.page-body h2:first-child{ margin-top:0; }
+.page-body p{ color:var(--iron); line-height:1.9; margin-bottom:1rem; font-size:0.98rem; }
+.page-body ul{ color:var(--iron); line-height:1.9; margin:0 0 1rem; padding-right:1.4rem; font-size:0.98rem; }
+.page-body li{ margin-bottom:0.5rem; }
+.page-body a{ color:var(--highlight); }
+.page-body .updated{ color:var(--iron-dim); font-size:0.8rem; margin-bottom:2rem; }
+
+/* ---------- CONTACT FORM ---------- */
+.contact-form{ display:flex; flex-direction:column; gap:1.1rem; margin-top:1rem; }
+.contact-form label{ font-size:0.85rem; color:var(--iron); margin-bottom:0.4rem; display:block; }
+.contact-form input, .contact-form textarea{
+  width:100%; background:var(--panel); border:1px solid var(--line);
+  color:var(--chalk); padding:0.8rem 1rem; border-radius:3px; font-family:'Tajawal',sans-serif;
+  font-size:0.95rem;
+}
+.contact-form textarea{ min-height:140px; resize:vertical; }
+.contact-form button{
+  width:fit-content; padding:0.85rem 1.8rem; background:var(--rust); color:var(--chalk);
+  border:none; border-radius:2px; font-weight:700; cursor:pointer; font-size:0.92rem;
+  transition:background .25s ease;
+}
+.contact-form button:hover{ background:#d94b33; }
+.contact-info{
+  display:flex; flex-direction:column; gap:0.9rem; margin-top:2rem;
+  padding-top:2rem; border-top:1px solid var(--line);
+}
+.contact-info div{ color:var(--iron); font-size:0.92rem; }
+.contact-info strong{ color:var(--chalk); }
+
+/* ---------- COOKIE BANNER ---------- */
+.cookie-banner{
+  position:fixed; bottom:0; left:0; right:0; z-index:100;
+  background:var(--panel); border-top:1px solid var(--line);
+  padding:1.2rem 6vw; display:flex; align-items:center; justify-content:space-between;
+  gap:1.4rem; flex-wrap:wrap;
+  transform:translateY(120%); transition:transform .4s ease;
+}
+.cookie-banner.show{ transform:translateY(0); }
+.cookie-banner p{ color:var(--iron); font-size:0.86rem; max-width:60ch; margin:0; }
+.cookie-banner a{ color:var(--highlight); }
+.cookie-actions{ display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap; }
+.cookie-accept{
+  padding:0.7rem 1.6rem; background:var(--rust); color:var(--chalk); border:none;
+  border-radius:2px; font-weight:700; cursor:pointer; font-size:0.88rem;
+}
+.cookie-accept:hover{ background:#d94b33; }
+.cookie-more{ color:var(--iron); font-size:0.85rem; text-decoration:underline; }
+
+@media (max-width: 640px){
+  .site-nav{ flex-direction:column; gap:0.9rem; align-items:flex-start; }
+  .footer-links{ gap:2.2rem; }
+}
+
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; scroll-behavior:auto !important; }
+}
+</style>
+
+<style>
+.calc-tabs{ display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:2.4rem; }
+.calc-tab{
+  font-family:'Tajawal',sans-serif; font-weight:700; font-size:0.88rem;
+  padding:0.7rem 1.3rem; background:var(--panel); border:1px solid var(--line);
+  color:var(--iron); border-radius:3px; cursor:pointer; transition:all .2s ease;
+}
+.calc-tab.active{ background:var(--rust); color:var(--chalk); border-color:var(--rust); }
+.calc-panel{ display:none; }
+.calc-panel.active{ display:block; }
+.calc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; }
+@media (max-width:600px){ .calc-grid{ grid-template-columns:1fr; } }
+.calc-field label{ font-size:0.85rem; color:var(--iron); margin-bottom:0.4rem; display:block; }
+.calc-field input, .calc-field select{
+  width:100%; background:var(--panel); border:1px solid var(--line); color:var(--chalk);
+  padding:0.75rem 1rem; border-radius:3px; font-family:'Tajawal',sans-serif; font-size:0.95rem;
+}
+.calc-btn{
+  margin-top:1.4rem; padding:0.85rem 1.8rem; background:var(--rust); color:var(--chalk);
+  border:none; border-radius:2px; font-weight:700; cursor:pointer; font-size:0.92rem;
+}
+.calc-btn:hover{ background:#d94b33; }
+.calc-result{
+  margin-top:1.8rem; padding:1.6rem; background:var(--panel); border:1px solid var(--line);
+  border-radius:4px; display:none;
+}
+.calc-result.show{ display:block; }
+.calc-result .big-num{ font-size:2.2rem; font-weight:900; color:var(--highlight); font-family:'Oswald',sans-serif; }
+.calc-result .label{ color:var(--iron); font-size:0.88rem; margin-top:0.3rem; }
+.calc-result .note{ color:var(--iron-dim); font-size:0.82rem; margin-top:1rem; line-height:1.7; }
+.calc-note-box{
+  margin-top:2.5rem; padding:1.2rem 1.4rem; background:rgba(196,64,43,0.08);
+  border:1px solid rgba(196,64,43,0.25); border-radius:4px; color:var(--iron); font-size:0.85rem; line-height:1.8;
+}
+</style>
+<!-- Google AdSense: replace ca-pub-7443649862688896 with your real Publisher ID once approved -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7443649862688896" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">افهم <span>عضلاتك</span></a>
+  <div class="nav-links">
+    <a href="index.html">الرئيسية</a>
+    <a href="exercises.html">التمارين</a>
+    <a href="workouts.html">البرامج</a>
+    <a href="calculators.html" class="active">الحاسبات</a>
+    <a href="nutrition.html">التغذية</a>
+    <a href="blog.html">المدونة</a>
+    <a href="faq.html">الأسئلة الشائعة</a>
+    <a href="about.html">من نحنا</a>
+    <a href="contact.html">اتصل بنا</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <span class="tag">حاسبات اللياقة</span>
+  <h1>احسب أرقامك</h1>
+  <p>4 حاسبات سريعة تساعدك تفهم جسمك وتضبط تدريبك: كتلة الجسم، السعرات، نسبة الدهون، والوزن الأقصى لتكرار وحدة.</p>
+</section>
+
+<section class="page-body">
+  <div class="calc-tabs">
+    <button class="calc-tab active" data-tab="bmi">مؤشر كتلة الجسم</button>
+    <button class="calc-tab" data-tab="calorie">السعرات اليومية</button>
+    <button class="calc-tab" data-tab="bodyfat">نسبة الدهون</button>
+    <button class="calc-tab" data-tab="orm">أقصى وزن (1RM)</button>
+  </div>
+
+  <!-- BMI -->
+  <div class="calc-panel active" id="panel-bmi">
+    <div class="calc-grid">
+      <div class="calc-field"><label>الوزن (كغ)</label><input type="number" id="bmi-weight" placeholder="70"></div>
+      <div class="calc-field"><label>الطول (سم)</label><input type="number" id="bmi-height" placeholder="175"></div>
+    </div>
+    <button class="calc-btn" onclick="calcBMI()">احسب</button>
+    <div class="calc-result" id="bmi-result">
+      <div class="big-num" id="bmi-value">--</div>
+      <div class="label" id="bmi-cat">--</div>
+      <div class="note">مؤشر كتلة الجسم (BMI) هو مؤشر عام وما يفرقش بين العضل والدهن — إذا عندك كتلة عضلية عالية يمكن يعطي رقم مرتفع بلا ما يعني وزن زايد فعليا.</div>
+    </div>
+  </div>
+
+  <!-- CALORIE -->
+  <div class="calc-panel" id="panel-calorie">
+    <div class="calc-grid">
+      <div class="calc-field"><label>الجنس</label>
+        <select id="cal-gender"><option value="male">رجل</option><option value="female">مرأة</option></select>
+      </div>
+      <div class="calc-field"><label>العمر</label><input type="number" id="cal-age" placeholder="25"></div>
+      <div class="calc-field"><label>الوزن (كغ)</label><input type="number" id="cal-weight" placeholder="70"></div>
+      <div class="calc-field"><label>الطول (سم)</label><input type="number" id="cal-height" placeholder="175"></div>
+      <div class="calc-field" style="grid-column:1/-1"><label>مستوى النشاط</label>
+        <select id="cal-activity">
+          <option value="1.2">قليل الحركة (مكتب، بلا رياضة)</option>
+          <option value="1.375">نشاط خفيف (رياضة 1-3 مرات/أسبوع)</option>
+          <option value="1.55">نشاط متوسط (رياضة 3-5 مرات/أسبوع)</option>
+          <option value="1.725">نشاط عالي (رياضة 6-7 مرات/أسبوع)</option>
+          <option value="1.9">نشاط عالي جدا (رياضي / شغل بدني)</option>
+        </select>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calcCalorie()">احسب</button>
+    <div class="calc-result" id="cal-result">
+      <div class="big-num" id="cal-value">--</div>
+      <div class="label">سعرة حرارية يوميا للمحافظة على وزنك الحالي (TDEE)</div>
+      <div class="note">لنقصان الوزن: انقص حوالي 300-500 سعرة من هالرقم. لزيادة الوزن/العضل: زيد حوالي 250-500 سعرة.</div>
+    </div>
+  </div>
+
+  <!-- BODY FAT -->
+  <div class="calc-panel" id="panel-bodyfat">
+    <div class="calc-grid">
+      <div class="calc-field"><label>الجنس</label>
+        <select id="bf-gender" onchange="toggleHip()"><option value="male">رجل</option><option value="female">مرأة</option></select>
+      </div>
+      <div class="calc-field"><label>الطول (سم)</label><input type="number" id="bf-height" placeholder="175"></div>
+      <div class="calc-field"><label>محيط الرقبة (سم)</label><input type="number" id="bf-neck" placeholder="38"></div>
+      <div class="calc-field"><label>محيط الخصر (سم)</label><input type="number" id="bf-waist" placeholder="85"></div>
+      <div class="calc-field" id="bf-hip-field" style="display:none"><label>محيط الورك (سم)</label><input type="number" id="bf-hip" placeholder="95"></div>
+    </div>
+    <button class="calc-btn" onclick="calcBodyFat()">احسب</button>
+    <div class="calc-result" id="bf-result">
+      <div class="big-num" id="bf-value">--</div>
+      <div class="label">نسبة الدهون التقريبية (طريقة US Navy)</div>
+      <div class="note">هالطريقة تقريبية وتعتمد على القياسات اليدوية، ممكن تختلف شوية على الطرق الطبية الدقيقة (مثل DEXA scan).</div>
+    </div>
+  </div>
+
+  <!-- ONE REP MAX -->
+  <div class="calc-panel" id="panel-orm">
+    <div class="calc-grid">
+      <div class="calc-field"><label>الوزن لي رفعتو (كغ)</label><input type="number" id="orm-weight" placeholder="80"></div>
+      <div class="calc-field"><label>عدد التكرارات</label><input type="number" id="orm-reps" placeholder="8"></div>
+    </div>
+    <button class="calc-btn" onclick="calcORM()">احسب</button>
+    <div class="calc-result" id="orm-result">
+      <div class="big-num" id="orm-value">--</div>
+      <div class="label">أقصى وزن تقدر ترفعو لتكرار وحدة (1RM) — معادلة Epley</div>
+      <div class="note">استعمل هالرقم كمرجع تقريبي فقط، وماتحاولش تختبر الـ1RM الحقيقي بلا تسخين وبلا مساعدة.</div>
+    </div>
+  </div>
+
+  <div class="calc-note-box">
+    كل الحاسبات فوق تعطي أرقام تقريبية لأغراض تعليمية، وما تعوضش تقييم طبي أو رياضي دقيق. الحساب يصير بالكامل في المتصفح متاعك ولا يتخزن ولا يتبعث لأي سيرفر.
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">افهم <span>عضلاتك</span></a>
+      <p>دليل تعليمي مجاني لتدريب العضلات — محتوى لأغراض تثقيفية فقط، وما يعوضش استشارة طبيب أو مدرب مختص.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4 class="tag">الموقع</h4>
+        <a href="index.html">الرئيسية</a>
+        <a href="exercises.html">التمارين</a>
+        <a href="workouts.html">البرامج</a>
+        <a href="calculators.html">الحاسبات</a>
+        <a href="nutrition.html">التغذية</a>
+        <a href="blog.html">المدونة</a>
+        <a href="faq.html">الأسئلة الشائعة</a>
+      </div>
+      <div class="footer-col">
+        <h4 class="tag">قانوني</h4>
+        <a href="about.html">من نحنا</a>
+        <a href="contact.html">اتصل بنا</a>
+        <a href="privacy.html">سياسة الخصوصية</a>
+        <a href="terms.html">شروط الاستخدام</a>
+        <a href="cookies.html">سياسة الكوكيز</a>
+        <a href="disclaimer.html">إخلاء المسؤولية</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 افهم عضلاتك. جميع الحقوق محفوظة.</span>
+    <span class="tag">TRAIN SMART</span>
+  </div>
+</footer>
+
+<div class="cookie-banner" id="cookie-banner">
+  <p>نستعملو الكوكيز باش نحسّنو تجربتك في الموقع ونعرضو إعلانات مناسبة. بالمواصلة في التصفح، أنت موافق على <a href="cookies.html">سياسة الكوكيز</a> متاعنا.</p>
+  <div class="cookie-actions">
+    <button class="cookie-accept" id="cookie-accept">موافق</button>
+    <a href="cookies.html" class="cookie-more">أكثر تفاصيل</a>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='cookie_consent_v1';
+  var banner=document.getElementById('cookie-banner');
+  if(!banner) return;
+  try{
+    if(localStorage.getItem(KEY)==='accepted'){ banner.style.display='none'; }
+    else{ banner.classList.add('show'); }
+  }catch(e){ banner.classList.add('show'); }
+  var btn=document.getElementById('cookie-accept');
+  if(btn){
+    btn.addEventListener('click', function(){
+      try{ localStorage.setItem(KEY,'accepted'); }catch(e){}
+      banner.classList.remove('show');
+      banner.style.display='none';
+    });
+  }
+})();
+</script>
+<script>
+document.querySelectorAll('.calc-tab').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.calc-tab').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.calc-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+function calcBMI(){
+  var w=parseFloat(document.getElementById('bmi-weight').value);
+  var h=parseFloat(document.getElementById('bmi-height').value)/100;
+  if(!w||!h) return;
+  var bmi=w/(h*h);
+  var cat='وزن طبيعي';
+  if(bmi<18.5) cat='نقص في الوزن';
+  else if(bmi>=25 && bmi<30) cat='وزن زايد';
+  else if(bmi>=30) cat='سمنة';
+  document.getElementById('bmi-value').textContent=bmi.toFixed(1);
+  document.getElementById('bmi-cat').textContent=cat;
+  document.getElementById('bmi-result').classList.add('show');
+}
+
+function calcCalorie(){
+  var gender=document.getElementById('cal-gender').value;
+  var age=parseFloat(document.getElementById('cal-age').value);
+  var w=parseFloat(document.getElementById('cal-weight').value);
+  var h=parseFloat(document.getElementById('cal-height').value);
+  var act=parseFloat(document.getElementById('cal-activity').value);
+  if(!age||!w||!h) return;
+  var bmr = gender==='male'
+    ? (10*w + 6.25*h - 5*age + 5)
+    : (10*w + 6.25*h - 5*age - 161);
+  var tdee = bmr*act;
+  document.getElementById('cal-value').textContent=Math.round(tdee)+' سعرة';
+  document.getElementById('cal-result').classList.add('show');
+}
+
+function toggleHip(){
+  var g=document.getElementById('bf-gender').value;
+  document.getElementById('bf-hip-field').style.display = g==='female' ? 'block':'none';
+}
+
+function calcBodyFat(){
+  var g=document.getElementById('bf-gender').value;
+  var h=parseFloat(document.getElementById('bf-height').value);
+  var neck=parseFloat(document.getElementById('bf-neck').value);
+  var waist=parseFloat(document.getElementById('bf-waist').value);
+  var hip=parseFloat(document.getElementById('bf-hip').value||0);
+  if(!h||!neck||!waist) return;
+  var bf;
+  if(g==='male'){
+    bf = 495/(1.0324 - 0.19077*Math.log10(waist-neck) + 0.15456*Math.log10(h)) - 450;
+  } else {
+    if(!hip) return;
+    bf = 495/(1.29579 - 0.35004*Math.log10(waist+hip-neck) + 0.22100*Math.log10(h)) - 450;
+  }
+  document.getElementById('bf-value').textContent=bf.toFixed(1)+'%';
+  document.getElementById('bf-result').classList.add('show');
+}
+
+function calcORM(){
+  var w=parseFloat(document.getElementById('orm-weight').value);
+  var r=parseFloat(document.getElementById('orm-reps').value);
+  if(!w||!r) return;
+  var orm = r===1 ? w : w*(1+r/30);
+  document.getElementById('orm-value').textContent=Math.round(orm)+' كغ';
+  document.getElementById('orm-result').classList.add('show');
+}
+</script>
+
+</body>
+</html>
