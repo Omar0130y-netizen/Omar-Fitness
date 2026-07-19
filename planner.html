@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8LP335BVRH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8LP335BVRH');
+  </script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المخطط الرياضي الشخصي | افهم عضلاتك</title>
+<meta name="description" content="أنشئ حساب مجاني واحصل على مخطط رياضي شخصي: احسب BMI وBMR والسعرات اليومية، شوف برنامج تدريب أسبوعي حسب مستواك وهدفك، وتابع تطور وزنك بالوقت.">
+<link rel="canonical" href="https://omar0130y-netizen.github.io/Omar-Fitness/planner.html">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Oswald:wght@400;500;600&display=swap');
+
+:root{
+  --bg:#141310;
+  --bg-alt:#1c1a16;
+  --panel:#211f1a;
+  --iron:#8a8577;
+  --iron-dim:#5c584c;
+  --chalk:#f2ede0;
+  --rust:#c4402b;
+  --rust-dim:#7d2c20;
+  --highlight:#d9c94a;
+  --line: rgba(242,237,224,0.09);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+html,body{
+  background:var(--bg);
+  color:var(--chalk);
+  font-family:'Tajawal', sans-serif;
+  scroll-behavior:smooth;
+}
+
+.tag{
+  font-family:'Oswald', sans-serif;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+}
+
+/* ---------- NAV ---------- */
+.site-nav{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.1rem 6vw;
+  background:rgba(20,19,16,0.88);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-logo{
+  font-weight:900; font-size:1.1rem; color:var(--chalk); text-decoration:none;
+}
+.nav-logo span{ color:var(--rust); }
+.nav-links{ display:flex; gap:1.6rem; flex-wrap:wrap; }
+.nav-links a{
+  color:var(--iron); text-decoration:none; font-size:0.92rem; font-weight:500;
+  transition:color .2s ease;
+}
+.nav-links a:hover, .nav-links a.active{ color:var(--highlight); }
+
+/* ---------- EXPANDED FOOTER ---------- */
+.site-footer{
+  padding:4rem 6vw 2rem;
+  border-top:1px solid var(--line);
+  background:var(--bg-alt);
+}
+.footer-top{
+  display:flex; justify-content:space-between; gap:3rem; flex-wrap:wrap;
+  padding-bottom:2.4rem; margin-bottom:1.6rem; border-bottom:1px solid var(--line);
+}
+.footer-brand{ max-width:34ch; }
+.footer-brand p{ color:var(--iron-dim); font-size:0.85rem; line-height:1.8; margin-top:0.8rem; }
+.footer-links{ display:flex; gap:3.5rem; flex-wrap:wrap; }
+.footer-col{ display:flex; flex-direction:column; gap:0.6rem; }
+.footer-col h4{ color:var(--iron-dim); font-size:0.7rem; margin-bottom:0.4rem; }
+.footer-col a{ color:var(--iron); text-decoration:none; font-size:0.88rem; }
+.footer-col a:hover{ color:var(--highlight); }
+.footer-bottom{
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem;
+  color:var(--iron-dim); font-size:0.78rem;
+}
+
+/* ---------- SIMPLE CONTENT PAGES ---------- */
+.page-hero{ padding:5rem 6vw 3rem; border-bottom:1px solid var(--line); }
+.page-hero .tag{ color:var(--rust); font-size:0.78rem; margin-bottom:1.2rem; display:block; }
+.page-hero h1{ font-weight:900; font-size:clamp(2rem,5vw,3.2rem); max-width:24ch; }
+.page-hero p{ margin-top:1.2rem; color:var(--iron); max-width:60ch; line-height:1.8; }
+
+.page-body{ padding:3.5rem 6vw 6rem; max-width:920px; margin:0 auto; }
+.page-body h2{ font-size:1.4rem; font-weight:900; color:var(--highlight); margin:2.4rem 0 1rem; }
+.page-body h2:first-child{ margin-top:0; }
+.page-body p{ color:var(--iron); line-height:1.9; margin-bottom:1rem; font-size:0.98rem; }
+.page-body a{ color:var(--highlight); }
+
+/* ---------- COOKIE BANNER ---------- */
+.cookie-banner{
+  position:fixed; bottom:0; left:0; right:0; z-index:100;
+  background:var(--panel); border-top:1px solid var(--line);
+  padding:1.2rem 6vw; display:flex; align-items:center; justify-content:space-between;
+  gap:1.4rem; flex-wrap:wrap;
+  transform:translateY(120%); transition:transform .4s ease;
+}
+.cookie-banner.show{ transform:translateY(0); }
+.cookie-banner p{ color:var(--iron); font-size:0.86rem; max-width:60ch; margin:0; }
+.cookie-banner a{ color:var(--highlight); }
+.cookie-actions{ display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap; }
+.cookie-accept{
+  padding:0.7rem 1.6rem; background:var(--rust); color:var(--chalk); border:none;
+  border-radius:2px; font-weight:700; cursor:pointer; font-size:0.88rem;
+}
+.cookie-accept:hover{ background:#d94b33; }
+.cookie-more{ color:var(--iron); font-size:0.85rem; text-decoration:underline; }
+
+@media (max-width: 640px){
+  .site-nav{ flex-direction:column; gap:0.9rem; align-items:flex-start; }
+  .footer-links{ gap:2.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; scroll-behavior:auto !important; }
+}
+</style>
+
+<style>
+/* ---------- PLANNER-SPECIFIC UI ---------- */
+.fp-panel{
+  background:var(--panel); border:1px solid var(--line); border-radius:4px;
+  padding:2rem; margin-bottom:2rem;
+}
+.fp-info-box{
+  display:flex; align-items:flex-start; gap:0.9rem;
+  background:rgba(217,201,74,0.08); border:1px solid rgba(217,201,74,0.25);
+  border-radius:4px; padding:1.1rem 1.3rem; margin-top:1.8rem;
+}
+.fp-info-box svg{ flex-shrink:0; width:20px; height:20px; margin-top:0.2rem; color:var(--highlight); }
+.fp-info-box p{ color:var(--iron); font-size:0.86rem; line-height:1.85; margin:0; }
+.fp-info-box p + p{ margin-top:0.6rem; }
+.fp-info-box strong{ color:var(--chalk); }
+
+/* Tabs (auth + plan) */
+.fp-tabs{ display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.8rem; }
+.fp-tab{
+  font-family:'Tajawal',sans-serif; font-weight:700; font-size:0.88rem;
+  padding:0.7rem 1.3rem; background:var(--bg-alt); border:1px solid var(--line);
+  color:var(--iron); border-radius:3px; cursor:pointer; transition:all .2s ease;
+}
+.fp-tab.active{ background:var(--rust); color:var(--chalk); border-color:var(--rust); }
+.fp-tabpanel{ display:none; }
+.fp-tabpanel.active{ display:block; }
+
+/* Fields */
+.fp-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; }
+@media (max-width:600px){ .fp-grid{ grid-template-columns:1fr; } }
+.fp-field label{ font-size:0.85rem; color:var(--iron); margin-bottom:0.4rem; display:block; }
+.fp-field input, .fp-field select{
+  width:100%; background:var(--bg-alt); border:1px solid var(--line); color:var(--chalk);
+  padding:0.75rem 1rem; border-radius:3px; font-family:'Tajawal',sans-serif; font-size:0.95rem;
+}
+.fp-field input:focus, .fp-field select:focus{ outline:2px solid var(--highlight); outline-offset:1px; }
+.fp-btn{
+  margin-top:1.4rem; padding:0.85rem 1.8rem; background:var(--rust); color:var(--chalk);
+  border:none; border-radius:2px; font-weight:700; cursor:pointer; font-size:0.92rem;
+}
+.fp-btn:hover{ background:#d94b33; }
+.fp-btn.ghost{
+  background:transparent; border:1px solid var(--line); color:var(--iron);
+}
+.fp-btn.ghost:hover{ color:var(--highlight); border-color:var(--highlight); }
+.fp-btn.small{ padding:0.5rem 1rem; font-size:0.8rem; margin-top:0; }
+.fp-error{ color:var(--rust); font-size:0.85rem; margin-top:0.9rem; min-height:1.2em; }
+
+/* Dashboard header */
+.fp-dash-top{
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;
+  margin-bottom:1.8rem; padding-bottom:1.4rem; border-bottom:1px solid var(--line);
+}
+.fp-dash-top h2{ margin:0; font-size:1.3rem; font-weight:900; color:var(--chalk); }
+.fp-dash-actions{ display:flex; gap:0.7rem; flex-wrap:wrap; }
+
+/* Summary cards */
+.fp-summary{ display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2rem; }
+@media (max-width:820px){ .fp-summary{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:460px){ .fp-summary{ grid-template-columns:1fr; } }
+.fp-card{
+  background:var(--bg-alt); border:1px solid var(--line); border-radius:4px; padding:1.2rem;
+}
+.fp-card .big-num{ font-size:1.7rem; font-weight:900; color:var(--highlight); font-family:'Oswald',sans-serif; }
+.fp-card .label{ color:var(--iron); font-size:0.82rem; margin-top:0.3rem; line-height:1.6; }
+
+.fp-macros{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1rem; }
+@media (max-width:600px){ .fp-macros{ grid-template-columns:1fr; } }
+.fp-macro{ background:var(--bg-alt); border:1px solid var(--line); border-radius:4px; padding:1rem 1.2rem; }
+.fp-macro .macro-val{ font-size:1.3rem; font-weight:900; color:var(--chalk); font-family:'Oswald',sans-serif; }
+.fp-macro .macro-lbl{ color:var(--iron-dim); font-size:0.76rem; margin-top:0.2rem; }
+
+/* Weekly plan */
+.plan-day{
+  background:var(--bg-alt); border:1px solid var(--line); border-radius:4px;
+  padding:1.4rem 1.6rem; margin-bottom:1rem;
+}
+.plan-day .day-tag{ font-family:'Oswald',sans-serif; font-size:0.7rem; color:var(--rust); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.4rem; display:block; }
+.plan-day h3{ color:var(--highlight); font-size:1.05rem; margin-bottom:0.7rem; }
+.plan-day ul{ color:var(--iron); line-height:1.9; padding-right:1.2rem; font-size:0.92rem; }
+.plan-day .rest-txt{ color:var(--iron); font-size:0.92rem; line-height:1.8; }
+.fp-lib-link{
+  display:inline-block; margin-top:1.2rem; color:var(--highlight); font-size:0.85rem; text-decoration:underline;
+}
+
+/* Progress tracker */
+.fp-chart-wrap{ overflow-x:auto; padding-bottom:0.6rem; }
+.fp-chart{ display:flex; align-items:flex-end; gap:0.8rem; height:160px; min-width:min-content; padding-top:1rem; }
+.fp-bar-col{ display:flex; flex-direction:column; align-items:center; gap:0.4rem; }
+.fp-bar{ width:20px; background:var(--rust); border-radius:2px 2px 0 0; min-height:4px; transition:height .3s ease; }
+.fp-bar-col span{ font-size:0.65rem; color:var(--iron-dim); white-space:nowrap; }
+.fp-empty{ color:var(--iron-dim); font-size:0.88rem; padding:1rem 0; }
+
+.fp-table-wrap{ overflow-x:auto; margin-top:1.2rem; }
+.fp-table{ width:100%; border-collapse:collapse; font-size:0.85rem; min-width:560px; }
+.fp-table th{ text-align:right; color:var(--iron-dim); font-weight:700; padding:0.6rem 0.5rem; border-bottom:1px solid var(--line); font-size:0.76rem; }
+.fp-table td{ padding:0.6rem 0.5rem; border-bottom:1px solid var(--line); color:var(--iron); }
+.fp-table td.fp-del{ text-align:left; }
+.fp-del-btn{
+  background:transparent; border:1px solid var(--line); color:var(--iron-dim);
+  padding:0.3rem 0.7rem; border-radius:2px; cursor:pointer; font-size:0.75rem;
+}
+.fp-del-btn:hover{ color:var(--rust); border-color:var(--rust); }
+
+.fp-section-title{ font-size:1.15rem; font-weight:900; color:var(--chalk); margin:0 0 1rem; }
+
+/* ---------- Dashboard hero ---------- */
+.fp-dash-hero{
+  display:flex; align-items:center; justify-content:space-between; gap:1.4rem; flex-wrap:wrap;
+  background:linear-gradient(135deg, rgba(196,64,43,0.14), rgba(217,201,74,0.06));
+  border:1px solid var(--line); border-radius:6px; padding:1.6rem 1.8rem; margin-bottom:1.4rem;
+}
+.fp-dash-hero-left{ display:flex; align-items:center; gap:1rem; }
+.fp-avatar{
+  width:52px; height:52px; border-radius:50%; background:var(--rust); color:var(--chalk);
+  display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.3rem;
+  font-family:'Oswald',sans-serif; flex-shrink:0;
+}
+.fp-dash-hero h2{ margin:0; font-size:1.25rem; font-weight:900; color:var(--chalk); }
+.fp-dash-hero .fp-sub{ color:var(--iron); font-size:0.85rem; margin-top:0.2rem; }
+.fp-dash-actions{ display:flex; gap:0.6rem; flex-wrap:wrap; }
+
+/* ---------- Quick nav chips ---------- */
+.fp-quicknav{
+  display:flex; gap:0.6rem; overflow-x:auto; padding-bottom:0.5rem; margin-bottom:2.2rem;
+  border-bottom:1px solid var(--line);
+}
+.fp-quicknav a{
+  flex-shrink:0; font-size:0.82rem; font-weight:700; color:var(--iron); text-decoration:none;
+  padding:0.5rem 1rem; border-radius:20px; border:1px solid var(--line); background:var(--bg-alt);
+  transition:all .2s ease; white-space:nowrap;
+}
+.fp-quicknav a:hover{ color:var(--highlight); border-color:var(--highlight); }
+
+.fp-dash-section{ margin-bottom:2.8rem; scroll-margin-top:5.5rem; }
+
+/* ---------- Profile summary ---------- */
+.fp-profile-summary{ display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
+@media (max-width:820px){ .fp-profile-summary{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:460px){ .fp-profile-summary{ grid-template-columns:1fr; } }
+.fp-mini-stat{ background:var(--bg-alt); border:1px solid var(--line); border-radius:4px; padding:0.9rem 1.1rem; }
+.fp-mini-stat .lbl{ color:var(--iron-dim); font-size:0.72rem; margin-bottom:0.3rem; }
+.fp-mini-stat .val{ color:var(--chalk); font-weight:700; font-size:0.98rem; }
+
+/* ---------- Calendar strip ---------- */
+.fp-calendar-strip{ display:flex; gap:0.8rem; overflow-x:auto; padding-bottom:0.6rem; margin-bottom:1.4rem; }
+.fp-cal-day{
+  flex-shrink:0; width:118px; background:var(--bg-alt); border:1px solid var(--line); border-radius:4px;
+  padding:1rem 0.9rem; text-align:center;
+}
+.fp-cal-day.rest{ opacity:0.55; }
+.fp-cal-day svg{ width:22px; height:22px; color:var(--highlight); margin-bottom:0.5rem; }
+.fp-cal-day.rest svg{ color:var(--iron-dim); }
+.fp-cal-day .cd-day{ font-family:'Oswald',sans-serif; font-size:0.68rem; color:var(--rust); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.3rem; }
+.fp-cal-day .cd-title{ font-size:0.8rem; color:var(--chalk); font-weight:700; line-height:1.4; }
+
+/* ---------- Favorites ---------- */
+.fp-fav-count{ color:var(--iron); font-size:0.85rem; margin-bottom:1.1rem; }
+.fp-fav-grid{ display:flex; flex-wrap:wrap; gap:0.7rem; }
+.fp-fav-chip{
+  display:flex; align-items:center; gap:0.6rem; background:var(--bg-alt); border:1px solid var(--line);
+  border-radius:20px; padding:0.5rem 0.6rem 0.5rem 1rem; font-size:0.84rem; color:var(--iron);
+}
+.fp-heart-btn{
+  background:none; border:none; cursor:pointer; padding:0.2rem; display:flex; color:var(--iron-dim);
+  transition:color .2s ease, transform .15s ease;
+}
+.fp-heart-btn svg{ width:17px; height:17px; }
+.fp-heart-btn.active{ color:var(--rust); }
+.fp-heart-btn:active{ transform:scale(1.15); }
+
+/* ---------- Achievements ---------- */
+.fp-badges-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+@media (max-width:700px){ .fp-badges-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:460px){ .fp-badges-grid{ grid-template-columns:1fr; } }
+.fp-badge{
+  background:var(--bg-alt); border:1px solid var(--line); border-radius:4px; padding:1.1rem;
+  display:flex; gap:0.8rem; align-items:flex-start; transition:border-color .2s ease;
+}
+.fp-badge.unlocked{ border-color:rgba(217,201,74,0.4); }
+.fp-badge.locked{ opacity:0.45; filter:grayscale(1); }
+.fp-badge svg{ width:26px; height:26px; color:var(--highlight); flex-shrink:0; margin-top:0.1rem; }
+.fp-badge .bt{ font-weight:700; font-size:0.9rem; color:var(--chalk); margin-bottom:0.2rem; }
+.fp-badge .bd{ color:var(--iron-dim); font-size:0.76rem; line-height:1.6; }
+
+/* ---------- Settings / password ---------- */
+.fp-settings-panel{ display:none; }
+
+</style>
+
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">افهم <span>عضلاتك</span></a>
+  <div class="nav-links">
+    <a href="index.html">الرئيسية</a>
+    <a href="exercises.html">التمارين</a>
+    <a href="workouts.html">البرامج</a>
+    <a href="calculators.html">الحاسبات</a>
+    <a href="planner.html" class="active">المخطط الرياضي</a>
+    <a href="nutrition.html">التغذية</a>
+    <a href="blog.html">المدونة</a>
+    <a href="faq.html">الأسئلة الشائعة</a>
+    <a href="about.html">من نحنا</a>
+    <a href="contact.html">اتصل بنا</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <span class="tag">مخطط شخصي</span>
+  <h1>المخطط الرياضي الشخصي</h1>
+  <p>أنشئ حساب مجاني، دخل بياناتك مرة وحدة، واحصل على أرقامك (BMI, BMR, السعرات، الماكروز) وبرنامج تدريب أسبوعي مبني على مستواك وهدفك — وتابع تطورك بالوقت.</p>
+</section>
+
+<section class="page-body">
+
+  <!-- ============ AUTH SECTION ============ -->
+  <div id="fp-auth">
+    <div class="fp-info-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+      <div>
+        <p><strong>لوحة التحكم والمخطط الرياضي الشخصي متاحين فقط للأعضاء.</strong> سجل حساب مجاني ولا دخل لحسابك الموجود باش توصل لأرقامك وبرنامجك ومتابعة تطورك.</p>
+      </div>
+    </div>
+
+    <div class="fp-tabs">
+      <button class="fp-tab active" data-fptab="signup">إنشاء حساب</button>
+      <button class="fp-tab" data-fptab="login">تسجيل الدخول</button>
+    </div>
+
+    <div class="fp-tabpanel active fp-panel" id="fp-panel-signup">
+      <div class="fp-grid">
+        <div class="fp-field"><label>الاسم</label><input type="text" id="su-name" placeholder="اسمك"></div>
+        <div class="fp-field"><label>البريد الإلكتروني</label><input type="email" id="su-email" placeholder="you@example.com"></div>
+        <div class="fp-field"><label>كلمة السر</label><input type="password" id="su-pass" placeholder="6 حروف على الأقل"></div>
+        <div class="fp-field"><label>تأكيد كلمة السر</label><input type="password" id="su-pass2" placeholder="عاود اكتبها"></div>
+      </div>
+      <button class="fp-btn" id="su-submit">إنشاء الحساب</button>
+      <div class="fp-error" id="su-error"></div>
+      <div class="fp-error" id="su-info" style="color:var(--highlight);"></div>
+
+      <div class="fp-info-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.5" fill="currentColor" stroke="none"></circle></svg>
+        <div>
+          <p><strong>حسابك مخزّن بأمان عبر Supabase.</strong> ملفك الشخصي، أهدافك الرياضية، سجل تمارينك، وتطورك محفوظون بأمان في السحابة (Cloud)، ومتوفرون في أي وقت تسجّل فيه الدخول بإيميلك وكلمة السر متاعك، من أي جهاز.</p>
+          <p>حسب إعدادات حسابك، يمكن يُطلب منك تأكيد بريدك الإلكتروني قبل أول تسجيل دخول، وذلك للمحافظة على أمان حسابك.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-tabpanel fp-panel" id="fp-panel-login">
+      <div class="fp-grid">
+        <div class="fp-field"><label>البريد الإلكتروني</label><input type="email" id="li-email" placeholder="you@example.com"></div>
+        <div class="fp-field"><label>كلمة السر</label><input type="password" id="li-pass" placeholder="كلمة السر"></div>
+      </div>
+      <button class="fp-btn" id="li-submit">دخول</button>
+      <div class="fp-error" id="li-error"></div>
+    </div>
+  </div>
+
+  <!-- ============ APP SECTION (after login) ============ -->
+  <div id="fp-app" style="display:none;">
+
+    <div class="fp-dash-hero">
+      <div class="fp-dash-hero-left">
+        <div class="fp-avatar" id="fp-avatar">--</div>
+        <div>
+          <h2>مرحبا، <span id="fp-username">--</span></h2>
+          <p class="fp-sub">هذا مخططك الرياضي الشخصي، محدث آنيا من حسابك.</p>
+        </div>
+      </div>
+      <div class="fp-dash-actions">
+        <button class="fp-btn ghost small" id="fp-edit-profile-btn">عدل بياناتي</button>
+        <button class="fp-btn ghost small" id="fp-change-pass-btn">تغيير كلمة السر</button>
+        <button class="fp-btn ghost small" id="fp-logout-btn">تسجيل الخروج</button>
+      </div>
+    </div>
+
+    <!-- Change password (hidden by default) -->
+    <div id="fp-settings-panel" class="fp-panel fp-settings-panel">
+      <p class="fp-section-title">تغيير كلمة السر</p>
+      <div class="fp-grid">
+        <div class="fp-field"><label>كلمة السر الجديدة</label><input type="password" id="np-pass" placeholder="6 حروف على الأقل"></div>
+        <div class="fp-field"><label>تأكيد كلمة السر الجديدة</label><input type="password" id="np-pass2" placeholder="عاود اكتبها"></div>
+      </div>
+      <button class="fp-btn" id="np-submit">حفظ كلمة السر الجديدة</button>
+      <button class="fp-btn ghost" id="np-cancel">إلغاء</button>
+      <div class="fp-error" id="np-error"></div>
+      <div class="fp-error" id="np-info" style="color:var(--highlight);"></div>
+    </div>
+
+    <!-- Profile form (first time or edit) -->
+    <div id="fp-profile-form-wrap" class="fp-panel" style="display:none;">
+      <p class="fp-section-title" id="pf-form-title">أكمل بياناتك</p>
+      <p id="pf-form-intro" style="color:var(--iron); font-size:0.9rem; line-height:1.8; margin:-0.6rem 0 1.4rem;">خطوة أخيرة قبل ما نجهزولك لوحة التحكم: عمر بياناتك تحت باش نحسبولك أرقامك ونبنيولك برنامج تدريب على قدك.</p>
+      <div class="fp-grid">
+        <div class="fp-field"><label>الاسم</label><input type="text" id="pf-name"></div>
+        <div class="fp-field"><label>العمر</label><input type="number" id="pf-age" min="10" max="90" placeholder="25"></div>
+        <div class="fp-field"><label>الجنس</label>
+          <select id="pf-gender"><option value="male">رجل</option><option value="female">مرأة</option></select>
+        </div>
+        <div class="fp-field"><label>الطول (سم)</label><input type="number" id="pf-height" min="100" max="230" placeholder="175"></div>
+        <div class="fp-field"><label>الوزن (كغ)</label><input type="number" id="pf-weight" min="30" max="300" step="0.1" placeholder="70"></div>
+        <div class="fp-field"><label>مستوى النشاط</label>
+          <select id="pf-activity">
+            <option value="1.2">قليل الحركة (مكتب، بلا رياضة)</option>
+            <option value="1.375">نشاط خفيف (رياضة 1-3 مرات/أسبوع)</option>
+            <option value="1.55">نشاط متوسط (رياضة 3-5 مرات/أسبوع)</option>
+            <option value="1.725">نشاط عالي (رياضة 6-7 مرات/أسبوع)</option>
+            <option value="1.9">نشاط عالي جدا (رياضي / شغل بدني)</option>
+          </select>
+        </div>
+        <div class="fp-field"><label>الهدف</label>
+          <select id="pf-goal">
+            <option value="lose">نقصان الوزن</option>
+            <option value="build">بناء العضل</option>
+            <option value="maintain">المحافظة على الوزن</option>
+          </select>
+        </div>
+        <div class="fp-field"><label>مستوى الخبرة</label>
+          <select id="pf-level">
+            <option value="beginner">مبتدئ</option>
+            <option value="intermediate">متوسط</option>
+            <option value="advanced">متقدم</option>
+          </select>
+        </div>
+      </div>
+      <button class="fp-btn" id="pf-submit">احسب واعطيني المخطط</button>
+      <button class="fp-btn ghost" id="pf-cancel" style="display:none;">إلغاء</button>
+      <div class="fp-error" id="pf-error"></div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="fp-dashboard" style="display:none;">
+
+      <nav class="fp-quicknav">
+        <a href="#fp-sec-overview">نظرة عامة</a>
+        <a href="#fp-sec-numbers">أرقامك</a>
+        <a href="#fp-sec-plan">البرنامج والتقويم</a>
+        <a href="#fp-sec-favorites">المفضلة</a>
+        <a href="#fp-sec-progress">التطور</a>
+        <a href="#fp-sec-badges">الإنجازات</a>
+      </nav>
+
+      <div id="fp-sec-overview" class="fp-dash-section">
+        <h2 class="fp-section-title">ملخص ملفك الشخصي</h2>
+        <div class="fp-profile-summary" id="fp-profile-summary"></div>
+      </div>
+
+      <div id="fp-sec-numbers" class="fp-dash-section">
+        <h2 class="fp-section-title">أرقامك</h2>
+        <div class="fp-summary">
+          <div class="fp-card">
+            <div class="big-num" id="fp-bmi-val">--</div>
+            <div class="label" id="fp-bmi-cat">مؤشر كتلة الجسم (BMI)</div>
+          </div>
+          <div class="fp-card">
+            <div class="big-num" id="fp-bmr-val">--</div>
+            <div class="label">السعرات الأساسية (BMR)</div>
+          </div>
+          <div class="fp-card">
+            <div class="big-num" id="fp-tdee-val">--</div>
+            <div class="label">سعرات المحافظة (TDEE)</div>
+          </div>
+          <div class="fp-card">
+            <div class="big-num" id="fp-cal-val">--</div>
+            <div class="label" id="fp-cal-lbl">السعرات اليومية المقترحة حسب هدفك</div>
+          </div>
+        </div>
+
+        <div class="fp-macros">
+          <div class="fp-macro"><div class="macro-val" id="fp-protein-val">--</div><div class="macro-lbl">بروتين يوميا</div></div>
+          <div class="fp-macro"><div class="macro-val" id="fp-carb-val">--</div><div class="macro-lbl">كاربوهيدرات يوميا</div></div>
+          <div class="fp-macro"><div class="macro-val" id="fp-fat-val">--</div><div class="macro-lbl">دهون يوميا</div></div>
+        </div>
+        <div class="fp-card">
+          <div class="big-num" id="fp-water-val">--</div>
+          <div class="label">كمية الماء المقترحة يوميا</div>
+        </div>
+      </div>
+
+      <div id="fp-sec-plan" class="fp-dash-section">
+        <h2 class="fp-section-title">تقويم الأسبوع</h2>
+        <div class="fp-calendar-strip" id="fp-calendar-strip"></div>
+
+        <h2 class="fp-section-title">برنامجك الأسبوعي بالتفصيل</h2>
+        <div id="fp-week-plan"></div>
+        <a href="exercises.html" class="fp-lib-link">شوف مكتبة التمارين الكاملة بالتفصيل ←</a>
+
+        <h2 class="fp-section-title" style="margin-top:2.4rem;">نصائح الكارديو</h2>
+        <div class="fp-panel" id="fp-cardio-box"></div>
+
+        <h2 class="fp-section-title">نصائح الاستشفاء والراحة</h2>
+        <div class="fp-panel" id="fp-recovery-box"></div>
+      </div>
+
+      <div id="fp-sec-favorites" class="fp-dash-section">
+        <h2 class="fp-section-title">التمارين المفضلة</h2>
+        <div class="fp-panel">
+          <p class="fp-fav-count" id="fp-fav-count">اضغط على القلب باش تزيد تمرين للمفضلة متاعك.</p>
+          <div class="fp-fav-grid" id="fp-fav-grid"></div>
+        </div>
+      </div>
+
+      <div id="fp-sec-progress" class="fp-dash-section">
+        <h2 class="fp-section-title">متابعة التطور (Progress Tracker)</h2>
+        <div class="fp-panel">
+          <div class="fp-grid">
+            <div class="fp-field"><label>التاريخ</label><input type="date" id="pt-date"></div>
+            <div class="fp-field"><label>الوزن (كغ)</label><input type="number" id="pt-weight" step="0.1" placeholder="70"></div>
+            <div class="fp-field"><label>محيط الخصر (سم) — اختياري</label><input type="number" id="pt-waist" step="0.1"></div>
+            <div class="fp-field"><label>محيط الصدر (سم) — اختياري</label><input type="number" id="pt-chest" step="0.1"></div>
+            <div class="fp-field"><label>محيط الذراع (سم) — اختياري</label><input type="number" id="pt-arm" step="0.1"></div>
+            <div class="fp-field"><label>محيط الفخذ (سم) — اختياري</label><input type="number" id="pt-thigh" step="0.1"></div>
+          </div>
+          <button class="fp-btn" id="pt-submit">سجل القيمة</button>
+          <div class="fp-error" id="pt-error"></div>
+
+          <div class="fp-chart-wrap">
+            <div class="fp-chart" id="fp-progress-chart"></div>
+          </div>
+
+          <div class="fp-table-wrap">
+            <table class="fp-table" id="fp-progress-table">
+              <thead>
+                <tr>
+                  <th>التاريخ</th><th>الوزن</th><th>الخصر</th><th>الصدر</th><th>الذراع</th><th>الفخذ</th><th></th>
+                </tr>
+              </thead>
+              <tbody id="fp-progress-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="fp-sec-badges" class="fp-dash-section" style="margin-bottom:0.5rem;">
+        <h2 class="fp-section-title">الإنجازات والأوسمة</h2>
+        <div class="fp-badges-grid" id="fp-badges-grid"></div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">افهم <span>عضلاتك</span></a>
+      <p>دليل تعليمي مجاني لتدريب العضلات — محتوى لأغراض تثقيفية فقط، وما يعوضش استشارة طبيب أو مدرب مختص.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4 class="tag">الموقع</h4>
+        <a href="index.html">الرئيسية</a>
+        <a href="exercises.html">التمارين</a>
+        <a href="workouts.html">البرامج</a>
+        <a href="calculators.html">الحاسبات</a>
+        <a href="planner.html">المخطط الرياضي</a>
+        <a href="nutrition.html">التغذية</a>
+        <a href="blog.html">المدونة</a>
+        <a href="faq.html">الأسئلة الشائعة</a>
+      </div>
+      <div class="footer-col">
+        <h4 class="tag">قانوني</h4>
+        <a href="about.html">من نحنا</a>
+        <a href="contact.html">اتصل بنا</a>
+        <a href="privacy.html">سياسة الخصوصية</a>
+        <a href="terms.html">شروط الاستخدام</a>
+        <a href="cookies.html">سياسة الكوكيز</a>
+        <a href="disclaimer.html">إخلاء المسؤولية</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 افهم عضلاتك. جميع الحقوق محفوظة.</span>
+    <span class="tag">TRAIN SMART</span>
+  </div>
+</footer>
+
+<div class="cookie-banner" id="cookie-banner">
+  <p>نستعملو الكوكيز باش نحسّنو تجربتك في الموقع ونعرضو إعلانات مناسبة. بالمواصلة في التصفح، أنت موافق على <a href="cookies.html">سياسة الكوكيز</a> متاعنا.</p>
+  <div class="cookie-actions">
+    <button class="cookie-accept" id="cookie-accept">موافق</button>
+    <a href="cookies.html" class="cookie-more">أكثر تفاصيل</a>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='cookie_consent_v1';
+  var banner=document.getElementById('cookie-banner');
+  if(!banner) return;
+  try{
+    if(localStorage.getItem(KEY)==='accepted'){ banner.style.display='none'; }
+    else{ banner.classList.add('show'); }
+  }catch(e){ banner.classList.add('show'); }
+  var btn=document.getElementById('cookie-accept');
+  if(btn){
+    btn.addEventListener('click', function(){
+      try{ localStorage.setItem(KEY,'accepted'); }catch(e){}
+      banner.classList.remove('show');
+      banner.style.display='none';
+    });
+  }
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* =========================================================
+   FITNESS PLANNER — Supabase-backed app
+   Sections: SUPABASE CLIENT / AUTH / DATA / CALC / PLAN DATA / RENDER / PROGRESS / INIT
+   ========================================================= */
+
+/* ---------------- SUPABASE CLIENT ---------------- */
+const FP_SUPABASE_URL = 'https://qswqwbmmdtgdhtfyblzm.supabase.co';
+const FP_SUPABASE_ANON_KEY = 'sb_publishable_gL2ipyxIhoURipaRFDs4cw_158aFXWL';
+const fpSb = window.fpSb || supabase.createClient(FP_SUPABASE_URL, FP_SUPABASE_ANON_KEY);
+window.fpSb = fpSb;
+
+/* Holds the signed-in user's profile + progress once loaded from Supabase. */
+let fpCurrentUser = null;
+
+/* Map common Supabase auth error messages to Arabic. */
+function fpAuthError(error){
+  const msg = (error && error.message) || '';
+  if(/already registered|already exists/i.test(msg)) return 'عندك حساب بهالبريد من قبل، جرب تسجيل الدخول.';
+  if(/invalid login credentials/i.test(msg)) return 'البريد ولا كلمة السر غالطين.';
+  if(/email not confirmed/i.test(msg)) return 'لازم تأكد بريدك الإلكتروني قبل ما تدخل، تفقد الإيميل متاعك.';
+  if(/password should be at least/i.test(msg)) return 'كلمة السر لازم تكون 6 حروف على الأقل.';
+  if(/rate limit/i.test(msg)) return 'محاولات كثيرة، جرب بعد شوية.';
+  if(/invalid email/i.test(msg)) return 'البريد الإلكتروني ماشي صحيح.';
+  return 'صار خطأ (' + msg + ')، حاول مرة أخرى.';
+}
+
+function fpSetBtnLoading(btn, loading, label){
+  if(loading){ btn.dataset.origText = btn.textContent; btn.textContent = 'جاري التحميل...'; btn.disabled = true; }
+  else { btn.textContent = label || btn.dataset.origText || btn.textContent; btn.disabled = false; }
+}
+
+/* ---------------- AUTH TABS ---------------- */
+function fpActivateAuthTab(tab){
+  document.querySelectorAll('.fp-tab').forEach(b=>b.classList.toggle('active', b.dataset.fptab===tab));
+  document.querySelectorAll('#fp-auth .fp-tabpanel').forEach(p=>p.classList.toggle('active', p.id==='fp-panel-'+tab));
+}
+document.querySelectorAll('.fp-tab').forEach(btn=>{
+  btn.addEventListener('click', ()=> fpActivateAuthTab(btn.dataset.fptab));
+});
+/* Lets the shared nav widget (js/site-auth.js) route Log In / Sign Up
+   clicks on this page to the in-page auth panel instead of a modal. */
+window.fpGoToAuthTab = function(tab){
+  fpActivateAuthTab(tab);
+  document.getElementById('fp-auth').scrollIntoView({ behavior:'smooth', block:'start' });
+};
+
+/* ---------------- SIGN UP ---------------- */
+document.getElementById('su-submit').addEventListener('click', async function(){
+  const btn = this;
+  const name = document.getElementById('su-name').value.trim();
+  const email = document.getElementById('su-email').value.trim().toLowerCase();
+  const pass = document.getElementById('su-pass').value;
+  const pass2 = document.getElementById('su-pass2').value;
+  const errEl = document.getElementById('su-error');
+  const infoEl = document.getElementById('su-info');
+  errEl.textContent = '';
+  infoEl.textContent = '';
+
+  if(!name || !email || !pass){ errEl.textContent = 'عمر جميع الخانات.'; return; }
+  if(!/^\S+@\S+\.\S+$/.test(email)){ errEl.textContent = 'البريد الإلكتروني ماشي صحيح.'; return; }
+  if(pass.length < 6){ errEl.textContent = 'كلمة السر لازم تكون 6 حروف على الأقل.'; return; }
+  if(pass !== pass2){ errEl.textContent = 'كلمتين السر ماشي متطابقتين.'; return; }
+
+  fpSetBtnLoading(btn, true);
+  const { data, error } = await fpSb.auth.signUp({
+    email, password: pass,
+    options: { data: { name } }
+  });
+  fpSetBtnLoading(btn, false, 'إنشاء الحساب');
+
+  if(error){ errEl.textContent = fpAuthError(error); return; }
+
+  if(data.session){
+    /* Email confirmations are off — user is signed in immediately.
+       Create a bare profile row; the dedicated profile step (shown by
+       fpLoadAndShow/fpShowApp below) collects the fitness details. */
+    await fpSb.from('profiles').insert({ id: data.user.id, name });
+    await fpLoadAndShow();
+  } else {
+    /* Email confirmations are on — wait for the user to confirm, then log in. */
+    infoEl.textContent = 'تم إنشاء الحساب! تفقد بريدك الإلكتروني لتأكيده، وبعدها سجل الدخول من التبويب المقابل.';
+    document.getElementById('fp-panel-signup').querySelectorAll('input').forEach(i => i.value = '');
+  }
+});
+
+/* ---------------- LOG IN ---------------- */
+document.getElementById('li-submit').addEventListener('click', async function(){
+  const btn = this;
+  const email = document.getElementById('li-email').value.trim().toLowerCase();
+  const pass = document.getElementById('li-pass').value;
+  const errEl = document.getElementById('li-error');
+  errEl.textContent = '';
+
+  if(!email || !pass){ errEl.textContent = 'عمر البريد وكلمة السر.'; return; }
+
+  fpSetBtnLoading(btn, true);
+  const { error } = await fpSb.auth.signInWithPassword({ email, password: pass });
+  fpSetBtnLoading(btn, false, 'دخول');
+
+  if(error){ errEl.textContent = fpAuthError(error); return; }
+  await fpLoadAndShow();
+});
+
+/* ---------------- LOG OUT ---------------- */
+document.getElementById('fp-logout-btn').addEventListener('click', async function(){
+  await fpSb.auth.signOut();
+  fpShowAuth();
+});
+
+/* ---------------- CHANGE PASSWORD ---------------- */
+document.getElementById('fp-change-pass-btn').addEventListener('click', function(){
+  const panel = document.getElementById('fp-settings-panel');
+  const opening = panel.style.display !== 'block';
+  panel.style.display = opening ? 'block' : 'none';
+  if(opening){
+    document.getElementById('np-pass').value = '';
+    document.getElementById('np-pass2').value = '';
+    document.getElementById('np-error').textContent = '';
+    document.getElementById('np-info').textContent = '';
+    panel.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+});
+
+document.getElementById('np-cancel').addEventListener('click', function(){
+  document.getElementById('fp-settings-panel').style.display = 'none';
+});
+
+document.getElementById('np-submit').addEventListener('click', async function(){
+  const btn = this;
+  const pass = document.getElementById('np-pass').value;
+  const pass2 = document.getElementById('np-pass2').value;
+  const errEl = document.getElementById('np-error');
+  const infoEl = document.getElementById('np-info');
+  errEl.textContent = ''; infoEl.textContent = '';
+
+  if(pass.length < 6){ errEl.textContent = 'كلمة السر لازم تكون 6 حروف على الأقل.'; return; }
+  if(pass !== pass2){ errEl.textContent = 'كلمتين السر ماشي متطابقتين.'; return; }
+
+  fpSetBtnLoading(btn, true);
+  const { error } = await fpSb.auth.updateUser({ password: pass });
+  fpSetBtnLoading(btn, false, 'حفظ كلمة السر الجديدة');
+
+  if(error){ errEl.textContent = fpAuthError(error); return; }
+
+  infoEl.textContent = 'تم تغيير كلمة السر بنجاح.';
+  document.getElementById('np-pass').value = '';
+  document.getElementById('np-pass2').value = '';
+});
+
+/* ---------------- SESSION / DATA LOADING ---------------- */
+function fpShowAuth(){
+  fpCurrentUser = null;
+  document.getElementById('fp-auth').style.display = 'block';
+  document.getElementById('fp-app').style.display = 'none';
+}
+
+async function fpLoadAndShow(){
+  const { data: { user } } = await fpSb.auth.getUser();
+  if(!user){ fpShowAuth(); return; }
+
+  let { data: profileRow } = await fpSb.from('profiles').select('*').eq('id', user.id).maybeSingle();
+  if(!profileRow){
+    /* First-ever login for this account (e.g. right after confirming their
+       email) — create a bare profile row; fpShowApp below will route them
+       to the profile-completion step since it has no fitness fields yet. */
+    const name = (user.user_metadata && user.user_metadata.name) || user.email;
+    const { data: created } = await fpSb.from('profiles').insert({ id: user.id, name }).select().maybeSingle();
+    profileRow = created;
+  }
+
+  const { data: progressRows } = await fpSb.from('progress_logs')
+    .select('*').eq('user_id', user.id).order('date', { ascending:true });
+
+  const { data: favRows } = await fpSb.from('favorites')
+    .select('exercise_name').eq('user_id', user.id);
+
+  fpCurrentUser = {
+    id: user.id,
+    email: user.email,
+    name: profileRow.name,
+    profile: profileRow.age ? {
+      age: profileRow.age, gender: profileRow.gender, height: profileRow.height,
+      weight: profileRow.weight, activity: profileRow.activity, goal: profileRow.goal, level: profileRow.level
+    } : null,
+    progress: (progressRows || []).map(p => ({
+      id: p.id, date: p.date, weight: p.weight, waist: p.waist, chest: p.chest, arm: p.arm, thigh: p.thigh
+    })),
+    favorites: (favRows || []).map(f => f.exercise_name)
+  };
+
+  fpShowApp(fpCurrentUser);
+}
+
+/* ---------------- CALC ---------------- */
+function fpCalc(profile){
+  const gender = profile.gender;
+  const age = profile.age;
+  const height = profile.height;
+  const weight = profile.weight;
+  const activity = profile.activity;
+  const goal = profile.goal;
+
+  const bmi = weight / Math.pow(height/100, 2);
+  let bmiCat = 'وزن طبيعي';
+  if(bmi < 18.5) bmiCat = 'نقص في الوزن';
+  else if(bmi >= 25 && bmi < 30) bmiCat = 'وزن زايد';
+  else if(bmi >= 30) bmiCat = 'سمنة';
+
+  const bmr = gender === 'male'
+    ? (10*weight + 6.25*height - 5*age + 5)
+    : (10*weight + 6.25*height - 5*age - 161);
+
+  const tdee = bmr * activity;
+
+  let calories = tdee;
+  let calLabel = 'سعرات المحافظة على وزنك الحالي';
+  if(goal === 'lose'){ calories = tdee - 500; calLabel = 'سعرات مقترحة لنقصان الوزن (عجز ~500)'; }
+  else if(goal === 'build'){ calories = tdee + 300; calLabel = 'سعرات مقترحة لبناء العضل (فائض ~300)'; }
+  const floor = gender === 'male' ? 1500 : 1200;
+  if(calories < floor) calories = floor;
+
+  let proteinPerKg = 1.6;
+  if(goal === 'lose' || goal === 'build') proteinPerKg = 2.0;
+  const proteinG = weight * proteinPerKg;
+  const proteinCal = proteinG * 4;
+
+  const fatCal = calories * 0.25;
+  const fatG = fatCal / 9;
+
+  const carbCal = Math.max(calories - proteinCal - fatCal, 0);
+  const carbG = carbCal / 4;
+
+  let water = weight * 0.035;
+  if(activity >= 1.55) water += 0.4;
+  if(activity >= 1.725) water += 0.3;
+
+  return { bmi, bmiCat, bmr, tdee, calories, calLabel, proteinG, carbG, fatG, water };
+}
+
+/* ---------------- LABEL MAPS + PROFILE SUMMARY ---------------- */
+const FP_GENDER_LABELS = { male:'رجل', female:'مرأة' };
+const FP_GOAL_LABELS = { lose:'نقصان الوزن', build:'بناء العضل', maintain:'المحافظة على الوزن' };
+const FP_LEVEL_LABELS = { beginner:'مبتدئ', intermediate:'متوسط', advanced:'متقدم' };
+const FP_ACTIVITY_LABELS = {
+  '1.2':'قليل الحركة (مكتب، بلا رياضة)',
+  '1.375':'نشاط خفيف (رياضة 1-3 مرات/أسبوع)',
+  '1.55':'نشاط متوسط (رياضة 3-5 مرات/أسبوع)',
+  '1.725':'نشاط عالي (رياضة 6-7 مرات/أسبوع)',
+  '1.9':'نشاط عالي جدا (رياضي / شغل بدني)'
+};
+
+function fpRenderProfileSummary(user){
+  const p = user.profile;
+  const wrap = document.getElementById('fp-profile-summary');
+  wrap.innerHTML = `
+    <div class="fp-mini-stat"><div class="lbl">العمر</div><div class="val">${p.age} سنة</div></div>
+    <div class="fp-mini-stat"><div class="lbl">الجنس</div><div class="val">${FP_GENDER_LABELS[p.gender] || p.gender}</div></div>
+    <div class="fp-mini-stat"><div class="lbl">الطول</div><div class="val">${p.height} سم</div></div>
+    <div class="fp-mini-stat"><div class="lbl">الوزن</div><div class="val">${p.weight} كغ</div></div>
+    <div class="fp-mini-stat"><div class="lbl">الهدف</div><div class="val">${FP_GOAL_LABELS[p.goal] || p.goal}</div></div>
+    <div class="fp-mini-stat"><div class="lbl">مستوى النشاط</div><div class="val">${FP_ACTIVITY_LABELS[String(p.activity)] || p.activity}</div></div>
+    <div class="fp-mini-stat"><div class="lbl">مستوى الخبرة</div><div class="val">${FP_LEVEL_LABELS[p.level] || p.level}</div></div>
+    <div class="fp-mini-stat"><div class="lbl">الاسم</div><div class="val">${user.name}</div></div>
+  `;
+  const avatar = document.getElementById('fp-avatar');
+  if(avatar) avatar.textContent = (user.name || '?').trim().charAt(0).toUpperCase();
+}
+
+/* ---------------- PLAN DATA ---------------- */
+/* Curated picks from the exercises.html library, grouped by muscle + level. */
+const FP_EX = {
+  beginner: {
+    chest:['ضغط عادي','ضغط مائل (يدين فوق)'],
+    back:['سحب أمامي بالكابل','تجديف قاعد بالكابل'],
+    shoulders:['ضغط بالدمبل قاعد','تفتيح جانبي خفيف'],
+    arms:['كيرل بالدمبل','Dips على مقعد'],
+    legs:['سكوات بوزن الجسم','لانج'],
+    abs:['كرنش','بلانك'],
+    glutes:['جلوت بريدج']
+  },
+  intermediate: {
+    chest:['بنش برس','ضغط مائل بالدمبل'],
+    back:['العقلة','تجديف بالبار'],
+    shoulders:['ضغط عسكري','تفتيح جانبي بالدمبل'],
+    arms:['كيرل بالبار','ضغط فرنسي'],
+    legs:['سكوات','رومانيان ديدليفت'],
+    abs:['رفع الرجلين','Russian Twist'],
+    glutes:['هيب ثراست','سكوات بلغاري'],
+    traps:['شراغ بالبار']
+  },
+  advanced: {
+    chest:['بنش برس ثقيل','ضغط مائل بالبار'],
+    back:['عقلة بوزن إضافي','تجديف بالبار ثقيل'],
+    shoulders:['بوش برس','أرنولد برس ثقيل'],
+    arms:['كيرل 21s','بنش ضيق'],
+    legs:['باك سكوات ثقيل','سكوات بلغاري'],
+    abs:['رفع الرجلين معلق','دراغون فلاق'],
+    glutes:['هيب ثراست بالبار ثقيل','رومانيان ديدليفت ساق وحدة'],
+    traps:['شراغ بالبار ثقيل']
+  }
+};
+
+const FP_GROUP_LABEL = {
+  chest:'الصدر', back:'الظهر', shoulders:'الأكتاف', arms:'الدراع',
+  legs:'الأرجل', abs:'البطن', glutes:'المؤخرة', traps:'الترابيز'
+};
+
+function fpBuildSplit(level){
+  if(level === 'beginner'){
+    return [
+      {day:'اليوم 1', title:'جسم كامل A', groups:['legs','chest','back','abs']},
+      {day:'اليوم 2', title:'راحة أو مشي خفيف', rest:true},
+      {day:'اليوم 3', title:'جسم كامل B', groups:['shoulders','back','legs','arms']},
+      {day:'اليوم 4', title:'راحة', rest:true},
+      {day:'اليوم 5', title:'جسم كامل C', groups:['chest','legs','abs','glutes']},
+      {day:'اليوم 6', title:'راحة أو نشاط خفيف', rest:true},
+      {day:'اليوم 7', title:'راحة كاملة', rest:true}
+    ];
+  }
+  if(level === 'intermediate'){
+    return [
+      {day:'اليوم 1', title:'علوي (Upper)', groups:['chest','back','shoulders','arms']},
+      {day:'اليوم 2', title:'سفلي (Lower)', groups:['legs','glutes','abs']},
+      {day:'اليوم 3', title:'راحة', rest:true},
+      {day:'اليوم 4', title:'علوي (Upper) B', groups:['back','chest','shoulders','arms']},
+      {day:'اليوم 5', title:'سفلي (Lower) B', groups:['legs','glutes','abs']},
+      {day:'اليوم 6', title:'كارديو خفيف أو راحة', rest:true},
+      {day:'اليوم 7', title:'راحة كاملة', rest:true}
+    ];
+  }
+  return [
+    {day:'اليوم 1', title:'الصدر + ترايسيبس', groups:['chest','arms']},
+    {day:'اليوم 2', title:'الظهر + بايسيبس', groups:['back','arms']},
+    {day:'اليوم 3', title:'الأرجل', groups:['legs','glutes']},
+    {day:'اليوم 4', title:'الأكتاف + الترابيز', groups:['shoulders','traps']},
+    {day:'اليوم 5', title:'البطن + كارديو', groups:['abs']},
+    {day:'اليوم 6', title:'جسم كامل خفيف أو راحة نشطة', rest:true},
+    {day:'اليوم 7', title:'راحة كاملة', rest:true}
+  ];
+}
+
+function fpRenderPlan(level){
+  const split = fpBuildSplit(level);
+  const wrap = document.getElementById('fp-week-plan');
+  wrap.innerHTML = split.map(d=>{
+    if(d.rest){
+      return `<div class="plan-day"><span class="day-tag">${d.day}</span><h3>${d.title}</h3><p class="rest-txt">خلي جسمك يستريح، أو اعمل نشاط خفيف زي مشي 20-30 دقيقة.</p></div>`;
+    }
+    const bank = FP_EX[level];
+    const items = d.groups.map(g=>{
+      const list = (bank[g] || []).map(name => `<li>${name} <span style="color:var(--iron-dim)">— ${FP_GROUP_LABEL[g]}</span></li>`).join('');
+      return list;
+    }).join('');
+    return `<div class="plan-day"><span class="day-tag">${d.day}</span><h3>${d.title}</h3><ul>${items}</ul></div>`;
+  }).join('');
+}
+
+function fpRenderCalendarStrip(level){
+  const split = fpBuildSplit(level);
+  const wrap = document.getElementById('fp-calendar-strip');
+  const dumbbellSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5 17.5 17.5"></path><path d="M4 8l2-2M18 20l2-2M2 6l2-2M22 18l-2 2"></path><rect x="7" y="7" width="3" height="3" rx="0.5" transform="rotate(45 8.5 8.5)"></rect><rect x="14" y="14" width="3" height="3" rx="0.5" transform="rotate(45 15.5 15.5)"></rect></svg>';
+  const moonSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"></path></svg>';
+  wrap.innerHTML = split.map(d=>{
+    const rest = !!d.rest;
+    const sub = rest ? 'راحة' : d.groups.map(g=>FP_GROUP_LABEL[g]).join(' + ');
+    return `<div class="fp-cal-day ${rest?'rest':''}">
+      ${rest ? moonSvg : dumbbellSvg}
+      <div class="cd-day">${d.day}</div>
+      <div class="cd-title">${sub}</div>
+    </div>`;
+  }).join('');
+}
+
+function fpRenderCardio(goal){
+  const box = document.getElementById('fp-cardio-box');
+  let html = '';
+  if(goal === 'lose'){
+    html = `<p>هدفك نقصان الوزن، فالكارديو يعاونك تزيد العجز الحراري بلا ما تنقص برشا من الأكل. جرب:</p>
+      <ul style="color:var(--iron); line-height:1.9; padding-right:1.2rem; font-size:0.94rem;">
+        <li>3-4 حصص كارديو في الأسبوع، 25-35 دقيقة بشدة متوسطة (مشي سريع، دراجة، سباحة).</li>
+        <li>ممكن تضيف حصة أو حصتين HIIT قصيرة (15-20 دقيقة) إذا مستواك يسمح.</li>
+        <li>الأفضل تعمل الكارديو في يوم منفصل عن الأثقال أو بعدها، ماشي قبلها.</li>
+      </ul>`;
+  } else if(goal === 'build'){
+    html = `<p>هدفك بناء العضل، فالكارديو الزايد ممكن يأثر على الاستشفاء والفائض الحراري. جرب:</p>
+      <ul style="color:var(--iron); line-height:1.9; padding-right:1.2rem; font-size:0.94rem;">
+        <li>1-2 حصص كارديو خفيف في الأسبوع، 15-20 دقيقة، بس للحفاظ على صحة القلب.</li>
+        <li>تفادى HIIT المكثف باش ماتاكلش من طاقة الاستشفاء متاع العضلات.</li>
+        <li>المشي اليومي (خطوات عادية) كافي كنشاط إضافي بلا ما يأثر على التطور.</li>
+      </ul>`;
+  } else {
+    html = `<p>هدفك المحافظة على وزنك، فالكارديو المعتدل كافي لصحة القلب واللياقة العامة:</p>
+      <ul style="color:var(--iron); line-height:1.9; padding-right:1.2rem; font-size:0.94rem;">
+        <li>2-3 حصص كارديو في الأسبوع، 20-30 دقيقة بشدة متوسطة.</li>
+        <li>نوّع بين المشي، الدراجة، أو أي نشاط تحبو باش تكمل عليه بانتظام.</li>
+      </ul>`;
+  }
+  box.innerHTML = html;
+}
+
+function fpRenderRecovery(){
+  document.getElementById('fp-recovery-box').innerHTML = `
+    <p>الراحة جزء من التمرين، ماشي عكسه. خلي هالنقاط في بالك:</p>
+    <ul style="color:var(--iron); line-height:1.9; padding-right:1.2rem; font-size:0.94rem;">
+      <li>حاول تنام 7-9 ساعات في الليلة، أغلب عملية بناء العضل تصير وقت النوم العميق.</li>
+      <li>خلي يوم أو يومين راحة كاملة في الأسبوع بين حصص التمرين المكثفة.</li>
+      <li>إذا حسيت بتعب مستمر أو ألم يدوم أكثر من المعتاد، نقص الشدة أو زيد يوم راحة.</li>
+      <li>التغذية الكافية (خاصة البروتين والماء) جزء أساسي من الاستشفاء.</li>
+    </ul>
+    <a href="blog-sleep-recovery.html" class="fp-lib-link">اقرا أكثر في مقال النوم والاستشفاء ←</a>
+  `;
+}
+
+/* ---------------- FAVORITES (Supabase: public.favorites) ---------------- */
+function fpFlattenExercisesForLevel(level){
+  const bank = FP_EX[level] || {};
+  const list = [];
+  Object.keys(bank).forEach(g=>{
+    bank[g].forEach(name => list.push({ name, muscle: g }));
+  });
+  return list;
+}
+
+const fpHeartSvg = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21s-6.7-4.35-9.3-8.4C1 9.6 1.8 6 5 4.7c2.1-.85 4.1.05 5.2 1.75.3.45.9.45 1.2 0C12.5 4.75 14.5 3.85 16.6 4.7c3.2 1.3 4 4.9 2.3 7.9C18.7 16.65 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>';
+
+function fpRenderFavorites(user){
+  const level = user.profile.level;
+  const items = fpFlattenExercisesForLevel(level);
+  const favSet = new Set(user.favorites || []);
+
+  document.getElementById('fp-fav-count').textContent = favSet.size
+    ? `عندك ${favSet.size} تمارين في المفضلة.`
+    : 'اضغط على القلب باش تزيد تمرين للمفضلة متاعك.';
+
+  const grid = document.getElementById('fp-fav-grid');
+  grid.innerHTML = items.map(it=>{
+    const active = favSet.has(it.name);
+    return `<div class="fp-fav-chip">
+      <span>${it.name} <span style="color:var(--iron-dim)">— ${FP_GROUP_LABEL[it.muscle]}</span></span>
+      <button type="button" class="fp-heart-btn ${active?'active':''}" data-name="${it.name}" data-muscle="${it.muscle}" aria-label="فضّل هالتمرين">${fpHeartSvg}</button>
+    </div>`;
+  }).join('');
+
+  grid.querySelectorAll('.fp-heart-btn').forEach(btn=>{
+    btn.addEventListener('click', async function(){
+      const name = btn.dataset.name;
+      const muscle = btn.dataset.muscle;
+      const isActive = btn.classList.contains('active');
+      btn.disabled = true;
+      if(isActive){
+        const { error } = await fpSb.from('favorites').delete()
+          .eq('user_id', fpCurrentUser.id).eq('exercise_name', name);
+        if(!error){
+          fpCurrentUser.favorites = (fpCurrentUser.favorites || []).filter(n => n !== name);
+        }
+      } else {
+        const { error } = await fpSb.from('favorites')
+          .insert({ user_id: fpCurrentUser.id, exercise_name: name, muscle });
+        if(!error){
+          fpCurrentUser.favorites = (fpCurrentUser.favorites || []).concat(name);
+        }
+      }
+      btn.disabled = false;
+      fpRenderFavorites(fpCurrentUser);
+    });
+  });
+}
+
+/* ---------------- ACHIEVEMENTS / BADGES ---------------- */
+const fpBadgeIcons = {
+  start: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 15 8.5 22 9.5 17 14.5 18.2 21.5 12 18 5.8 21.5 7 14.5 2 9.5 9 8.5Z"></path></svg>',
+  log: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-4 4"></path></svg>',
+  streak: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c0 3-3 4-3 8a7 7 0 0 0 14 0c0-3-2-4-2-7-2 1-2 3-2 3S13 4 8 3Z"></path></svg>',
+  target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg>',
+  heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.7-4.35-9.3-8.4C1 9.6 1.8 6 5 4.7c2.1-.85 4.1.05 5.2 1.75.3.45.9.45 1.2 0C12.5 4.75 14.5 3.85 16.6 4.7c3.2 1.3 4 4.9 2.3 7.9C18.7 16.65 12 21 12 21Z"></path></svg>',
+  collector: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>'
+};
+
+function fpComputeBadges(user){
+  const progress = (user.progress || []).slice().sort((a,b)=> a.date < b.date ? -1 : 1);
+  const favCount = (user.favorites || []).length;
+
+  const badges = [
+    { icon:'start', title:'البداية', desc:'أكملت بياناتك وحصلت على مخططك الشخصي.', unlocked: true },
+    { icon:'log', title:'أول قياس', desc:'سجلت أول وزن في متابعة التطور.', unlocked: progress.length >= 1 },
+    { icon:'streak', title:'متابع', desc:'سجلت وزنك 5 مرات على الأقل.', unlocked: progress.length >= 5 },
+    { icon:'streak', title:'ملتزم', desc:'سجلت وزنك 10 مرات على الأقل.', unlocked: progress.length >= 10 },
+    { icon:'heart', title:'مفضلة الأولى', desc:'زدت أول تمرين للمفضلة متاعك.', unlocked: favCount >= 1 },
+    { icon:'collector', title:'جامع التمارين', desc:'جمعت 5 تمارين في المفضلة.', unlocked: favCount >= 5 }
+  ];
+
+  if(progress.length >= 2){
+    const first = progress[0].weight;
+    const last = progress[progress.length-1].weight;
+    let onTrack = false;
+    if(user.profile.goal === 'lose') onTrack = last < first;
+    else if(user.profile.goal === 'build') onTrack = last > first;
+    else onTrack = Math.abs(last - first) <= 1;
+    badges.push({ icon:'target', title:'على الطريق الصحيح', desc:'تطور وزنك متماشي مع هدفك.', unlocked: onTrack });
+  }
+
+  return badges;
+}
+
+function fpRenderAchievements(user){
+  const badges = fpComputeBadges(user);
+  document.getElementById('fp-badges-grid').innerHTML = badges.map(b=>`
+    <div class="fp-badge ${b.unlocked ? 'unlocked' : 'locked'}">
+      ${fpBadgeIcons[b.icon]}
+      <div>
+        <div class="bt">${b.title}</div>
+        <div class="bd">${b.desc}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ---------------- PROGRESS TRACKER ---------------- */
+function fpShortDate(d){
+  const parts = d.split('-');
+  if(parts.length !== 3) return d;
+  return parts[2] + '/' + parts[1];
+}
+
+function fpRenderProgress(user){
+  const history = (user.progress || []).slice().sort((a,b)=> a.date < b.date ? -1 : 1);
+
+  const chartWrap = document.getElementById('fp-progress-chart');
+  if(!history.length){
+    chartWrap.innerHTML = '<p class="fp-empty">مازلت ما سجلتش أي وزن، ابدا بإضافة أول قيمة فوق.</p>';
+  } else {
+    const weights = history.map(h=>h.weight);
+    const min = Math.min.apply(null, weights);
+    const max = Math.max.apply(null, weights);
+    const range = (max - min) || 1;
+    chartWrap.innerHTML = history.map(h=>{
+      const pct = 15 + ((h.weight - min) / range) * 85;
+      return `<div class="fp-bar-col"><div class="fp-bar" style="height:${pct}%" title="${h.weight} كغ — ${h.date}"></div><span>${fpShortDate(h.date)}</span></div>`;
+    }).join('');
+  }
+
+  const tbody = document.getElementById('fp-progress-tbody');
+  if(!history.length){
+    tbody.innerHTML = '';
+  } else {
+    tbody.innerHTML = history.slice().reverse().map((h)=>{
+      return `<tr>
+        <td>${h.date}</td>
+        <td>${h.weight}</td>
+        <td>${h.waist ?? '-'}</td>
+        <td>${h.chest ?? '-'}</td>
+        <td>${h.arm ?? '-'}</td>
+        <td>${h.thigh ?? '-'}</td>
+        <td class="fp-del"><button class="fp-del-btn" data-id="${h.id}">حذف</button></td>
+      </tr>`;
+    }).join('');
+
+    tbody.querySelectorAll('.fp-del-btn').forEach(btn=>{
+      btn.addEventListener('click', async function(){
+        const id = btn.dataset.id;
+        btn.disabled = true;
+        const { error } = await fpSb.from('progress_logs').delete().eq('id', id);
+        if(error){ btn.disabled = false; return; }
+        fpCurrentUser.progress = fpCurrentUser.progress.filter(p => String(p.id) !== String(id));
+        fpRenderProgress(fpCurrentUser);
+      });
+    });
+  }
+}
+
+document.getElementById('pt-submit').addEventListener('click', async function(){
+  const btn = this;
+  const date = document.getElementById('pt-date').value;
+  const weight = parseFloat(document.getElementById('pt-weight').value);
+  const waist = document.getElementById('pt-waist').value;
+  const chest = document.getElementById('pt-chest').value;
+  const arm = document.getElementById('pt-arm').value;
+  const thigh = document.getElementById('pt-thigh').value;
+  const errEl = document.getElementById('pt-error');
+  errEl.textContent = '';
+
+  if(!date || !weight){ errEl.textContent = 'دخل على الأقل التاريخ والوزن.'; return; }
+
+  const entry = { user_id: fpCurrentUser.id, date, weight };
+  entry.waist = waist ? parseFloat(waist) : null;
+  entry.chest = chest ? parseFloat(chest) : null;
+  entry.arm = arm ? parseFloat(arm) : null;
+  entry.thigh = thigh ? parseFloat(thigh) : null;
+
+  fpSetBtnLoading(btn, true);
+  const { data, error } = await fpSb.from('progress_logs')
+    .upsert(entry, { onConflict: 'user_id,date' })
+    .select().maybeSingle();
+  fpSetBtnLoading(btn, false, 'سجل القيمة');
+
+  if(error){ errEl.textContent = 'صار خطأ، حاول مرة أخرى.'; return; }
+
+  fpCurrentUser.progress = (fpCurrentUser.progress || []).filter(p => p.date !== date);
+  fpCurrentUser.progress.push({
+    id: data.id, date: data.date, weight: data.weight,
+    waist: data.waist, chest: data.chest, arm: data.arm, thigh: data.thigh
+  });
+
+  document.getElementById('pt-weight').value = '';
+  document.getElementById('pt-waist').value = '';
+  document.getElementById('pt-chest').value = '';
+  document.getElementById('pt-arm').value = '';
+  document.getElementById('pt-thigh').value = '';
+
+  fpRenderProgress(fpCurrentUser);
+});
+
+/* ---------------- PROFILE FORM ---------------- */
+function fpFillProfileForm(profile, name){
+  document.getElementById('pf-name').value = name || '';
+  if(!profile) return;
+  document.getElementById('pf-age').value = profile.age;
+  document.getElementById('pf-gender').value = profile.gender;
+  document.getElementById('pf-height').value = profile.height;
+  document.getElementById('pf-weight').value = profile.weight;
+  document.getElementById('pf-activity').value = profile.activity;
+  document.getElementById('pf-goal').value = profile.goal;
+  document.getElementById('pf-level').value = profile.level;
+}
+
+document.getElementById('pf-submit').addEventListener('click', async function(){
+  const btn = this;
+  const name = document.getElementById('pf-name').value.trim();
+  const age = parseInt(document.getElementById('pf-age').value, 10);
+  const gender = document.getElementById('pf-gender').value;
+  const height = parseFloat(document.getElementById('pf-height').value);
+  const weight = parseFloat(document.getElementById('pf-weight').value);
+  const activity = parseFloat(document.getElementById('pf-activity').value);
+  const goal = document.getElementById('pf-goal').value;
+  const level = document.getElementById('pf-level').value;
+  const errEl = document.getElementById('pf-error');
+  errEl.textContent = '';
+
+  if(!name || !age || !height || !weight){ errEl.textContent = 'عمر جميع الخانات بأرقام صحيحة.'; return; }
+  if(age < 10 || age > 90){ errEl.textContent = 'العمر لازم يكون بين 10 و90.'; return; }
+  if(height < 100 || height > 230){ errEl.textContent = 'الطول لازم يكون بين 100 و230 سم.'; return; }
+  if(weight < 30 || weight > 300){ errEl.textContent = 'الوزن لازم يكون بين 30 و300 كغ.'; return; }
+
+  fpSetBtnLoading(btn, true);
+  const { error } = await fpSb.from('profiles').update({
+    name, age, gender, height, weight, activity, goal, level, updated_at: new Date().toISOString()
+  }).eq('id', fpCurrentUser.id);
+  fpSetBtnLoading(btn, false, 'احسب واعطيني المخطط');
+
+  if(error){ errEl.textContent = 'صار خطأ، حاول مرة أخرى.'; return; }
+
+  fpCurrentUser.name = name;
+  fpCurrentUser.profile = { age, gender, height, weight, activity, goal, level };
+
+  if(!fpCurrentUser.progress || !fpCurrentUser.progress.length){
+    const today = new Date().toISOString().slice(0,10);
+    const { data: entry } = await fpSb.from('progress_logs')
+      .upsert({ user_id: fpCurrentUser.id, date: today, weight }, { onConflict: 'user_id,date' })
+      .select().maybeSingle();
+    if(entry) fpCurrentUser.progress = [{ id: entry.id, date: entry.date, weight: entry.weight }];
+  }
+
+  fpShowApp(fpCurrentUser);
+});
+
+/* Switch the profile form's title/intro between "complete your profile"
+   (first login) and "edit profile" (returning user updating their data). */
+function fpSetProfileFormMode(isFirstTime){
+  const title = document.getElementById('pf-form-title');
+  const intro = document.getElementById('pf-form-intro');
+  if(isFirstTime){
+    title.textContent = 'أكمل بياناتك';
+    intro.style.display = 'block';
+    intro.textContent = 'خطوة أخيرة قبل ما نجهزولك لوحة التحكم: عمر بياناتك تحت باش نحسبولك أرقامك ونبنيولك برنامج تدريب على قدك.';
+  } else {
+    title.textContent = 'عدل بياناتك';
+    intro.style.display = 'none';
+  }
+}
+
+document.getElementById('pf-cancel').addEventListener('click', function(){
+  fpShowApp(fpCurrentUser);
+});
+
+document.getElementById('fp-edit-profile-btn').addEventListener('click', function(){
+  document.getElementById('fp-settings-panel').style.display = 'none';
+  fpFillProfileForm(fpCurrentUser.profile, fpCurrentUser.name);
+  fpSetProfileFormMode(false);
+  document.getElementById('fp-profile-form-wrap').style.display = 'block';
+  document.getElementById('fp-dashboard').style.display = 'none';
+  document.getElementById('pf-cancel').style.display = fpCurrentUser.profile ? 'inline-block' : 'none';
+});
+
+/* ---------------- RENDER DASHBOARD ---------------- */
+function fpRenderDashboard(user){
+  const c = fpCalc(user.profile);
+
+  document.getElementById('fp-bmi-val').textContent = c.bmi.toFixed(1);
+  document.getElementById('fp-bmi-cat').textContent = 'مؤشر كتلة الجسم — ' + c.bmiCat;
+  document.getElementById('fp-bmr-val').textContent = Math.round(c.bmr);
+  document.getElementById('fp-tdee-val').textContent = Math.round(c.tdee);
+  document.getElementById('fp-cal-val').textContent = Math.round(c.calories);
+  document.getElementById('fp-cal-lbl').textContent = c.calLabel;
+
+  document.getElementById('fp-protein-val').textContent = Math.round(c.proteinG) + ' غ';
+  document.getElementById('fp-carb-val').textContent = Math.round(c.carbG) + ' غ';
+  document.getElementById('fp-fat-val').textContent = Math.round(c.fatG) + ' غ';
+  document.getElementById('fp-water-val').textContent = c.water.toFixed(1) + ' لتر';
+
+  fpRenderProfileSummary(user);
+  fpRenderCalendarStrip(user.profile.level);
+  fpRenderPlan(user.profile.level);
+  fpRenderCardio(user.profile.goal);
+  fpRenderRecovery();
+  fpRenderFavorites(user);
+  fpRenderProgress(user);
+  fpRenderAchievements(user);
+
+  document.getElementById('fp-settings-panel').style.display = 'none';
+}
+
+/* ---------------- APP SHOW/HIDE ---------------- */
+function fpShowApp(user){
+  document.getElementById('fp-auth').style.display = 'none';
+  document.getElementById('fp-app').style.display = 'block';
+  document.getElementById('fp-username').textContent = user.name;
+
+  if(!user.profile){
+    fpFillProfileForm(null, user.name);
+    fpSetProfileFormMode(true);
+    document.getElementById('fp-profile-form-wrap').style.display = 'block';
+    document.getElementById('fp-dashboard').style.display = 'none';
+    document.getElementById('pf-cancel').style.display = 'none';
+  } else {
+    document.getElementById('fp-profile-form-wrap').style.display = 'none';
+    document.getElementById('fp-dashboard').style.display = 'block';
+    fpRenderDashboard(user);
+    fpHandlePostAuthHash();
+  }
+}
+
+/* Deep-link support for the nav profile menu (My Profile / My Progress / Settings). */
+function fpHandlePostAuthHash(){
+  const hash = window.location.hash.replace('#','');
+  if(hash === 'profile'){
+    document.getElementById('fp-edit-profile-btn').click();
+  } else if(hash === 'settings'){
+    document.getElementById('fp-change-pass-btn').click();
+  } else if(hash === 'progress'){
+    const el = document.getElementById('fp-sec-progress');
+    if(el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+}
+
+/* ---------------- INIT ---------------- */
+async function fpInit(){
+  const dateField = document.getElementById('pt-date');
+  if(dateField && !dateField.value){ dateField.value = new Date().toISOString().slice(0,10); }
+
+  const { data: { session } } = await fpSb.auth.getSession();
+  if(!session){
+    fpShowAuth();
+    const hash = window.location.hash.replace('#','');
+    if(hash === 'login' || hash === 'signup'){ fpActivateAuthTab(hash); }
+    return;
+  }
+  await fpLoadAndShow();
+}
+
+/* Keep the UI in sync if the session ends elsewhere (e.g. token expiry). */
+fpSb.auth.onAuthStateChange((event) => {
+  if(event === 'SIGNED_OUT'){ fpShowAuth(); }
+});
+
+fpInit();
+</script>
+
+<script src="js/site-auth.js"></script>
+
+</body>
+</html>
