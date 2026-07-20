@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://omar0130y-netizen.github.io/Omar-Fitness/sitemap.xml
